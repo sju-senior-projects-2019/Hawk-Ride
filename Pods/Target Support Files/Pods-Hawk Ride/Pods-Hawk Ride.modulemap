@@ -1,0 +1,6 @@
+framework module Pods_Hawk_Ride {
+  umbrella header "Pods-Hawk Ride-umbrella.h"
+
+  export *
+  module * { export * }
+}

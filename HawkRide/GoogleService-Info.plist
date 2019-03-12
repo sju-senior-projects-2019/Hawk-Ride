@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>802018160414-joqa8j9idjtru2f7n50kcerljhp32nnu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.802018160414-joqa8j9idjtru2f7n50kcerljhp32nnu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBcG7mEfKez7-RLpoJ8O4sz4eDPeTR3hbY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>802018160414</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.gregoryjones.HawkRide</string>
+	<key>PROJECT_ID</key>
+	<string>hawk-ride</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hawk-ride.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:802018160414:ios:c35690d0339c29e6</string>
+	<key>DATABASE_URL</key>
+	<string>https://hawk-ride.firebaseio.com</string>
+</dict>
+</plist>
