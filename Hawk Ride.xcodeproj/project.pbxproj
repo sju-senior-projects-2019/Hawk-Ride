@@ -10,6 +10,7 @@
 		0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0450C9220A9234009BD21B /* SAButtonPart2.swift */; };
 		0D0450CD220A9AB3009BD21B /* clan-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */; };
 		0D0450CE220A9AB3009BD21B /* clan-med-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0450CC220A9AB3009BD21B /* clan-med-webfont.ttf */; };
+		0D2952212238A27400DDA9CC /* SABUTTON3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2952202238A27400DDA9CC /* SABUTTON3.swift */; };
 		0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2B22015132007361EF /* AppDelegate.swift */; };
 		0D2C7F2E22015132007361EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2D22015132007361EF /* ViewController.swift */; };
 		0D2C7F3122015132007361EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2F22015132007361EF /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		0D0450C9220A9234009BD21B /* SAButtonPart2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonPart2.swift; sourceTree = "<group>"; };
 		0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-book-webfont.ttf"; sourceTree = "<group>"; };
 		0D0450CC220A9AB3009BD21B /* clan-med-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-med-webfont.ttf"; sourceTree = "<group>"; };
+		0D2952202238A27400DDA9CC /* SABUTTON3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABUTTON3.swift; sourceTree = "<group>"; };
 		0D2C7F2822015132007361EF /* Hawk Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawk Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D2C7F2B22015132007361EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D2C7F2D22015132007361EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */,
 				0DCD93A922023B5900AAA621 /* Constrants.swift */,
 				0D0450C9220A9234009BD21B /* SAButtonPart2.swift */,
+				0D2952202238A27400DDA9CC /* SABUTTON3.swift */,
 				0DCD93A622023A1300AAA621 /* SAButton.swift */,
 			);
 			path = "Custom Button Style";
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */,
+				0D2952212238A27400DDA9CC /* SABUTTON3.swift in Sources */,
 				0DAB6653222612F3001F261A /* ErrorCodes.swift in Sources */,
 				0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */,
 				0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */,

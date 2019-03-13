@@ -26,11 +26,11 @@ class CustomViewDesign: UIView {
     }
     
     func setupViewDesign() {
-        layer.borderWidth = 0.8
+        layer.borderWidth = 0.3
         layer.borderColor = UIColor(red: 208/255, green: 212/255, blue:217/255, alpha: 1.0).cgColor
         backgroundColor = Colors.whiteBackground
-        layer.cornerRadius  = frame.size.height/5
-       
+        layer.cornerRadius  = frame.size.height/6
+     
         
       
     }
