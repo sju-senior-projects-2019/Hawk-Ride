@@ -1,5 +1,5 @@
-# Uber
-IOS application which has the same functionality as uber application
+# Hawk Ride
+IOS application which has very similar functionality like Uber; however, the service this app provides is an student escort service where students who are considered Hawk Riders will get an escort from another student who is Hawk Driver to their dorm halls.
 
 Table of contents:
 =================
@@ -36,7 +36,7 @@ Prerequisites:
 
 Clone:
 =====
-  Clone this repo `https://github.com/shazly333/Uber.git`
+  Clone this repo?
   
 User Guide For Customers:
 =======================
@@ -68,8 +68,8 @@ User Guide For Drivers:
   - Enter your email and password and make sure you make switch button on driver side, then press sign up.
   - To sign in just press button sign in and enter your email and password.
   <p align="center">
-  <img src="images/signupdriver.png" width = "200">
-    <img src="images/signindriver.png" width = "200">
+  <img src="" width = "200">
+    <img src="" width = "200">
   </p>
   
   Get Order:
@@ -77,22 +77,22 @@ User Guide For Drivers:
   - When driver get an order from customer, red path appears on the map to show him the shortest path from his location to the       customer.
   
    <p align="center">
-  <img src="images/path.png" width = "200">  </p>
+  <img src="" width = "200">  </p>
   
  
   Pick Up Customer And Reach Distination:		
   ---------------------------------------
 
-- When driver react to the customer, he should press Pick up botton to clear map from the marker and red path.
+- When driver react to the customer, he/she should press Pick up botton to clear map from the marker and red path.
 - When driver reach to the destination of the customer, he should press Drop Down botton to get the cost.
 
 <p align="center">
-  <img src="images/pickup.png" width = "200">
-    <img src="images/cost.png" width = "200">
+  <img src="" width = "200">
+    <img src="g" width = "200">
   </p>
 
 License:
 ========
 
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-Copyright (c) 2018 Mohamed Kamal El-Shazly
+[![License](http:)
+Copyright (c) 2019 Gregory Jones
