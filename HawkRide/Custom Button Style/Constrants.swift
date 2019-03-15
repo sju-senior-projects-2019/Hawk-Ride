@@ -18,5 +18,6 @@ struct Colors {
 
 struct Fonts {
     static let montserratSemiBold = "Montserrat-SemiBold"
+    static let montserratLight = "Montserrat-Light"
 }
 
