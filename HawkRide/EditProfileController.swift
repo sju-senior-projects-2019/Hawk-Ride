@@ -18,8 +18,5 @@ class EditProfileController: UIViewController {
 
     //MARK: - Helper Functions
     
-    @objc func handleDismiss() {
-  
-   
- }
+
 }

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    /* Customizing the navigation bar */
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Hello", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
     self.navigationItem.backBarButtonItem?.title = ""
     self.navigationItem.backBarButtonItem = UIBarButtonItem()

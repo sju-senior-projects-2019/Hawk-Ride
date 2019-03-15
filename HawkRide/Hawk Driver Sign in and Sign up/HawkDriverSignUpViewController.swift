@@ -33,6 +33,8 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
     var EmailAddressController: MDCTextInputControllerFilled?
     var PasswordController: MDCTextInputControllerFilled?
     var PhoneNumberController: MDCTextInputControllerFilled?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +47,16 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
         Password.delegate = self
         PhoneNumber.delegate = self
         
+        
+        FirstNameController = MDCTextInputControllerFilled(textInput: FirstName)
+        LastNameController = MDCTextInputControllerFilled(textInput: LastName)
+        IDNumberController = MDCTextInputControllerFilled(textInput: IDNumber)
+        EmailAddressController = MDCTextInputControllerFilled(textInput: EmailAddress)
+        PasswordController = MDCTextInputControllerFilled(textInput: Password)
+        PhoneNumberController = MDCTextInputControllerFilled(textInput: PhoneNumber)
+        
+        
+        
 
         /** Customizing the navigation controller bar */
         self.navigationItem.backBarButtonItem?.title = ""  // Changing the title of the navigation item
@@ -55,19 +67,13 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white // Changing the color of the navigation item
         
-        
-        FirstNameController = MDCTextInputControllerFilled(textInput: FirstName)
-        LastNameController = MDCTextInputControllerFilled(textInput: LastName)
-        IDNumberController = MDCTextInputControllerFilled(textInput: IDNumber)
-        EmailAddressController = MDCTextInputControllerFilled(textInput: EmailAddress)
-        PasswordController = MDCTextInputControllerFilled(textInput: Password)
-        PhoneNumberController = MDCTextInputControllerFilled(textInput: PhoneNumber)
-    
-        
-        
-    }
+      
+}
  
-    
+    /* Submit button function
+     * Using Firebase Auth to create users and store their email address, firstName, lastName, ID number and # in the database
+     * TODO: if the user's information is already in the database send a warning message
+     */
     @IBAction func SubmitButtonPressed(_ sender: Any) {
         if let email = EmailAddress.text {
             if let password = Password.text {
@@ -91,17 +97,38 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    /* Forgot Password
+     * User's are able to forget their password
+     * Firebase handles this feature -
+     * If user clicks forgot password, there will be a warning sign that pops saying enter your email
+     * Once user enters email, then they should receive a notification in their email to rese their password
+     */
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func ForgotPassword(_ sender: Any) {
+        let forgotPasswordAlert = UIAlertController(title: "Forgot Password?", message: "Enter Email Address", preferredStyle: .alert)
+        forgotPasswordAlert.addTextField {(textField) in
+            textField.placeholder = "Enter Email Address"
+        }
+        
+        forgotPasswordAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        forgotPasswordAlert.addAction(UIAlertAction(title: "Reset Password", style: .default, handler: {(action) in
+            let resetEmail = forgotPasswordAlert.textFields?.first?.text
+            Auth.auth().sendPasswordReset(withEmail: resetEmail!, completion: { (error) in
+                if error != nil {
+                    let resetFailedAlert = UIAlertController(title:"Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+                    resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetFailedAlert, animated: true, completion: nil)
+                }else {
+                    let resetEmailSentAlert = UIAlertController(title: "Reset email sent successfully", message: "Check your email", preferredStyle: .alert)
+                    resetEmailSentAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetEmailSentAlert, animated: true, completion: nil)
+                    
+                }
+                
+            })
+        }))
+        // Present Alert:
+        self.present(forgotPasswordAlert, animated: true, completion: nil)
     }
-    */
-
+    
 }

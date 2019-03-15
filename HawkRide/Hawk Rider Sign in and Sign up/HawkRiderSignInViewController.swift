@@ -24,39 +24,34 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
     var emailController: MDCTextInputControllerOutlined?
     var passwordController: MDCTextInputControllerOutlined?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-    /*    Auth.auth().addStateDidChangeListener { (Auth, user) in
-            if user != nil {
-                //User is signed in. Show home screen
-                self.performSegue(withIdentifier: "goToRiderMap", sender: nil)
-                print("Signed In")
-            } else {
-                //No user is signed in. Show user the login screen
-                print("Not Signed In")
-            }
-        } */
-        
+    
         EmailAddress.delegate = self
         Password.delegate = self
         ValidationMessage.isHidden = true
- 
+        
         emailController = MDCTextInputControllerOutlined(textInput:EmailAddress)
         passwordController = MDCTextInputControllerOutlined(textInput: Password)
         MDCContainedButtonThemer.applyScheme(buttonScheme, to: SubmitButton)
- }
+}
     
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        SubmitButton.hitAreaInsets = UIEdgeInsets(top: (48 - self.SubmitButton.bounds.size.height) / -2,
+       SubmitButton.hitAreaInsets = UIEdgeInsets(top: (48 - self.SubmitButton.bounds.size.height) / -2,
                                                   left: 0,
                                                   bottom: (48 - self.SubmitButton.bounds.size.height) / -2,
                                                   right: 0)
-    }
+}
     
-      @IBAction func SubmitButton(_ sender: Any) {
+    /* Submit button function
+     * Check to see if the user's email address and password matches what's in the database
+     * WARNING: Developers can't not see the user's password in the database!
+     * if the user's data is valid, then the user is able to move to the rider's map view page and request a ride
+     */
+    @IBAction func SubmitButton(_ sender: Any) {
         if EmailAddress.text == "" || Password.text == "" {
            } else {
             if let email = EmailAddress.text {
@@ -68,7 +63,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
                             self.handleError(error!)
                             return
                         }
-                        self.performSegue(withIdentifier: "goToRiderMap", sender: sender) // After user logins with the correct credentials, then it would send the user to the Rider Map View
+                       self.performSegue(withIdentifier: "goToRiderMap", sender: sender) // After user logins with the correct credentials, then it would send the user to the Rider Map View
                     }
                     
                 }
@@ -76,17 +71,19 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
-        
-    }
-
-
-
+}
+    /* Forgot Password
+     * User's are able to forget their password
+     * Firebase handles this feature -
+     * If user clicks forgot password, there will be a warning sign that pops saying enter your email
+     * Once user enters email, then they should receive a notification in their email to rese their password
+     */
     @IBAction func ForgotPassword(_ sender: Any) {
         let forgotPasswordAlert = UIAlertController(title: "Forgot Password?", message: "Enter Email Address", preferredStyle: .alert)
          forgotPasswordAlert.addTextField {(textField) in
             textField.placeholder = "Enter Email Address"
         }
-       
+        
         forgotPasswordAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         forgotPasswordAlert.addAction(UIAlertAction(title: "Reset Password", style: .default, handler: {(action) in
             let resetEmail = forgotPasswordAlert.textFields?.first?.text
@@ -107,7 +104,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
     // Present Alert:
     self.present(forgotPasswordAlert, animated: true, completion: nil)
   }
-   
+    
 }
 
 

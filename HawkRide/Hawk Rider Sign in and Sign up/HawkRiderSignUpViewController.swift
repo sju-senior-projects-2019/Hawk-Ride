@@ -37,8 +37,7 @@ class HawkRiderSignUpViewController: UIViewController {
     var PhoneNumberController: MDCTextInputControllerFilled?
     
    
-   
-    override func viewDidLoad() {
+   override func viewDidLoad() {
     super.viewDidLoad()
     
     ref = Database.database().reference()
@@ -49,43 +48,34 @@ class HawkRiderSignUpViewController: UIViewController {
     EmailAddressController = MDCTextInputControllerFilled(textInput: EmailAddress)
     PasswordController = MDCTextInputControllerFilled(textInput: Password)
     PhoneNumberController = MDCTextInputControllerFilled(textInput:PhoneNumber)
-  
-        
-   
-        
-    }
+}
     
-
-    
-  
-    
-   
-    @IBAction func SubmitButton(_ sender: Any) {
+ /* Submit button function
+  * Using Firebase Auth to create users and store their email address, firstName, lastName, ID number and # in the database
+  * TODO: if the user's information is already in the database send a warning message
+  */
+  @IBAction func SubmitButton(_ sender: Any) {
         if let email = EmailAddress.text, let password = Password.text {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                     if error == nil {
-                        
-                       
-                      let user = Auth.auth().currentUser?.uid // get the users UID
+                    let user = Auth.auth().currentUser?.uid // get the users UID
                       let emailAddress = self.EmailAddress.text
                       let FirstName = self.FirstName.text
                       let LastName = self.LastName.text
                       let IDNumber = self.IDNumber.text
                       let PhoneNumber = self.PhoneNumber.text
                      
-                        
                     self.ref.child("Hawk Riders").child("\(user!)").setValue(["FirstName": "\(FirstName!)", "LastName": "\(LastName!)", "emailAddress": "\(emailAddress!)", "IDNumber": "\(IDNumber!)","PhoneNumber": "\(PhoneNumber!)"])
-                     
-                    self.performSegue(withIdentifier: "goToRiderMap", sender: sender)
+                     self.performSegue(withIdentifier: "goToRiderMap", sender: sender)
                       
                     } else {
-                       
-                    
-                        
-                 }
+                }
             }
         }
+    
     }
+    
+    
 }
     
 

@@ -26,19 +26,39 @@ class RiderMapViewController: UIViewController, GMSMapViewDelegate {
         setupBlackScreen()
     }
     
+    /* Map Customization:
+     * Add user's location user coordinates
+     * Animating the zoom feature into the map
+     * Map Style: Customizing the map design using json file
+     * Map Style source: https://snazzymaps.com/style/1261/dark
+     */
     func setupMapView() {
         mapView.animate(toLocation: CLLocationCoordinate2DMake(39.995256, -75.241579))
         mapView.animate(toZoom: 15)
         mapView.delegate = self
         self.mapView.mapStyle(withFilename: "bright", andType: "json");
     }
-    
+    /* Hamburger Menu Button
+     * Using navigation bar button to integrate the interaction with the menu icon image
+     * It calls the function btnMenuAction to interacte with the animation to display the slide menu
+     */
     func setupMenuButton() {
         let btnMenu = UIButton(frame: CGRect(x: 0.0, y:0.0, width: 18, height: 14))
         btnMenu.setBackgroundImage(UIImage(named:"Menu"), for: .normal)
         btnMenu.addTarget(self, action: #selector(btnMenuAction),for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnMenu)
     }
+    
+    /* Animating the slide menu feature & designing the layout */
+    @objc func btnMenuAction() {
+        blackScreen.isHidden=false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
+        }) { (complete) in
+            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
+        }
+    }
+    
     
     func setupSideBarView() {
         sidebarView=SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
@@ -58,15 +78,7 @@ class RiderMapViewController: UIViewController, GMSMapViewDelegate {
         blackScreen.addGestureRecognizer(tapGestRecognizer)
     }
     
-    @objc func btnMenuAction() {
-        blackScreen.isHidden=false
-        UIView.animate(withDuration: 0.5, animations: {
-            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
-        }) { (complete) in
-            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
-        }
-    }
-    
+  
     @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
         blackScreen.isHidden=true
         blackScreen.frame=self.view.bounds
@@ -80,7 +92,7 @@ class RiderMapViewController: UIViewController, GMSMapViewDelegate {
 
 extension RiderMapViewController: SidebarViewDelegate {
    
-    
+    /* Adding the rows to the side bar */
     func sidebarDidSelectRow(row: Row) {
         blackScreen.isHidden=true
         blackScreen.frame=self.view.bounds

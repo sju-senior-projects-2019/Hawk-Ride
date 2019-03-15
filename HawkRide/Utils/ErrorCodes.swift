@@ -11,6 +11,7 @@ import FirebaseAuth
 
 extension AuthErrorCode {
     
+    /* Displaying Alert Messages to the users */
     var errorMessage: String {
         switch self {
         case .emailAlreadyInUse:

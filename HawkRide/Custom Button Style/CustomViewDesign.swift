@@ -25,6 +25,9 @@ class CustomViewDesign: UIView {
          setupViewDesign()
     }
     
+    /* A method that creates the destination view holder
+     *The view holder holds the current destination and search destination text field
+     */
     func setupViewDesign() {
         layer.borderWidth = 0.3
         layer.borderColor = UIColor(red: 208/255, green: 212/255, blue:217/255, alpha: 1.0).cgColor

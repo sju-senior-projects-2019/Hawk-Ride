@@ -30,11 +30,11 @@ class HawkDriverSignInViewController: UIViewController, UITextFieldDelegate {
         Password.delegate = self
         ValidationMessage.isHidden = true
         
-   emailController = MDCTextInputControllerOutlined(textInput:EmailAddress)
-   passwordController = MDCTextInputControllerOutlined(textInput: Password)
-   MDCContainedButtonThemer.applyScheme(buttonScheme, to: SubmitButton)
-    
-    }
+        emailController = MDCTextInputControllerOutlined(textInput:EmailAddress)
+        passwordController = MDCTextInputControllerOutlined(textInput: Password)
+        MDCContainedButtonThemer.applyScheme(buttonScheme, to: SubmitButton)
+        
+}
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -43,8 +43,15 @@ class HawkDriverSignInViewController: UIViewController, UITextFieldDelegate {
                                                 left: 0,
                                                 bottom: (48 - self.SubmitButton.bounds.size.height) / -2,
                                                 right: 0)
-    }
+
+}
     
+    /* Submit button function
+     * Check to see if the user's email address and password matches what's in the database
+     * WARNING: Developers can't not see the user's password in the database!
+     * if the user's data is valid, then the user is able to move to the driver's map view page and request a ride
+     */
+
     @IBAction func SubmitButton(_ sender: Any) {
         if EmailAddress.text == "" || Password.text == "" {
             
@@ -65,9 +72,15 @@ class HawkDriverSignInViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-    }
+}
    
-        
+    /* Forgot Password
+     * User's are able to forget their password
+     * Firebase handles this feature -
+     * If user clicks forgot password, there will be a warning sign that pops saying enter your email
+     * Once user enters email, then they should receive a notification in their email to rese their password
+     */
+    
     @IBAction func ForgotPassword(_ sender: Any) {
         let forgotPasswordAlert = UIAlertController(title: "Forgot Password?", message: "Enter Email Address", preferredStyle: .alert)
         forgotPasswordAlert.addTextField {(textField) in
