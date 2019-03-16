@@ -9,6 +9,8 @@
 import UIKit
 import MaterialComponents
 import FirebaseAuth
+import GoogleMaps
+import GeoFire
 
 
 
@@ -66,7 +68,7 @@ class HawkDriverSignInViewController: UIViewController, UITextFieldDelegate {
                             self.handleError(error!)
                             return
                         }
-                        self.performSegue(withIdentifier: "goToDriverMap", sender: sender)
+                        self.performSegue(withIdentifier: "DriverSegue", sender: sender)
                         
                     }
                 }

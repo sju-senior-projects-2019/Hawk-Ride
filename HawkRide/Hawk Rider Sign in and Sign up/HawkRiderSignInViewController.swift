@@ -12,9 +12,8 @@ import Firebase
 import FirebaseAuth
 
 
-
 class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var ValidationMessage: UILabel!
     @IBOutlet weak var EmailAddress: MDCTextField!
     @IBOutlet weak var Password: MDCTextField!
@@ -27,7 +26,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+       
         EmailAddress.delegate = self
         Password.delegate = self
         ValidationMessage.isHidden = true
@@ -44,7 +43,8 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
                                                   left: 0,
                                                   bottom: (48 - self.SubmitButton.bounds.size.height) / -2,
                                                   right: 0)
-}
+      }
+    
     
     /* Submit button function
      * Check to see if the user's email address and password matches what's in the database
@@ -63,7 +63,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
                             self.handleError(error!)
                             return
                         }
-                       self.performSegue(withIdentifier: "goToRiderMap", sender: sender) // After user logins with the correct credentials, then it would send the user to the Rider Map View
+                      self.performSegue(withIdentifier: "RiderSegue", sender: sender) // After user logins with the correct credentials, then it would send the user to the Rider Map View
                     }
                     
                 }

@@ -9,21 +9,35 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
+import GeoFire
+import SVProgressHUD
 
-class RiderMapViewController: UIViewController, GMSMapViewDelegate {
+
+class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var mapView: GMSMapView!
-    var sidebarView: SidebarView!
+    var sidebarView: SidebarViewRider!
     var blackScreen: UIView!
-    
+   /* let locationManager = CLLocationManager()
+    var geoFire: GeoFire!
+    var riderLocation = CLLocation()
+    var marker: GMSMarker? = nil
+    var firstzoom = true
+    var customerLocation = CLLocation()
+    var firstUpdate = true */
+ 
+   
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMapView()
+         setupMapView()
+        //usersLocation()
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
+       // mapView = self.view as! GMSMapView?
+        
     }
     
     /* Map Customization:
@@ -31,13 +45,47 @@ class RiderMapViewController: UIViewController, GMSMapViewDelegate {
      * Animating the zoom feature into the map
      * Map Style: Customizing the map design using json file
      * Map Style source: https://snazzymaps.com/style/1261/dark
-     */
+ */
     func setupMapView() {
         mapView.animate(toLocation: CLLocationCoordinate2DMake(39.995256, -75.241579))
         mapView.animate(toZoom: 15)
-        mapView.delegate = self
+       // self.mapView.delegate = self
+       // self.view = mapView
         self.mapView.mapStyle(withFilename: "bright", andType: "json");
+ 
+ }
+  
+   /* func usersLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
     }
+  
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        customerLocation = (manager.location)!
+        if firstUpdate {
+            firstUpdate = false
+             let camera=GMSCameraPosition.camera(withLatitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!, zoom: 14)
+            mapView.camera = camera
+         }
+        
+        if marker == nil {
+            marker = GMSMarker()
+            marker?.position = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!)
+            marker?.map = mapView
+        }
+        else {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1.0)
+            marker?.position = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!)
+            CATransaction.commit()
+        }
+        locationManager.stopUpdatingLocation()
+    }
+    */
     /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu
@@ -61,7 +109,7 @@ class RiderMapViewController: UIViewController, GMSMapViewDelegate {
     
     
     func setupSideBarView() {
-        sidebarView=SidebarView(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
+        sidebarView=SidebarViewRider(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
         sidebarView.delegate=self
         sidebarView.layer.zPosition=100
         self.view.isUserInteractionEnabled=true
@@ -90,7 +138,7 @@ class RiderMapViewController: UIViewController, GMSMapViewDelegate {
 }
 
 
-extension RiderMapViewController: SidebarViewDelegate {
+extension RiderMapViewController: SidebarViewRiderDelegate {
    
     /* Adding the rows to the side bar */
     func sidebarDidSelectRow(row: Row) {
@@ -123,6 +171,7 @@ extension RiderMapViewController: SidebarViewDelegate {
 }
     
 
+/* Check the Map Style for Google Maps */
 
 extension GMSMapView {
     func mapStyle(withFilename name: String, andType type: String) {
@@ -137,6 +186,9 @@ extension GMSMapView {
         }
     }
 }
+
+
+
 
 
 

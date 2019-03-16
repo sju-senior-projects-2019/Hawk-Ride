@@ -11,12 +11,14 @@ import MaterialComponents.MaterialTextFields
 import FirebaseAuth
 import FirebaseDatabase
 import Firebase
+import GoogleMaps
+import GeoFire
 
 
 
 class HawkRiderSignUpViewController: UIViewController {
     
-    
+   
     var ref: DatabaseReference! //Create a reference to the database
   
     /* Sign up form variables */
@@ -39,6 +41,7 @@ class HawkRiderSignUpViewController: UIViewController {
    
    override func viewDidLoad() {
     super.viewDidLoad()
+ 
     
     ref = Database.database().reference()
 
@@ -49,6 +52,7 @@ class HawkRiderSignUpViewController: UIViewController {
     PasswordController = MDCTextInputControllerFilled(textInput: Password)
     PhoneNumberController = MDCTextInputControllerFilled(textInput:PhoneNumber)
 }
+    
     
  /* Submit button function
   * Using Firebase Auth to create users and store their email address, firstName, lastName, ID number and # in the database
@@ -66,17 +70,14 @@ class HawkRiderSignUpViewController: UIViewController {
                       let PhoneNumber = self.PhoneNumber.text
                      
                     self.ref.child("Hawk Riders").child("\(user!)").setValue(["FirstName": "\(FirstName!)", "LastName": "\(LastName!)", "emailAddress": "\(emailAddress!)", "IDNumber": "\(IDNumber!)","PhoneNumber": "\(PhoneNumber!)"])
-                     self.performSegue(withIdentifier: "goToRiderMap", sender: sender)
-                      
-                    } else {
-                }
-            }
+                     self.performSegue(withIdentifier: "RiderSegue", sender: sender)
+              }
+           }
         }
-    
-    }
-    
-    
-}
+     }
+  }
+
+
     
 
    

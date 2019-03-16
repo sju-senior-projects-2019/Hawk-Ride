@@ -10,7 +10,7 @@
 import UIKit
 
 
-protocol SidebarViewDelegate: class {
+protocol SidebarViewRiderDelegate: class {
     func sidebarDidSelectRow(row: Row)
  
    
@@ -44,12 +44,12 @@ enum Row: String {
 
 
 
-class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
+class SidebarViewRider: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var titleArr = [String]()
    
     
-    weak var delegate: SidebarViewDelegate?
+    weak var delegate: SidebarViewRiderDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,7 +107,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg3.layer.masksToBounds=true
             cellImg3.contentMode = .scaleAspectFill
             cellImg3.layer.masksToBounds=true
-            cellImg3.image=#imageLiteral(resourceName: "baseline_time_to_leave_white_24pt_2x")
+            cellImg3.image=#imageLiteral(resourceName: "outline_accessibility_new_white_24pt_1x")
             cell.addSubview(cellImg3)
             
             // Help Image Icon

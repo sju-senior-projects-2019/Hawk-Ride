@@ -7,27 +7,129 @@
 //
 
 import UIKit
+import GoogleMaps
+import GeoFire
+import CoreLocation
 
-class DriverMapViewController: UIViewController {
+
+class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
+    //MARK: - Properties
+    
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    var sidebarView: SidebarViewDriver!
+    var blackScreen: UIView!
+    var marker : GMSMarker? = nil
+    var firstUpdate = true
+    var customerMarker: GMSMarker? = nil
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        // Do any additional setup after loading the view.
-    }
-    
-   
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+        setupMapView()
+        setupMenuButton()
+        setupSideBarView()
+        setupBlackScreen()
 }
+    func setupMapView() {
+        mapView.animate(toLocation: CLLocationCoordinate2DMake(39.995256, -75.241579))
+        mapView.animate(toZoom: 15)
+        // self.mapView.delegate = self
+        // self.view = mapView
+        self.mapView.mapStyle(withFilename: "bright", andType: "json");
+        
+    }
+    
+    //MARK: - Handlers
+    
+    /* Hamburger Menu Button
+     * Using navigation bar button to integrate the interaction with the menu icon image
+     * It calls the function btnMenuAction to interacte with the animation to display the slide menu
+     */
+    func setupMenuButton() {
+        let btnMenu = UIButton(frame: CGRect(x: 0.0, y:0.0, width: 18, height: 14))
+        btnMenu.setBackgroundImage(UIImage(named:"Menu"), for: .normal)
+        btnMenu.addTarget(self, action: #selector(btnMenuAction),for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnMenu)
+    }
+    
+    /* Animating the slide menu feature & designing the layout */
+    @objc func btnMenuAction() {
+        blackScreen.isHidden=false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
+        }) { (complete) in
+            self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
+        }
+    }
+    
+    
+    func setupSideBarView() {
+        sidebarView = SidebarViewDriver(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
+        sidebarView.delegate = self
+        sidebarView.layer.zPosition=100
+        self.view.isUserInteractionEnabled=true
+        self.navigationController?.view.addSubview(sidebarView)
+    }
+    
+    func setupBlackScreen() {
+        blackScreen=UIView(frame: self.view.bounds)
+        blackScreen.backgroundColor=UIColor(white: 0, alpha: 0.5)
+        blackScreen.isHidden=true
+        self.navigationController?.view.addSubview(blackScreen)
+        blackScreen.layer.zPosition=99
+        let tapGestRecognizer = UITapGestureRecognizer(target: self, action: #selector(blackScreenTapAction(sender:)))
+        blackScreen.addGestureRecognizer(tapGestRecognizer)
+    }
+    
+    
+    @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
+        blackScreen.isHidden=true
+        blackScreen.frame=self.view.bounds
+        UIView.animate(withDuration: 0.3) {
+            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
+        }
+    }
+    
+}
+
+
+extension DriverMapViewController: SidebarDriverViewDelegate {
+    
+    /* Adding the rows to the side bar */
+    func sidebarDidSelectRow(rowDriver: RowDriver) {
+        blackScreen.isHidden=true
+        blackScreen.frame=self.view.bounds
+        UIView.animate(withDuration: 0.3) {
+            self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
+        }
+        switch rowDriver {
+        case .editProfile:
+            let controller = EditProfileController()
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .rideHistory:
+            print("Ride History")
+        case .schedule:
+            print("Schedule")
+        case .vehicle:
+            print("Vehicle")
+        case .becomeAHawkRider:
+            print("Become a Hawk Rider")
+        case .help:
+            print("Help")
+        case .settings:
+            print("Settings")
+        case .logOut:
+            print("Log out")
+        case .none:
+            break
+            // default: //Default will never be executed
+        }
+    }
+    
+}
+
+
+
+    
+

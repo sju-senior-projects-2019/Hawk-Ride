@@ -20,7 +20,7 @@
 		0D2C7F4422015186007361EF /* MontserratAlternates-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */; };
 		0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */; };
 		0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */; };
-		0D45940D223AE0800026E845 /* sidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45940C223AE0800026E845 /* sidebarView.swift */; };
+		0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45940C223AE0800026E845 /* sidebarViewRider.swift */; };
 		0D459413223B51E30026E845 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D459412223B51E30026E845 /* EditProfileController.swift */; };
 		0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */; };
 		0D7B6ED5222F05A200667806 /* custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED4222F05A200667806 /* custom.json */; };
@@ -28,6 +28,8 @@
 		0D7B6ED9222F19E000667806 /* clean.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED8222F19DF00667806 /* clean.json */; };
 		0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CF7B3221790D100159517 /* HawkRiderSignInViewController.swift */; };
 		0D7CF7B62217912B00159517 /* HawkDriverSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CF7B52217912B00159517 /* HawkDriverSignInViewController.swift */; };
+		0D89CD5B223CADBE00DBE757 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */; };
+		0D89CD5F223CBA7D00DBE757 /* sidebarViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */; };
 		0D8C827322029FEC00838F8D /* clanpro-bold-opentype.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8C826F22029FEC00838F8D /* clanpro-bold-opentype.otf */; };
 		0D8C827422029FEC00838F8D /* clanpro-black-opentype.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8C827022029FEC00838F8D /* clanpro-black-opentype.otf */; };
 		0D8C827522029FEC00838F8D /* clanpro-condbook-opentype.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8C827122029FEC00838F8D /* clanpro-condbook-opentype.otf */; };
@@ -45,7 +47,6 @@
 		0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A622023A1300AAA621 /* SAButton.swift */; };
 		0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A922023B5900AAA621 /* Constrants.swift */; };
 		0DE0ABDA2229950600FD766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE0ABD92229950600FD766C /* Assets.xcassets */; };
-		0DE446FC2224DEE0000BD313 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DE446FB2224DEE0000BD313 /* GoogleService-Info.plist */; };
 		0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */; };
 		0DE91EE02202515A008C9B52 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */; };
 		0DEE86EB223721BB0028F778 /* bright.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE86EA223721BB0028F778 /* bright.json */; };
@@ -70,7 +71,7 @@
 		0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-Bold.ttf"; sourceTree = "<group>"; };
 		0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderMapViewController.swift; sourceTree = "<group>"; };
 		0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderPortalViewController.swift; sourceTree = "<group>"; };
-		0D45940C223AE0800026E845 /* sidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarView.swift; sourceTree = "<group>"; };
+		0D45940C223AE0800026E845 /* sidebarViewRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewRider.swift; sourceTree = "<group>"; };
 		0D459412223B51E30026E845 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPortalViewController.swift; sourceTree = "<group>"; };
 		0D7B6ED4222F05A200667806 /* custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom.json; sourceTree = "<group>"; };
@@ -78,6 +79,8 @@
 		0D7B6ED8222F19DF00667806 /* clean.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clean.json; sourceTree = "<group>"; };
 		0D7CF7B3221790D100159517 /* HawkRiderSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkRiderSignInViewController.swift; sourceTree = "<group>"; };
 		0D7CF7B52217912B00159517 /* HawkDriverSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkDriverSignInViewController.swift; sourceTree = "<group>"; };
+		0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewDriver.swift; sourceTree = "<group>"; };
 		0D8C826F22029FEC00838F8D /* clanpro-bold-opentype.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clanpro-bold-opentype.otf"; sourceTree = "<group>"; };
 		0D8C827022029FEC00838F8D /* clanpro-black-opentype.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clanpro-black-opentype.otf"; sourceTree = "<group>"; };
 		0D8C827122029FEC00838F8D /* clanpro-condbook-opentype.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clanpro-condbook-opentype.otf"; sourceTree = "<group>"; };
@@ -95,7 +98,6 @@
 		0DCD93A622023A1300AAA621 /* SAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAButton.swift; sourceTree = "<group>"; };
 		0DCD93A922023B5900AAA621 /* Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
 		0DE0ABD92229950600FD766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0DE446FB2224DEE0000BD313 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		0DEE86EA223721BB0028F778 /* bright.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bright.json; sourceTree = "<group>"; };
@@ -154,8 +156,8 @@
 				0D2C7F2F22015132007361EF /* Main.storyboard */,
 				0DE0ABD92229950600FD766C /* Assets.xcassets */,
 				0D2C7F3722015134007361EF /* LaunchScreen.storyboard */,
+				0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */,
 				0D2C7F3A22015134007361EF /* Info.plist */,
-				0DE446FB2224DEE0000BD313 /* GoogleService-Info.plist */,
 				0D2C7F3222015132007361EF /* HawkRide.xcdatamodeld */,
 			);
 			path = HawkRide;
@@ -195,7 +197,8 @@
 		0D45940F223AE3E20026E845 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0D45940C223AE0800026E845 /* sidebarView.swift */,
+				0D45940C223AE0800026E845 /* sidebarViewRider.swift */,
+				0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -364,7 +367,7 @@
 				0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */,
 				0DEE86ED2237228B0028F778 /* uber.json in Resources */,
 				0DC1FAAD22121DD100AA272F /* Montserrat-Thin.ttf in Resources */,
-				0DE446FC2224DEE0000BD313 /* GoogleService-Info.plist in Resources */,
+				0D89CD5B223CADBE00DBE757 /* GoogleService-Info.plist in Resources */,
 				0DC1FAAF22121DD100AA272F /* Montserrat-Regular.otf in Resources */,
 				0D2C7F3122015132007361EF /* Main.storyboard in Resources */,
 				0D8C827322029FEC00838F8D /* clanpro-bold-opentype.otf in Resources */,
@@ -383,7 +386,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
@@ -392,6 +395,7 @@
 				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
 				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
 				"${BUILT_PRODUCTS_DIR}/MotionTransitioning/MotionTransitioning.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -405,12 +409,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionTransitioning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6688BBFDA75B1FF9126551E2 /* [CP] Check Pods Manifest.lock */ = {
@@ -437,16 +442,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -468,12 +475,13 @@
 				0D2C7F3422015132007361EF /* HawkRide.xcdatamodeld in Sources */,
 				0DEEB92122385FBE004C2055 /* CustomViewDesign.swift in Sources */,
 				0DC1FAB22212243600AA272F /* HawkDriverSignUpViewController.swift in Sources */,
+				0D89CD5F223CBA7D00DBE757 /* sidebarViewDriver.swift in Sources */,
 				0DAB66552226277A001F261A /* AlertController.swift in Sources */,
 				0D7CF7B62217912B00159517 /* HawkDriverSignInViewController.swift in Sources */,
 				0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */,
 				0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */,
 				0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */,
-				0D45940D223AE0800026E845 /* sidebarView.swift in Sources */,
+				0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */,
 				0DA3A9F8221BA1C800E68CB8 /* HawkRiderSignUpViewController.swift in Sources */,
 				0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */,
 			);

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import GoogleMaps
+import GooglePlaces
 
 
 
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Thread.sleep(forTimeInterval: 2.0) // Delay splash launch screen time
          FirebaseApp.configure()
          GMSServices.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
-      
+         GMSPlacesClient.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
        
         
         

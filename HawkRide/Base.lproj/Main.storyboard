@@ -437,6 +437,7 @@
                         <outlet property="Password" destination="nR3-mR-vbE" id="V3u-pR-bMm"/>
                         <outlet property="PhoneNumber" destination="tWJ-sd-ph5" id="i6q-Yr-KYe"/>
                         <outlet property="SubmitButton" destination="eeL-Bg-Tx3" id="jhf-tL-hZk"/>
+                        <segue destination="ya3-1O-EUI" kind="show" identifier="RideSegue" id="LrN-gj-Qaf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkC-US-W5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -538,13 +539,39 @@
                         <outlet property="Password" destination="TF7-ba-dld" id="7YQ-kf-0vV"/>
                         <outlet property="SubmitButton" destination="KY2-Au-8oK" id="dzn-zO-ohZ"/>
                         <outlet property="ValidationMessage" destination="ffi-VF-7D6" id="k8M-3P-Prw"/>
-                        <segue destination="UlB-GX-Qk8" kind="show" identifier="goToDriverMap" id="nkh-Pp-OPu"/>
+                        <segue destination="Yam-Zp-1mx" kind="show" identifier="DriverSegue" id="JR7-CD-nle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VS9-4u-Iyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Nrq-KE-Swa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3506" y="1278"/>
+        </scene>
+        <!--Driver Map View Controller-->
+        <scene sceneID="GU1-q3-lqB">
+            <objects>
+                <viewController id="Yam-Zp-1mx" customClass="DriverMapViewController" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BLd-2p-PWp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQJ-xw-caj" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="598"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fcj-4G-veU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e6F-w8-xHv"/>
+                    <connections>
+                        <outlet property="mapView" destination="yQJ-xw-caj" id="cEJ-9x-zHX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T42-RN-jkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4419" y="1278"/>
         </scene>
         <!--Rider Map View Controller-->
         <scene sceneID="23W-1x-1WA">
@@ -737,8 +764,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lb3-GG-O5g"/>
                     </view>
+                    <navigationItem key="navigationItem" id="h8l-5e-WFR"/>
                     <connections>
-                        <outlet property="mapView" destination="dAR-bk-JlY" id="Y7U-cq-Sv1"/>
+                        <outlet property="mapView" destination="dAR-bk-JlY" id="TZa-ev-s8Y"/>
                     </connections>
                 </viewController>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" id="EC3-wR-TIZ" customClass="MDCTextField">
@@ -750,22 +778,7 @@
                 </textField>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kK-04-AZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4743.4782608695659" y="-242.41071428571428"/>
-        </scene>
-        <!--Driver Map View Controller-->
-        <scene sceneID="yoF-LR-bt7">
-            <objects>
-                <viewController id="UlB-GX-Qk8" customClass="DriverMapViewController" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="B34-Lj-0KI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="bWP-ZC-SPW"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="44X-78-YHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6324.6376811594209" y="514.95535714285711"/>
+            <point key="canvasLocation" x="4522" y="-250"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="e6W-G4-G41">
@@ -794,12 +807,12 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By proceeding you agree to Hawk Ride's " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3P-fL-V74">
-                                <rect key="frame" x="55.333333333333329" y="814.33333333333337" width="231.33333333333337" height="13.333333333333371"/>
+                                <rect key="frame" x="56" y="814" width="231" height="14.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzB-u1-LI7">
-                                <rect key="frame" x="284" y="814.33333333333337" width="75" height="13.333333333333371"/>
+                                <rect key="frame" x="284.33333333333331" y="814" width="75" height="14.333333333333371"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Terms of Use">
                                         <attributes>
@@ -812,8 +825,8 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="-1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and acknowledge you have read the " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4u-zY-HhT">
-                                <rect key="frame" x="54.666666666666671" y="834" width="206.33333333333331" height="13.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="and acknowledge you have read the " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4u-zY-HhT">
+                                <rect key="frame" x="55.333333333333343" y="834.66666666666663" width="206.00000000000003" height="12.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -828,58 +841,57 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="federal work study students" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4L-7V-z5e">
-                                <rect key="frame" x="62" y="299" width="270.66666666666669" height="24"/>
+                                <rect key="frame" x="62" y="299" width="271" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="who provide transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2s-Wx-L0O">
-                                <rect key="frame" x="67" y="332" width="267.33333333333331" height="24"/>
+                                <rect key="frame" x="67.666666666666657" y="332" width="266.66666666666674" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on request to students" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdm-eU-vHq">
-                                <rect key="frame" x="84.999999999999986" y="364" width="221.66666666666663" height="24"/>
+                                <rect key="frame" x="85" y="364" width="222" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="throughout our campus." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z90-4V-Ox1">
-                                <rect key="frame" x="78.000000000000014" y="395.33333333333331" width="239.33333333333337" height="24"/>
+                                <rect key="frame" x="78" y="395.33333333333331" width="239" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIC-ha-OV1" customClass="SAButton" customModule="Hawk_Ride" customModuleProvider="target">
-                                <rect key="frame" x="105" y="684.33333333333337" width="180" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="K0h-2M-JNT"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="biH-YB-nvE"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="cr2-bq-YY9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <state key="normal" title="Apply"/>
-                                <connections>
-                                    <action selector="ApplyButton:" destination="je9-ez-rc7" eventType="touchUpInside" id="fDe-Yc-j8Y"/>
-                                    <segue destination="bPH-gG-6mf" kind="show" id="dOv-Iy-cEp"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Privacy Policy." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYV-VP-Fov">
-                                <rect key="frame" x="262" y="834" width="81.333333333333314" height="13.333333333333371"/>
+                                <rect key="frame" x="262.33333333333331" y="833" width="81" height="14.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhk-c3-LKH" customClass="SAButton" customModule="Hawk_Ride" customModuleProvider="target">
+                                <rect key="frame" x="40" y="725" width="322" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="xbc-28-lx6"/>
+                                </constraints>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bPH-gG-6mf" kind="show" id="hGk-pZ-XVr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nqE-DE-zni" firstAttribute="leading" secondItem="qW8-an-z7M" secondAttribute="leading" constant="66" id="0Vp-Dw-zoM"/>
-                            <constraint firstItem="c3P-fL-V74" firstAttribute="top" secondItem="eIC-ha-OV1" secondAttribute="bottom" constant="90" id="1Za-CA-g57"/>
                             <constraint firstItem="qW8-an-z7M" firstAttribute="trailing" secondItem="Kfb-Ei-4ON" secondAttribute="trailing" id="1d8-cA-Ygu"/>
                             <constraint firstItem="l4L-7V-z5e" firstAttribute="leading" secondItem="nqE-DE-zni" secondAttribute="leading" constant="-4" id="6C5-su-5EK"/>
                             <constraint firstItem="qW8-an-z7M" firstAttribute="trailing" secondItem="a2s-Wx-L0O" secondAttribute="trailing" constant="79.666666666666629" id="8gB-Gh-HOL"/>
+                            <constraint firstAttribute="bottom" secondItem="Hhk-c3-LKH" secondAttribute="bottom" constant="124" id="APA-Xm-ut9"/>
                             <constraint firstItem="yzB-u1-LI7" firstAttribute="baseline" secondItem="c3P-fL-V74" secondAttribute="baseline" id="Cch-BK-HGc"/>
+                            <constraint firstItem="Hhk-c3-LKH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qW8-an-z7M" secondAttribute="leading" id="CwN-Fd-xb6"/>
                             <constraint firstItem="sdm-eU-vHq" firstAttribute="top" secondItem="a2s-Wx-L0O" secondAttribute="bottom" constant="8" symbolic="YES" id="Eu1-Jn-cf5"/>
                             <constraint firstItem="a2s-Wx-L0O" firstAttribute="top" secondItem="l4L-7V-z5e" secondAttribute="bottom" constant="9" id="FdE-XW-WJ4"/>
                             <constraint firstItem="a2s-Wx-L0O" firstAttribute="top" secondItem="PEw-dl-NpI" secondAttribute="top" constant="332" id="HON-dC-5B9"/>
@@ -897,21 +909,21 @@
                             <constraint firstItem="a2s-Wx-L0O" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qW8-an-z7M" secondAttribute="leading" id="dvt-pz-Il5"/>
                             <constraint firstItem="R4u-zY-HhT" firstAttribute="baseline" secondItem="yYV-VP-Fov" secondAttribute="baseline" id="em8-w9-UYq"/>
                             <constraint firstItem="z90-4V-Ox1" firstAttribute="top" secondItem="sdm-eU-vHq" secondAttribute="bottom" constant="7.3333333333333144" id="gR4-Yt-SyW"/>
+                            <constraint firstItem="c3P-fL-V74" firstAttribute="top" secondItem="Hhk-c3-LKH" secondAttribute="bottom" constant="42" id="j3V-Lr-jtb"/>
                             <constraint firstItem="R4u-zY-HhT" firstAttribute="leading" secondItem="c3P-fL-V74" secondAttribute="leading" constant="-0.6666666666666714" id="jbL-DV-RUv"/>
+                            <constraint firstItem="qW8-an-z7M" firstAttribute="trailing" secondItem="Hhk-c3-LKH" secondAttribute="trailing" constant="52" id="kXn-t0-E6v"/>
                             <constraint firstItem="Kfb-Ei-4ON" firstAttribute="leading" secondItem="qW8-an-z7M" secondAttribute="leading" id="n2j-WG-6HT"/>
-                            <constraint firstItem="qW8-an-z7M" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eIC-ha-OV1" secondAttribute="trailing" symbolic="YES" id="oju-b6-QIY"/>
                             <constraint firstItem="sdm-eU-vHq" firstAttribute="leading" secondItem="z90-4V-Ox1" secondAttribute="leading" constant="7" id="olA-pz-4Fb"/>
+                            <constraint firstItem="Hhk-c3-LKH" firstAttribute="centerX" secondItem="a2s-Wx-L0O" secondAttribute="centerX" id="pQP-tU-Sjl"/>
                             <constraint firstItem="yYV-VP-Fov" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R4u-zY-HhT" secondAttribute="trailing" constant="-2" id="s3Q-b3-ity"/>
                             <constraint firstItem="qW8-an-z7M" firstAttribute="trailing" secondItem="yYV-VP-Fov" secondAttribute="trailing" constant="70.666666666666686" id="tsF-Ly-38D"/>
                             <constraint firstItem="qW8-an-z7M" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z90-4V-Ox1" secondAttribute="trailing" symbolic="YES" id="uFr-ci-64i"/>
                             <constraint firstItem="yzB-u1-LI7" firstAttribute="leading" secondItem="c3P-fL-V74" secondAttribute="trailing" constant="-2.6666666666666856" id="xJe-TJ-VuT"/>
-                            <constraint firstItem="eIC-ha-OV1" firstAttribute="leading" secondItem="qW8-an-z7M" secondAttribute="leading" constant="105" id="xtu-Cm-16c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qW8-an-z7M"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrb-x6-OjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="je9-ez-rc7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3506" y="515"/>
         </scene>
@@ -1073,13 +1085,13 @@
                         <outlet property="Password" destination="q8e-XW-nRU" id="qSG-dE-Wo3"/>
                         <outlet property="PhoneNumber" destination="Hvl-1y-NUD" id="zaw-7Y-6hz"/>
                         <outlet property="SubmitButton" destination="oab-T9-e0C" id="uMF-Hl-5wE"/>
-                        <segue destination="UlB-GX-Qk8" kind="show" identifier="goToDriverMap" id="qy2-Mt-1Zt"/>
+                        <segue destination="Yam-Zp-1mx" kind="show" identifier="DriverSegue" id="BdZ-Kw-eEg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0X-Wm-ZHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Jw0-Zh-MBk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4494" y="515"/>
+            <point key="canvasLocation" x="4419" y="515"/>
         </scene>
         <!--Hawk Rider Sign In View Controller-->
         <scene sceneID="xbj-MX-cgh">
@@ -1133,7 +1145,6 @@
                                 </state>
                                 <connections>
                                     <action selector="SubmitButton:" destination="fDY-jB-Kuq" eventType="touchUpInside" id="611-y1-Nmh"/>
-                                    <segue destination="ya3-1O-EUI" kind="show" identifier="goToRiderMap" id="C5H-pi-Vg7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-9r-v28">
@@ -1179,6 +1190,7 @@
                         <outlet property="Password" destination="1AG-fN-7N6" id="m5e-UV-7lu"/>
                         <outlet property="SubmitButton" destination="7fo-Ud-ink" id="8xa-ch-Xud"/>
                         <outlet property="ValidationMessage" destination="f33-0f-aK6" id="7ff-30-BeM"/>
+                        <segue destination="ya3-1O-EUI" kind="show" identifier="RiderSegue" id="sMT-A3-2vN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdE-F2-OZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1214,7 +1226,8 @@
         <image name="riderportal" width="474" height="933"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nkh-Pp-OPu"/>
+        <segue reference="LrN-gj-Qaf"/>
+        <segue reference="JR7-CD-nle"/>
         <segue reference="znL-2Y-pTJ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

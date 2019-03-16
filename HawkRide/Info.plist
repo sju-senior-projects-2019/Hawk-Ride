@@ -29,6 +29,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Hawk Ride picks you up exactly where you are. To start riding, choose &quot;Allow&quot; so the app can find your location.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Hawk Ride picks you up exactly where you are. To start riding, choose &quot;Allow&quot; so the app can find your location.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MontserratAlternates-Bold.ttf</string>

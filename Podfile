@@ -1,3 +1,4 @@
+
 # Uncomment the next line to define a global platform for your project
  platform :ios, '11.0'
 
@@ -9,8 +10,10 @@ target 'Hawk Ride' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
-
+    pod 'GeoFire'
     pod 'GoogleMaps'
+    pod 'SVProgressHUD'
+    pod 'GooglePlaces'
 
     if(ENV['TEST_BRANCH'])
       pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => ENV['TEST_BRANCH']

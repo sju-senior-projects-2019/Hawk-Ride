@@ -58,14 +58,6 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
         
         
 
-        /** Customizing the navigation controller bar */
-        self.navigationItem.backBarButtonItem?.title = ""  // Changing the title of the navigation item
-        self.navigationItem.backBarButtonItem = UIBarButtonItem()  // Enabling the back button
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //Allowing the background image to display over the navigation bar
-        self.navigationController?.navigationBar.shadowImage = UIImage() // Shadowing the navigation bar under the image
-        self.navigationController?.navigationBar.isTranslucent = true  // Navigation bar becomes transparent
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white // Changing the color of the navigation item
         
       
 }
@@ -90,7 +82,7 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
                         
                         self.ref.child("Hawk Drivers").child("\(user!)").setValue(["FirstName": "\(FirstName!)", "LastName": "\(LastName!)", "emailAddress": "\(emailAddress!)", "IDNumber": "\(IDNumber!)","PhoneNumber": "\(PhoneNumber!)"])
                         
-                        self.performSegue(withIdentifier: "goToDriverMap", sender: sender)
+                        self.performSegue(withIdentifier: "DriverSegue", sender: sender)
                     } else {
                     }
                 }
