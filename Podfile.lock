@@ -518,6 +518,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - RevealingSplashView (0.6.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -529,6 +530,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - MaterialComponents (from `https://github.com/material-components/material-components-ios`, branch `google-io-codelabs-2018`)
+  - RevealingSplashView
   - SVProgressHUD
 
 SPEC REPOS:
@@ -554,6 +556,7 @@ SPEC REPOS:
     - MotionInterchange
     - MotionTransitioning
     - nanopb
+    - RevealingSplashView
     - SVProgressHUD
 
 EXTERNAL SOURCES:
@@ -589,8 +592,9 @@ SPEC CHECKSUMS:
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   MotionTransitioning: 23d25edc2f4606efb922403cbac6d81af37aa33a
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  RevealingSplashView: 40c5a770894459736acdc95655eeba0dd30ce91c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 520b0ed7a2cf7fc65c148f7418d371b1f609505a
+PODFILE CHECKSUM: 6b88df75c3bb543aabcb749275c8f2427b551062
 
 COCOAPODS: 1.6.1

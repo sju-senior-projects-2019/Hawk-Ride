@@ -15,13 +15,17 @@
 		0D2C7F2E22015132007361EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2D22015132007361EF /* ViewController.swift */; };
 		0D2C7F3122015132007361EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2F22015132007361EF /* Main.storyboard */; };
 		0D2C7F3422015132007361EF /* HawkRide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F3222015132007361EF /* HawkRide.xcdatamodeld */; };
-		0D2C7F3922015134007361EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F3722015134007361EF /* LaunchScreen.storyboard */; };
 		0D2C7F4322015186007361EF /* MontserratAlternates-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F4122015186007361EF /* MontserratAlternates-SemiBold.ttf */; };
 		0D2C7F4422015186007361EF /* MontserratAlternates-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */; };
 		0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */; };
 		0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */; };
 		0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45940C223AE0800026E845 /* sidebarViewRider.swift */; };
 		0D459413223B51E30026E845 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D459412223B51E30026E845 /* EditProfileController.swift */; };
+		0D5C97AB223E0BCA007A4E66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D5C97AA223E0BCA007A4E66 /* LaunchScreen.storyboard */; };
+		0D5C97BD223E16F3007A4E66 /* SplashAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97B9223E16F2007A4E66 /* SplashAnimatable.swift */; };
+		0D5C97BE223E16F3007A4E66 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97BA223E16F3007A4E66 /* Animations.swift */; };
+		0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */; };
+		0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */; };
 		0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */; };
 		0D7B6ED5222F05A200667806 /* custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED4222F05A200667806 /* custom.json */; };
 		0D7B6ED7222F0D9200667806 /* dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED6222F0D9200667806 /* dark.json */; };
@@ -78,7 +82,6 @@
 		0D2C7F2D22015132007361EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0D2C7F3022015132007361EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0D2C7F3322015132007361EF /* HawkRide.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawkRide.xcdatamodel; sourceTree = "<group>"; };
-		0D2C7F3822015134007361EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D2C7F3A22015134007361EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D2C7F4122015186007361EF /* MontserratAlternates-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-SemiBold.ttf"; sourceTree = "<group>"; };
 		0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-Bold.ttf"; sourceTree = "<group>"; };
@@ -86,6 +89,11 @@
 		0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderPortalViewController.swift; sourceTree = "<group>"; };
 		0D45940C223AE0800026E845 /* sidebarViewRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewRider.swift; sourceTree = "<group>"; };
 		0D459412223B51E30026E845 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		0D5C97AA223E0BCA007A4E66 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0D5C97B9223E16F2007A4E66 /* SplashAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimatable.swift; sourceTree = "<group>"; };
+		0D5C97BA223E16F3007A4E66 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
+		0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
 		0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPortalViewController.swift; sourceTree = "<group>"; };
 		0D7B6ED4222F05A200667806 /* custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom.json; sourceTree = "<group>"; };
 		0D7B6ED6222F0D9200667806 /* dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dark.json; sourceTree = "<group>"; };
@@ -171,6 +179,7 @@
 				0D4D8F4622372C9200653ADA /* Custom Button Style */,
 				0D4D8F4522372C7500653ADA /* Hawk Rider Sign in and Sign up */,
 				0D4D8F4822372CC200653ADA /* Hawk Driver Sign in and Sign up */,
+				0D5C97C0223E16FA007A4E66 /* Animations */,
 				0D4D8F4922372CE100653ADA /* Portals */,
 				0D4D8F4A22372CFA00653ADA /* Map View */,
 				0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */,
@@ -181,10 +190,10 @@
 				0DBE04662239DCED00716501 /* Utils */,
 				0D2C7F2F22015132007361EF /* Main.storyboard */,
 				0DE0ABD92229950600FD766C /* Assets.xcassets */,
-				0D2C7F3722015134007361EF /* LaunchScreen.storyboard */,
 				0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */,
 				0D2C7F3A22015134007361EF /* Info.plist */,
 				0D2C7F3222015132007361EF /* HawkRide.xcdatamodeld */,
+				0D5C97AA223E0BCA007A4E66 /* LaunchScreen.storyboard */,
 			);
 			path = HawkRide;
 			sourceTree = "<group>";
@@ -288,6 +297,17 @@
 				0DAB6650222609B4001F261A /* DriverMapViewController.swift */,
 			);
 			path = "Map View";
+			sourceTree = "<group>";
+		};
+		0D5C97C0223E16FA007A4E66 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */,
+				0D5C97B9223E16F2007A4E66 /* SplashAnimatable.swift */,
+				0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */,
+				0D5C97BA223E16F3007A4E66 /* Animations.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */ = {
@@ -406,7 +426,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D2C7F3922015134007361EF /* LaunchScreen.storyboard in Resources */,
 				0D7B6ED7222F0D9200667806 /* dark.json in Resources */,
 				0D2C7F4322015186007361EF /* MontserratAlternates-SemiBold.ttf in Resources */,
 				0D7B6ED9222F19E000667806 /* clean.json in Resources */,
@@ -416,6 +435,7 @@
 				0DE0ABDA2229950600FD766C /* Assets.xcassets in Resources */,
 				0D0450CE220A9AB3009BD21B /* clan-med-webfont.ttf in Resources */,
 				0D8C827622029FEC00838F8D /* clanpro-book-opentype.otf in Resources */,
+				0D5C97AB223E0BCA007A4E66 /* LaunchScreen.storyboard in Resources */,
 				0DE91EE02202515A008C9B52 /* Montserrat-Bold.otf in Resources */,
 				0DC1FAB022121DD100AA272F /* Montserrat-Hairline.otf in Resources */,
 				0D0450CD220A9AB3009BD21B /* clan-book-webfont.ttf in Resources */,
@@ -451,6 +471,7 @@
 				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
 				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
 				"${BUILT_PRODUCTS_DIR}/MotionTransitioning/MotionTransitioning.framework",
+				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -465,6 +486,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionTransitioning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -528,6 +550,8 @@
 				0DAB6653222612F3001F261A /* ErrorCodes.swift in Sources */,
 				0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */,
 				0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */,
+				0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */,
+				0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */,
 				0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */,
 				0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */,
 				0D89CD64223CC69C00DBE757 /* RideHistoryController.swift in Sources */,
@@ -544,12 +568,14 @@
 				0D89CD66223CC6B700DBE757 /* BecomeAHawkDriverController.swift in Sources */,
 				0DAB66552226277A001F261A /* AlertController.swift in Sources */,
 				0D7CF7B62217912B00159517 /* HawkDriverSignInViewController.swift in Sources */,
+				0D5C97BD223E16F3007A4E66 /* SplashAnimatable.swift in Sources */,
 				0D89CD6C223CC70F00DBE757 /* LogOutController.swift in Sources */,
 				0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */,
 				0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */,
 				0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */,
 				0D89CD7D223CC82D00DBE757 /* driverLogOutVC.swift in Sources */,
 				0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */,
+				0D5C97BE223E16F3007A4E66 /* Animations.swift in Sources */,
 				0DA3A9F8221BA1C800E68CB8 /* HawkRiderSignUpViewController.swift in Sources */,
 				0D89CD79223CC7DE00DBE757 /* BecomeAHawkRiderController.swift in Sources */,
 				0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */,
@@ -565,14 +591,6 @@
 				0D2C7F3022015132007361EF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0D2C7F3722015134007361EF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0D2C7F3822015134007361EF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

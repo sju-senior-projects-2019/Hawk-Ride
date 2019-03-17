@@ -14,6 +14,7 @@ target 'Hawk Ride' do
     pod 'GoogleMaps'
     pod 'SVProgressHUD'
     pod 'GooglePlaces'
+    pod 'RevealingSplashView'
 
     if(ENV['TEST_BRANCH'])
       pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => ENV['TEST_BRANCH']

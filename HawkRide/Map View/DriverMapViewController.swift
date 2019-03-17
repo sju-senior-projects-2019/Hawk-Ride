@@ -10,35 +10,44 @@ import UIKit
 import GoogleMaps
 import GeoFire
 import CoreLocation
+import MapKit
 
 
-class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+
+class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     
     //MARK: - Properties
-    
-    
-    @IBOutlet weak var mapView: GMSMapView!
+
+    var mapView: GMSMapView!
+    static let locationManager = CLLocationManager()
     var sidebarView: SidebarViewDriver!
     var blackScreen: UIView!
     var marker : GMSMarker? = nil
     var firstUpdate = true
     var customerMarker: GMSMarker? = nil
+
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMapView()
+        mapView = self.view as! GMSMapView?
+        self.mapView.delegate = self
+        self.view = mapView
+        
+        DriverMapViewController.locationManager.delegate = self
+        DriverMapViewController.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        DriverMapViewController.locationManager.requestWhenInUseAuthorization()
+        DriverMapViewController.locationManager.startUpdatingLocation()
+        
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
+      
 }
-    func setupMapView() {
-        mapView.animate(toLocation: CLLocationCoordinate2DMake(39.995256, -75.241579))
-        mapView.animate(toZoom: 15)
-        // self.mapView.delegate = self
-        // self.view = mapView
-        self.mapView.mapStyle(withFilename: "bright", andType: "json");
-        
-    }
+ 
+    
+    
+    
+    
     
     //MARK: - Handlers
     

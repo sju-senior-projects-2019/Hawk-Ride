@@ -581,15 +581,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-bk-JlY" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-bk-JlY" userLabel="Map View" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxV-kC-1QQ">
-                                        <rect key="frame" x="337" y="528" width="62" height="62"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="centerMapBtn"/>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcy-8A-M5V" customClass="CustomViewDesign" customModule="Hawk_Ride" customModuleProvider="target">
@@ -644,6 +637,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="RequestRideTapped:" destination="ya3-1O-EUI" eventType="touchUpInside" id="inr-PO-Eba"/>
                                     <action selector="SubmitButton:" destination="fDY-jB-Kuq" eventType="touchUpInside" id="KjB-cx-DV7"/>
                                 </connections>
                             </button>
@@ -672,7 +666,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="h8l-5e-WFR"/>
                     <connections>
-                        <outlet property="mapView" destination="dAR-bk-JlY" id="TZa-ev-s8Y"/>
+                        <outlet property="RequestRide" destination="nH5-c4-6GR" id="qnl-aq-6e3"/>
+                        <outlet property="map" destination="dAR-bk-JlY" id="nnO-kO-xCH"/>
+                        <outlet property="mapView" destination="dAR-bk-JlY" id="TSb-DL-Ifk"/>
                     </connections>
                 </viewController>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" id="EC3-wR-TIZ" customClass="MDCTextField">
@@ -1124,7 +1120,6 @@
     </scenes>
     <resources>
         <image name="backButton" width="48" height="48"/>
-        <image name="centerMapBtn" width="62" height="62"/>
         <image name="driverportal" width="354" height="560"/>
         <image name="mainscreen" width="337" height="683"/>
         <image name="riderportal" width="474" height="933"/>

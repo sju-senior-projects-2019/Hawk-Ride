@@ -16,28 +16,69 @@ import SVProgressHUD
 class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     // MARK: - Properties
+    //var map:GMSMapView!
+    let locationManager = CLLocationManager()
+    var customerLocation = CLLocation()
+    var firstUpdate = true
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var RequestRide: SAButtonThree!
     var sidebarView: SidebarViewRider!
     var blackScreen: UIView!
-   /* let locationManager = CLLocationManager()
-    var geoFire: GeoFire!
-    var riderLocation = CLLocation()
     var marker: GMSMarker? = nil
     var firstzoom = true
-    var customerLocation = CLLocation()
-    var firstUpdate = true */
- 
+    
+    
    
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-         setupMapView()
-        //usersLocation()
+         mapView = self.view as! GMSMapView?
+         self.mapView.delegate = self
+         self.view = mapView
+        
+        /// get user location
+        DriverMapViewController.locationManager.delegate = self
+        DriverMapViewController.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        DriverMapViewController.locationManager.requestWhenInUseAuthorization()
+        DriverMapViewController.locationManager.startUpdatingLocation()
+        
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
-       // mapView = self.view as! GMSMapView?
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        customerLocation = (manager.location)!
+        if firstUpdate {
+            firstUpdate = false
+            let camera=GMSCameraPosition.camera(withLatitude:(manager.location?.coordinate.latitude)!,
+            longitude:
+                (manager.location?.coordinate.longitude)!, zoom:
+            14)
+            mapView.camera = camera
+        }
         
+        if marker ==  nil {
+            marker = GMSMarker()
+            marker?.position =
+            CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!,
+            (manager.location?.coordinate.longitude)!)
+            //marker?.map = mapView
+        }
+        else{
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1.0)
+            marker?.position = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!,
+            (manager.location?.coordinate.longitude)!)
+            CATransaction.commit()
+        }
+        locationManager.stopUpdatingLocation()
+    }
+ 
+   
+    @IBAction func RequestRideTapped(_ sender: Any) {
+      
+    
     }
     
     /* Map Customization:
@@ -49,44 +90,13 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     func setupMapView() {
         mapView.animate(toLocation: CLLocationCoordinate2DMake(39.995256, -75.241579))
         mapView.animate(toZoom: 15)
-       // self.mapView.delegate = self
-       // self.view = mapView
+        self.mapView.delegate = self
+        self.view = mapView
+        mapView = self.view as! GMSMapView?
         self.mapView.mapStyle(withFilename: "bright", andType: "json");
- 
- }
-  
-   /* func usersLocation() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
     }
   
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        customerLocation = (manager.location)!
-        if firstUpdate {
-            firstUpdate = false
-             let camera=GMSCameraPosition.camera(withLatitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!, zoom: 14)
-            mapView.camera = camera
-         }
-        
-        if marker == nil {
-            marker = GMSMarker()
-            marker?.position = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!)
-            marker?.map = mapView
-        }
-        else {
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(1.0)
-            marker?.position = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!)
-            CATransaction.commit()
-        }
-        locationManager.stopUpdatingLocation()
-    }
-    */
-    /* Hamburger Menu Button
+ /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu
      */
@@ -186,8 +196,6 @@ extension GMSMapView {
         }
     }
 }
-
-
 
 
 

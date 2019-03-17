@@ -11,23 +11,21 @@ import CoreData
 import Firebase
 import GoogleMaps
 import GooglePlaces
-
+import RevealingSplashView
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+  
     
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Thread.sleep(forTimeInterval: 2.0) // Delay splash launch screen time
          FirebaseApp.configure()
          GMSServices.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
          GMSPlacesClient.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
-       
-        
         
         
         return true
