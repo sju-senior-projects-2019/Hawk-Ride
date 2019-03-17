@@ -10,7 +10,7 @@
 		0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0450C9220A9234009BD21B /* SAButtonPart2.swift */; };
 		0D0450CD220A9AB3009BD21B /* clan-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */; };
 		0D0450CE220A9AB3009BD21B /* clan-med-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0450CC220A9AB3009BD21B /* clan-med-webfont.ttf */; };
-		0D2952212238A27400DDA9CC /* SABUTTON3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2952202238A27400DDA9CC /* SABUTTON3.swift */; };
+		0D2952212238A27400DDA9CC /* SAButtonThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2952202238A27400DDA9CC /* SAButtonThree.swift */; };
 		0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2B22015132007361EF /* AppDelegate.swift */; };
 		0D2C7F2E22015132007361EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2D22015132007361EF /* ViewController.swift */; };
 		0D2C7F3122015132007361EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2F22015132007361EF /* Main.storyboard */; };
@@ -30,6 +30,19 @@
 		0D7CF7B62217912B00159517 /* HawkDriverSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CF7B52217912B00159517 /* HawkDriverSignInViewController.swift */; };
 		0D89CD5B223CADBE00DBE757 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */; };
 		0D89CD5F223CBA7D00DBE757 /* sidebarViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */; };
+		0D89CD64223CC69C00DBE757 /* RideHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD63223CC69C00DBE757 /* RideHistoryController.swift */; };
+		0D89CD66223CC6B700DBE757 /* BecomeAHawkDriverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD65223CC6B700DBE757 /* BecomeAHawkDriverController.swift */; };
+		0D89CD68223CC6CF00DBE757 /* HelpPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD67223CC6CF00DBE757 /* HelpPageController.swift */; };
+		0D89CD6A223CC6F800DBE757 /* SettingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD69223CC6F800DBE757 /* SettingPageController.swift */; };
+		0D89CD6C223CC70F00DBE757 /* LogOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD6B223CC70F00DBE757 /* LogOutController.swift */; };
+		0D89CD6F223CC74D00DBE757 /* driverEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD6E223CC74D00DBE757 /* driverEditProfileVC.swift */; };
+		0D89CD71223CC77F00DBE757 /* driverRideHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD70223CC77F00DBE757 /* driverRideHistoryVC.swift */; };
+		0D89CD73223CC79A00DBE757 /* SchedulePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD72223CC79A00DBE757 /* SchedulePageController.swift */; };
+		0D89CD75223CC7B100DBE757 /* VehiclePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD74223CC7B100DBE757 /* VehiclePageController.swift */; };
+		0D89CD77223CC7C200DBE757 /* driverHelpPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD76223CC7C200DBE757 /* driverHelpPageVC.swift */; };
+		0D89CD79223CC7DE00DBE757 /* BecomeAHawkRiderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD78223CC7DE00DBE757 /* BecomeAHawkRiderController.swift */; };
+		0D89CD7B223CC80C00DBE757 /* driverSettingsPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD7A223CC80C00DBE757 /* driverSettingsPageVC.swift */; };
+		0D89CD7D223CC82D00DBE757 /* driverLogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD7C223CC82D00DBE757 /* driverLogOutVC.swift */; };
 		0D8C827322029FEC00838F8D /* clanpro-bold-opentype.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8C826F22029FEC00838F8D /* clanpro-bold-opentype.otf */; };
 		0D8C827422029FEC00838F8D /* clanpro-black-opentype.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8C827022029FEC00838F8D /* clanpro-black-opentype.otf */; };
 		0D8C827522029FEC00838F8D /* clanpro-condbook-opentype.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8C827122029FEC00838F8D /* clanpro-condbook-opentype.otf */; };
@@ -59,7 +72,7 @@
 		0D0450C9220A9234009BD21B /* SAButtonPart2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonPart2.swift; sourceTree = "<group>"; };
 		0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-book-webfont.ttf"; sourceTree = "<group>"; };
 		0D0450CC220A9AB3009BD21B /* clan-med-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-med-webfont.ttf"; sourceTree = "<group>"; };
-		0D2952202238A27400DDA9CC /* SABUTTON3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABUTTON3.swift; sourceTree = "<group>"; };
+		0D2952202238A27400DDA9CC /* SAButtonThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonThree.swift; sourceTree = "<group>"; };
 		0D2C7F2822015132007361EF /* Hawk Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawk Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D2C7F2B22015132007361EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D2C7F2D22015132007361EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +94,19 @@
 		0D7CF7B52217912B00159517 /* HawkDriverSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkDriverSignInViewController.swift; sourceTree = "<group>"; };
 		0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewDriver.swift; sourceTree = "<group>"; };
+		0D89CD63223CC69C00DBE757 /* RideHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHistoryController.swift; sourceTree = "<group>"; };
+		0D89CD65223CC6B700DBE757 /* BecomeAHawkDriverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BecomeAHawkDriverController.swift; sourceTree = "<group>"; };
+		0D89CD67223CC6CF00DBE757 /* HelpPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPageController.swift; sourceTree = "<group>"; };
+		0D89CD69223CC6F800DBE757 /* SettingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageController.swift; sourceTree = "<group>"; };
+		0D89CD6B223CC70F00DBE757 /* LogOutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutController.swift; sourceTree = "<group>"; };
+		0D89CD6E223CC74D00DBE757 /* driverEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driverEditProfileVC.swift; sourceTree = "<group>"; };
+		0D89CD70223CC77F00DBE757 /* driverRideHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driverRideHistoryVC.swift; sourceTree = "<group>"; };
+		0D89CD72223CC79A00DBE757 /* SchedulePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePageController.swift; sourceTree = "<group>"; };
+		0D89CD74223CC7B100DBE757 /* VehiclePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePageController.swift; sourceTree = "<group>"; };
+		0D89CD76223CC7C200DBE757 /* driverHelpPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driverHelpPageVC.swift; sourceTree = "<group>"; };
+		0D89CD78223CC7DE00DBE757 /* BecomeAHawkRiderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BecomeAHawkRiderController.swift; sourceTree = "<group>"; };
+		0D89CD7A223CC80C00DBE757 /* driverSettingsPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driverSettingsPageVC.swift; sourceTree = "<group>"; };
+		0D89CD7C223CC82D00DBE757 /* driverLogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = driverLogOutVC.swift; sourceTree = "<group>"; };
 		0D8C826F22029FEC00838F8D /* clanpro-bold-opentype.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clanpro-bold-opentype.otf"; sourceTree = "<group>"; };
 		0D8C827022029FEC00838F8D /* clanpro-black-opentype.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clanpro-black-opentype.otf"; sourceTree = "<group>"; };
 		0D8C827122029FEC00838F8D /* clanpro-condbook-opentype.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clanpro-condbook-opentype.otf"; sourceTree = "<group>"; };
@@ -147,8 +173,8 @@
 				0D4D8F4822372CC200653ADA /* Hawk Driver Sign in and Sign up */,
 				0D4D8F4922372CE100653ADA /* Portals */,
 				0D4D8F4A22372CFA00653ADA /* Map View */,
-				0D2C7F2D22015132007361EF /* ViewController.swift */,
-				0D459412223B51E30026E845 /* EditProfileController.swift */,
+				0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */,
+				0D89CD6D223CC71E00DBE757 /* Driver Side Bar menu controllers */,
 				0D45940F223AE3E20026E845 /* View */,
 				0D45940E223AE3CB0026E845 /* Protocols */,
 				0D2C7F402201516F007361EF /* Custom Fonts */,
@@ -197,6 +223,7 @@
 		0D45940F223AE3E20026E845 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0D2C7F2D22015132007361EF /* ViewController.swift */,
 				0D45940C223AE0800026E845 /* sidebarViewRider.swift */,
 				0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */,
 			);
@@ -230,7 +257,7 @@
 				0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */,
 				0DCD93A922023B5900AAA621 /* Constrants.swift */,
 				0D0450C9220A9234009BD21B /* SAButtonPart2.swift */,
-				0D2952202238A27400DDA9CC /* SABUTTON3.swift */,
+				0D2952202238A27400DDA9CC /* SAButtonThree.swift */,
 				0DCD93A622023A1300AAA621 /* SAButton.swift */,
 			);
 			path = "Custom Button Style";
@@ -261,6 +288,35 @@
 				0DAB6650222609B4001F261A /* DriverMapViewController.swift */,
 			);
 			path = "Map View";
+			sourceTree = "<group>";
+		};
+		0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0D459412223B51E30026E845 /* EditProfileController.swift */,
+				0D89CD63223CC69C00DBE757 /* RideHistoryController.swift */,
+				0D89CD65223CC6B700DBE757 /* BecomeAHawkDriverController.swift */,
+				0D89CD67223CC6CF00DBE757 /* HelpPageController.swift */,
+				0D89CD69223CC6F800DBE757 /* SettingPageController.swift */,
+				0D89CD6B223CC70F00DBE757 /* LogOutController.swift */,
+			);
+			name = "Rider Side Bar menu controllers";
+			path = "Map View/Rider Side Bar menu controllers";
+			sourceTree = "<group>";
+		};
+		0D89CD6D223CC71E00DBE757 /* Driver Side Bar menu controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0D89CD6E223CC74D00DBE757 /* driverEditProfileVC.swift */,
+				0D89CD70223CC77F00DBE757 /* driverRideHistoryVC.swift */,
+				0D89CD72223CC79A00DBE757 /* SchedulePageController.swift */,
+				0D89CD74223CC7B100DBE757 /* VehiclePageController.swift */,
+				0D89CD78223CC7DE00DBE757 /* BecomeAHawkRiderController.swift */,
+				0D89CD76223CC7C200DBE757 /* driverHelpPageVC.swift */,
+				0D89CD7A223CC80C00DBE757 /* driverSettingsPageVC.swift */,
+				0D89CD7C223CC82D00DBE757 /* driverLogOutVC.swift */,
+			);
+			path = "Driver Side Bar menu controllers";
 			sourceTree = "<group>";
 		};
 		0DBE04662239DCED00716501 /* Utils */ = {
@@ -464,25 +520,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */,
-				0D2952212238A27400DDA9CC /* SABUTTON3.swift in Sources */,
+				0D2952212238A27400DDA9CC /* SAButtonThree.swift in Sources */,
+				0D89CD73223CC79A00DBE757 /* SchedulePageController.swift in Sources */,
+				0D89CD6F223CC74D00DBE757 /* driverEditProfileVC.swift in Sources */,
 				0D459413223B51E30026E845 /* EditProfileController.swift in Sources */,
+				0D89CD6A223CC6F800DBE757 /* SettingPageController.swift in Sources */,
 				0DAB6653222612F3001F261A /* ErrorCodes.swift in Sources */,
 				0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */,
 				0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */,
 				0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */,
 				0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */,
+				0D89CD64223CC69C00DBE757 /* RideHistoryController.swift in Sources */,
+				0D89CD7B223CC80C00DBE757 /* driverSettingsPageVC.swift in Sources */,
 				0D2C7F2E22015132007361EF /* ViewController.swift in Sources */,
+				0D89CD75223CC7B100DBE757 /* VehiclePageController.swift in Sources */,
 				0D2C7F3422015132007361EF /* HawkRide.xcdatamodeld in Sources */,
 				0DEEB92122385FBE004C2055 /* CustomViewDesign.swift in Sources */,
 				0DC1FAB22212243600AA272F /* HawkDriverSignUpViewController.swift in Sources */,
+				0D89CD68223CC6CF00DBE757 /* HelpPageController.swift in Sources */,
+				0D89CD71223CC77F00DBE757 /* driverRideHistoryVC.swift in Sources */,
 				0D89CD5F223CBA7D00DBE757 /* sidebarViewDriver.swift in Sources */,
+				0D89CD77223CC7C200DBE757 /* driverHelpPageVC.swift in Sources */,
+				0D89CD66223CC6B700DBE757 /* BecomeAHawkDriverController.swift in Sources */,
 				0DAB66552226277A001F261A /* AlertController.swift in Sources */,
 				0D7CF7B62217912B00159517 /* HawkDriverSignInViewController.swift in Sources */,
+				0D89CD6C223CC70F00DBE757 /* LogOutController.swift in Sources */,
 				0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */,
 				0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */,
 				0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */,
+				0D89CD7D223CC82D00DBE757 /* driverLogOutVC.swift in Sources */,
 				0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */,
 				0DA3A9F8221BA1C800E68CB8 /* HawkRiderSignUpViewController.swift in Sources */,
+				0D89CD79223CC7DE00DBE757 /* BecomeAHawkRiderController.swift in Sources */,
 				0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

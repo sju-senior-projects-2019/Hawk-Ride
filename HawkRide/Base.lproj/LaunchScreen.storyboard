@@ -22,13 +22,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="387" height="812"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saint Joseph's University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irn-e7-kqO">
-                                        <rect key="frame" x="68" y="663" width="241" height="28"/>
+                                        <rect key="frame" x="68" y="750" width="241" height="28"/>
                                         <fontDescription key="fontDescription" name="AlNile-Bold" family="Al Nile" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hawk Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJK-Oy-Siu">
-                                        <rect key="frame" x="68" y="360" width="250" height="68"/>
+                                        <rect key="frame" x="63" y="391" width="250" height="68"/>
                                         <fontDescription key="fontDescription" name="AlNile-Bold" family="Al Nile" pointSize="50"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -36,10 +36,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.61960784313725492" green="0.10588235294117647" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="irn-e7-kqO" firstAttribute="centerX" secondItem="rJK-Oy-Siu" secondAttribute="centerX" constant="-5.1666666666666856" id="1jE-fp-ZJL"/>
-                                    <constraint firstAttribute="bottom" secondItem="irn-e7-kqO" secondAttribute="bottom" constant="121" id="GsA-wQ-lwT"/>
-                                    <constraint firstItem="rJK-Oy-Siu" firstAttribute="top" secondItem="t58-Rj-yrZ" secondAttribute="top" constant="360" id="jR8-Tf-dRu"/>
-                                    <constraint firstItem="rJK-Oy-Siu" firstAttribute="centerX" secondItem="t58-Rj-yrZ" secondAttribute="centerX" id="oMx-Z7-Xfs"/>
+                                    <constraint firstItem="irn-e7-kqO" firstAttribute="centerX" secondItem="rJK-Oy-Siu" secondAttribute="centerX" constant="0.5" id="1jE-fp-ZJL"/>
+                                    <constraint firstAttribute="bottom" secondItem="irn-e7-kqO" secondAttribute="bottom" constant="34" id="GsA-wQ-lwT"/>
+                                    <constraint firstItem="rJK-Oy-Siu" firstAttribute="top" secondItem="t58-Rj-yrZ" secondAttribute="top" constant="391" id="jR8-Tf-dRu"/>
+                                    <constraint firstItem="rJK-Oy-Siu" firstAttribute="centerX" secondItem="t58-Rj-yrZ" secondAttribute="centerX" constant="-5.5" id="oMx-Z7-Xfs"/>
                                 </constraints>
                             </view>
                         </subviews>

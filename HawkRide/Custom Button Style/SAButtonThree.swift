@@ -35,8 +35,12 @@ class SAButtonThree: UIButton {
         layer.borderWidth = 2.0
         layer.borderColor = Colors.redBackground.cgColor
         backgroundColor = Colors.redBackground
-        titleLabel?.font    = UIFont(name: Fonts.montserratSemiBold, size: 14)
+        titleLabel?.font    = UIFont(name: Fonts.montserratSemiBold, size: 24)
         layer.cornerRadius  = frame.size.height/2
+        layer.shadowColor = Colors.redBackground.cgColor
+        layer.shadowOpacity = 0.8
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 3
         setTitleColor(.white, for: .normal)
         
     }
