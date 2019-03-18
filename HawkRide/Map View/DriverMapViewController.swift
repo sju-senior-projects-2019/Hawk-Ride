@@ -11,43 +11,54 @@ import GoogleMaps
 import GeoFire
 import CoreLocation
 import MapKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+
 
 
 
 class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
     
     //MARK: - Properties
-
-    var mapView: GMSMapView!
-    static let locationManager = CLLocationManager()
+    
+    @IBOutlet var mapView: GMSMapView!
+    var locationManager = CLLocationManager()
     var sidebarView: SidebarViewDriver!
     var blackScreen: UIView!
-    var marker : GMSMarker? = nil
-    var firstUpdate = true
-    var customerMarker: GMSMarker? = nil
-
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView = self.view as! GMSMapView?
-        self.mapView.delegate = self
-        self.view = mapView
-        
-        DriverMapViewController.locationManager.delegate = self
-        DriverMapViewController.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        DriverMapViewController.locationManager.requestWhenInUseAuthorization()
-        DriverMapViewController.locationManager.startUpdatingLocation()
-        
-        setupMenuButton()
-        setupSideBarView()
-        setupBlackScreen()
-      
-}
- 
+    initializeTheLocationManager()
+    setupMapView()
+    setupMenuButton()
+    setupBlackScreen()
+    setupSideBarView()
+    }
     
+    func setupMapView() {
+        self.mapView.isMyLocationEnabled = true
+        self.mapView.mapStyle(withFilename: "bright", andType: "json");
+    }
     
+    func initializeTheLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
     
+   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
+        let location = locationManager.location?.coordinate
+    
+        cameraMoveToLocation(toLocation: location)
+    }
+    
+    func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
+        if toLocation != nil {
+            mapView.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 16)
+        }
+    }
     
     //MARK: - Handlers
     
@@ -55,8 +66,9 @@ class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSM
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu
      */
+   
     func setupMenuButton() {
-        let btnMenu = UIButton(frame: CGRect(x: 0.0, y:0.0, width: 18, height: 14))
+        let btnMenu = UIButton(frame: CGRect(x: 0.0, y:0.0, width: 24, height: 18))
         btnMenu.setBackgroundImage(UIImage(named:"Menu"), for: .normal)
         btnMenu.addTarget(self, action: #selector(btnMenuAction),for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnMenu)
@@ -99,6 +111,7 @@ class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSM
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
     }
+
     
 }
 

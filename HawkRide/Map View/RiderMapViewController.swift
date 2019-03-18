@@ -7,101 +7,66 @@
 //
 
 import UIKit
-import CoreLocation
+import Firebase
 import GoogleMaps
+import GeoFire
+import SVProgressHUD
 import GeoFire
 import SVProgressHUD
 
 
 class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
+    
     // MARK: - Properties
-    //var map:GMSMapView!
-    let locationManager = CLLocationManager()
-    var customerLocation = CLLocation()
-    var firstUpdate = true
-    @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var RequestRide: SAButtonThree!
     var sidebarView: SidebarViewRider!
     var blackScreen: UIView!
-    var marker: GMSMarker? = nil
-    var firstzoom = true
-    
-    
-   
+    var locationManager = CLLocationManager()
+    @IBOutlet  var mapView: GMSMapView!
+
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-         mapView = self.view as! GMSMapView?
-         self.mapView.delegate = self
-         self.view = mapView
-        
-        /// get user location
-        DriverMapViewController.locationManager.delegate = self
-        DriverMapViewController.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        DriverMapViewController.locationManager.requestWhenInUseAuthorization()
-        DriverMapViewController.locationManager.startUpdatingLocation()
-        
+        initializeTheLocationManager()
+        setupMapView()
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        customerLocation = (manager.location)!
-        if firstUpdate {
-            firstUpdate = false
-            let camera=GMSCameraPosition.camera(withLatitude:(manager.location?.coordinate.latitude)!,
-            longitude:
-                (manager.location?.coordinate.longitude)!, zoom:
-            14)
-            mapView.camera = camera
-        }
-        
-        if marker ==  nil {
-            marker = GMSMarker()
-            marker?.position =
-            CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!,
-            (manager.location?.coordinate.longitude)!)
-            //marker?.map = mapView
-        }
-        else{
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(1.0)
-            marker?.position = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!,
-            (manager.location?.coordinate.longitude)!)
-            CATransaction.commit()
-        }
-        locationManager.stopUpdatingLocation()
-    }
- 
-   
-    @IBAction func RequestRideTapped(_ sender: Any) {
-      
-    
-    }
-    
-    /* Map Customization:
-     * Add user's location user coordinates
-     * Animating the zoom feature into the map
-     * Map Style: Customizing the map design using json file
-     * Map Style source: https://snazzymaps.com/style/1261/dark
- */
     func setupMapView() {
-        mapView.animate(toLocation: CLLocationCoordinate2DMake(39.995256, -75.241579))
-        mapView.animate(toZoom: 15)
-        self.mapView.delegate = self
-        self.view = mapView
-        mapView = self.view as! GMSMapView?
+        self.mapView.isMyLocationEnabled = true
         self.mapView.mapStyle(withFilename: "bright", andType: "json");
     }
-  
+    
+    func initializeTheLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locationManager.location?.coordinate
+        
+        cameraMoveToLocation(toLocation: location)
+    }
+    
+    func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
+        if toLocation != nil {
+            mapView.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 16)
+        }
+    }
+
+    
+   
  /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu
      */
+   
     func setupMenuButton() {
-        let btnMenu = UIButton(frame: CGRect(x: 0.0, y:0.0, width: 18, height: 14))
+        let btnMenu = UIButton(frame: CGRect(x: 0.0, y:0.0, width: 24, height: 18))
         btnMenu.setBackgroundImage(UIImage(named:"Menu"), for: .normal)
         btnMenu.addTarget(self, action: #selector(btnMenuAction),for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnMenu)
@@ -144,9 +109,14 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
     }
+    
+ 
+    @IBAction func RequestRide(_ sender: Any) {
    
+    }
+    
+    
 }
-
 
 extension RiderMapViewController: SidebarViewRiderDelegate {
    

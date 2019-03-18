@@ -555,10 +555,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQJ-xw-caj" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="598"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VG7-vM-6hz" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -566,12 +566,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="e6F-w8-xHv"/>
                     <connections>
-                        <outlet property="mapView" destination="yQJ-xw-caj" id="cEJ-9x-zHX"/>
+                        <outlet property="mapView" destination="VG7-vM-6hz" id="kZu-3Z-OSL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T42-RN-jkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4419" y="1278"/>
+            <point key="canvasLocation" x="4418.840579710145" y="1277.6785714285713"/>
         </scene>
         <!--Rider Map View Controller-->
         <scene sceneID="23W-1x-1WA">
@@ -581,10 +581,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAR-bk-JlY" userLabel="Map View" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcy-8A-M5V" customClass="CustomViewDesign" customModule="Hawk_Ride" customModuleProvider="target">
                                 <rect key="frame" x="20" y="702" width="381" height="58"/>
                                 <subviews>
@@ -637,38 +633,36 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="RequestRideTapped:" destination="ya3-1O-EUI" eventType="touchUpInside" id="inr-PO-Eba"/>
-                                    <action selector="SubmitButton:" destination="fDY-jB-Kuq" eventType="touchUpInside" id="KjB-cx-DV7"/>
+                                    <action selector="RequestRide:" destination="ya3-1O-EUI" eventType="touchUpInside" id="mzA-de-LfW"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Sp-AKs" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nH5-c4-6GR" firstAttribute="bottom" secondItem="lb3-GG-O5g" secondAttribute="bottom" id="5vy-31-eeR"/>
-                            <constraint firstAttribute="trailing" secondItem="dAR-bk-JlY" secondAttribute="trailing" id="7jB-eM-ndC"/>
                             <constraint firstItem="lb3-GG-O5g" firstAttribute="trailing" secondItem="xcy-8A-M5V" secondAttribute="trailing" constant="13" id="Eb7-O8-Q0F"/>
                             <constraint firstItem="lb3-GG-O5g" firstAttribute="trailing" secondItem="nH5-c4-6GR" secondAttribute="trailing" constant="24" id="JGC-V4-AAs"/>
                             <constraint firstItem="lb3-GG-O5g" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1mU-jK-mIx" secondAttribute="trailing" symbolic="YES" id="Rrd-DC-b2G"/>
                             <constraint firstItem="nH5-c4-6GR" firstAttribute="top" secondItem="xcy-8A-M5V" secondAttribute="bottom" constant="42" id="S8k-7r-CJA"/>
-                            <constraint firstAttribute="bottom" secondItem="dAR-bk-JlY" secondAttribute="bottom" constant="274" id="Skk-uF-gyC"/>
-                            <constraint firstItem="dAR-bk-JlY" firstAttribute="leading" secondItem="SQK-hv-F0O" secondAttribute="leading" id="XDf-e2-5FV"/>
                             <constraint firstItem="1mU-jK-mIx" firstAttribute="leading" secondItem="VY0-PR-5FL" secondAttribute="leading" id="XNB-7w-nJo"/>
                             <constraint firstItem="lb3-GG-O5g" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VY0-PR-5FL" secondAttribute="trailing" symbolic="YES" id="Xbp-E8-0Mz"/>
                             <constraint firstItem="lb3-GG-O5g" firstAttribute="bottom" secondItem="xcy-8A-M5V" secondAttribute="bottom" constant="102" id="cDX-Jr-0sr"/>
                             <constraint firstItem="xcy-8A-M5V" firstAttribute="leading" secondItem="SQK-hv-F0O" secondAttribute="leadingMargin" id="cj0-AJ-jMW"/>
                             <constraint firstItem="nH5-c4-6GR" firstAttribute="leading" secondItem="lb3-GG-O5g" secondAttribute="leading" constant="25" id="cwX-IV-xMP"/>
                             <constraint firstItem="xcy-8A-M5V" firstAttribute="top" secondItem="VY0-PR-5FL" secondAttribute="bottom" constant="19" id="dIK-ty-a5H"/>
-                            <constraint firstItem="1mU-jK-mIx" firstAttribute="top" secondItem="dAR-bk-JlY" secondAttribute="bottom" constant="16" id="k0V-Rj-8D9"/>
+                            <constraint firstItem="1mU-jK-mIx" firstAttribute="top" secondItem="lb3-GG-O5g" secondAttribute="top" constant="550" id="gd8-7K-OZc"/>
                             <constraint firstItem="xcy-8A-M5V" firstAttribute="leading" secondItem="VY0-PR-5FL" secondAttribute="leading" id="mR0-ad-gW3"/>
-                            <constraint firstItem="dAR-bk-JlY" firstAttribute="top" secondItem="SQK-hv-F0O" secondAttribute="top" id="tyL-ys-ucX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lb3-GG-O5g"/>
                     </view>
                     <navigationItem key="navigationItem" id="h8l-5e-WFR"/>
                     <connections>
-                        <outlet property="RequestRide" destination="nH5-c4-6GR" id="qnl-aq-6e3"/>
-                        <outlet property="map" destination="dAR-bk-JlY" id="nnO-kO-xCH"/>
-                        <outlet property="mapView" destination="dAR-bk-JlY" id="TSb-DL-Ifk"/>
+                        <outlet property="mapView" destination="j6y-Sp-AKs" id="duI-fW-tDR"/>
                     </connections>
                 </viewController>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" id="EC3-wR-TIZ" customClass="MDCTextField">
