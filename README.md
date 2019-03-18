@@ -1,6 +1,25 @@
 # Hawk Ride
 IOS application which has very similar functionality like Uber; however, the service this app provides is an student escort service where students who are considered Hawk Riders will get an escort from another student who is Hawk Driver to their dorm halls.
 
+Accomplished Tasks: 
+=================
+<!--ts-->
+*  [Build side bar] - which allows use to navigate throughout the app
+
+Tasks(On Going):
+=================
+<!--ts-->
+*  [Supply Service] - tracks cars using geolocation (latitude & longitude). Every vehicle which is active keeps on sending lat-long to server every 5 sec once - 
+* [ Demand Service]  
+ - Demand service tracks the GPS location of the user when requested 
+ ------------------------------------------------------------------------------------------------
+* [Saving and showing real time driver annoations on the map] 
+ - (So riders are matched to drivers and also displaying cars on a map - figuring out a system that sends a request to geolocation - For instance, like DISCO - Dispath optimization)
+ - DISCO - is a dispatch system that reduce extra driving, reduce waiting time, lowest overall ETA
+*
+* [Using Firebase for real time user requests]
+* [Building pages for the side bar]
+
 Table of contents:
 =================
 
@@ -24,8 +43,7 @@ Technologies Used And Cocoapods:
   - Swift 4.0 and Xcode 9.0 are used to implement this project.
   - Fire base is used to host the database and track the requests between drivers and customers.
   - Google maps is used to show paths and locations of users.
-  - GeoFire is used to make query to find the nearest driver to the customer.
-  - Alamofire and SwiftyJSON are used to take the response of google map as Json respond and deserializing it.
+  - Alamofire used to take the response of google map as Json respond and deserializing it.
   - SVProgressHUD is used to show load ring.
   
 Prerequisites:
@@ -90,6 +108,8 @@ User Guide For Drivers:
   <img src="" width = "200">
     <img src="g" width = "200">
   </p>
+
+
 
 License:
 ========
