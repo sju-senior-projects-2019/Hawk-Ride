@@ -4,19 +4,19 @@ IOS application which has very similar functionality like Uber; however, the ser
 Accomplished Tasks: 
 =================
 <!--ts-->
-*  [Build side bar] - which allows use to navigate throughout the app
+*  [Re-designed the map view page] - Integrated a search bar that allows the user to search a location 
+*  [Built a side bar] - which allows use to navigate throughout the app
+* [Track user's current location] - When the user first uses the app service, they will receive an notification to enable the current location to the app, and the app fetches the location coordinates of the user and displays the current location.
 
 Tasks(On Going):
 =================
 <!--ts-->
+*  [Search Bar] - building a list of restricted locations for the user (Not sure how this able to be done)
 *  [Supply Service] - tracks cars using geolocation (latitude & longitude). Every vehicle which is active keeps on sending lat-long to server every 5 sec once - 
-* [ Demand Service]  
- - Demand service tracks the GPS location of the user when requested 
+* [Demand Service]   - Demand service tracks the GPS location of the user when requested 
  ------------------------------------------------------------------------------------------------
-* [Saving and showing real time driver annoations on the map] 
- - (So riders are matched to drivers and also displaying cars on a map - figuring out a system that sends a request to geolocation - For instance, like DISCO - Dispath optimization)
+* [Saving and showing real time driver annoations on the map] - So riders are matched to drivers and also displaying cars on a map - figuring out a system that sends a request to geolocation - For instance, like DISCO - Dispath optimization
  - DISCO - is a dispatch system that reduce extra driving, reduce waiting time, lowest overall ETA
-*
 * [Using Firebase for real time user requests]
 * [Building pages for the side bar]
 
