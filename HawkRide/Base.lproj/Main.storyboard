@@ -598,6 +598,10 @@
                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="enterLocationBtnPressed:" destination="ya3-1O-EUI" eventType="editingDidEnd" id="g0E-q7-Jke"/>
+                                            <segue destination="ZOb-3X-92r" kind="show" identifier="dropOffLocation" id="uI9-ze-sq1"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search-1" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-HM-TEY">
                                         <rect key="frame" x="17" y="17" width="21" height="25"/>
@@ -675,6 +679,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kK-04-AZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4521.739130434783" y="-250.44642857142856"/>
+        </scene>
+        <!--Set Drop Off LocationVC-->
+        <scene sceneID="HgV-gb-TFR">
+            <objects>
+                <viewController id="ZOb-3X-92r" customClass="SetDropOffLocationVC" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vrn-2i-hcc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop Off Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ah-7u-I89">
+                                <rect key="frame" x="123" y="96" width="156" height="21"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8ah-7u-I89" firstAttribute="centerX" secondItem="Vrn-2i-hcc" secondAttribute="centerX" constant="-6" id="M4Z-FV-NMF"/>
+                            <constraint firstItem="8ah-7u-I89" firstAttribute="top" secondItem="H7l-NC-5NJ" secondAttribute="top" constant="8" id="Ula-Mj-sdE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="H7l-NC-5NJ"/>
+                    </view>
+                </viewController>
+                <view contentMode="scaleToFill" id="4kh-vk-4rL">
+                    <rect key="frame" x="0.0" y="0.0" width="354" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Current Location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kw-bW-d6Q">
+                            <rect key="frame" x="8" y="0.0" width="326" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="16"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <viewLayoutGuide key="safeArea" id="P8j-i3-LNX"/>
+                </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4EX-Gm-cHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5279.7101449275369" y="-250.44642857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="e6W-G4-G41">

@@ -22,6 +22,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
     
     var emailController: MDCTextInputControllerOutlined?
     var passwordController: MDCTextInputControllerOutlined?
+    var ref: DatabaseReference!
     
     
     override func viewDidLoad() {
@@ -34,7 +35,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
         emailController = MDCTextInputControllerOutlined(textInput:EmailAddress)
         passwordController = MDCTextInputControllerOutlined(textInput: Password)
         MDCContainedButtonThemer.applyScheme(buttonScheme, to: SubmitButton)
-}
+    }
     
    
     override func viewDidLayoutSubviews() {
@@ -43,10 +44,11 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
                                                   left: 0,
                                                   bottom: (48 - self.SubmitButton.bounds.size.height) / -2,
                                                   right: 0)
-      }
+    }
     
+   
     
-    /* Submit button function
+/* Submit button function
      * Check to see if the user's email address and password matches what's in the database
      * WARNING: Developers can't not see the user's password in the database!
      * if the user's data is valid, then the user is able to move to the rider's map view page and request a ride
@@ -63,15 +65,13 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
                             self.handleError(error!)
                             return
                         }
-                      self.performSegue(withIdentifier: "RiderSegue", sender: sender) // After user logins with the correct credentials, then it would send the user to the Rider Map View
+                        self.performSegue(withIdentifier: "RiderSegue", sender: sender)
                     }
-                    
+                 }
                 }
-                
-            }
-            
-        }
-}
+             }
+          }
+
     /* Forgot Password
      * User's are able to forget their password
      * Firebase handles this feature -

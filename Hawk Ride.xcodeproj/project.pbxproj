@@ -27,6 +27,7 @@
 		0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */; };
 		0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */; };
 		0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */; };
+		0D6079382240943F00434918 /* SetDropOffLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6079372240943F00434918 /* SetDropOffLocationVC.swift */; };
 		0D7B6ED5222F05A200667806 /* custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED4222F05A200667806 /* custom.json */; };
 		0D7B6ED7222F0D9200667806 /* dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED6222F0D9200667806 /* dark.json */; };
 		0D7B6ED9222F19E000667806 /* clean.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED8222F19DF00667806 /* clean.json */; };
@@ -95,6 +96,7 @@
 		0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
 		0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
 		0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPortalViewController.swift; sourceTree = "<group>"; };
+		0D6079372240943F00434918 /* SetDropOffLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDropOffLocationVC.swift; sourceTree = "<group>"; };
 		0D7B6ED4222F05A200667806 /* custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom.json; sourceTree = "<group>"; };
 		0D7B6ED6222F0D9200667806 /* dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dark.json; sourceTree = "<group>"; };
 		0D7B6ED8222F19DF00667806 /* clean.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clean.json; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				0D2C7F402201516F007361EF /* Custom Fonts */,
 				0DBE04662239DCED00716501 /* Utils */,
 				0D2C7F2F22015132007361EF /* Main.storyboard */,
+				0D6079372240943F00434918 /* SetDropOffLocationVC.swift */,
 				0DE0ABD92229950600FD766C /* Assets.xcassets */,
 				0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */,
 				0D2C7F3A22015134007361EF /* Info.plist */,
@@ -544,6 +547,7 @@
 				0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */,
 				0D2952212238A27400DDA9CC /* SAButtonThree.swift in Sources */,
 				0D89CD73223CC79A00DBE757 /* SchedulePageController.swift in Sources */,
+				0D6079382240943F00434918 /* SetDropOffLocationVC.swift in Sources */,
 				0D89CD6F223CC74D00DBE757 /* driverEditProfileVC.swift in Sources */,
 				0D459413223B51E30026E845 /* EditProfileController.swift in Sources */,
 				0D89CD6A223CC6F800DBE757 /* SettingPageController.swift in Sources */,

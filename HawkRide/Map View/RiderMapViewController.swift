@@ -116,6 +116,11 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     }
     
     
+    
+    @IBAction func enterLocationBtnPressed(_ sender: Any) {
+        let  dropOffLocation = storyboard?.instantiateViewController(withIdentifier: "dropOffLocation")
+        present(dropOffLocation!, animated: true, completion: nil)
+    }
 }
 
 extension RiderMapViewController: SidebarViewRiderDelegate {
