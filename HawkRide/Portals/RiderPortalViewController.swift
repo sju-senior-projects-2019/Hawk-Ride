@@ -32,7 +32,7 @@ class RiderPortalViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true // Navigation bar becomes transparent
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white // Changing the color of the navigation item
-     
+       
     }
     
    

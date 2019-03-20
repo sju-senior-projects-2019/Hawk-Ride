@@ -27,7 +27,7 @@
 		0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */; };
 		0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */; };
 		0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */; };
-		0D6079382240943F00434918 /* SetDropOffLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6079372240943F00434918 /* SetDropOffLocationVC.swift */; };
+		0D7A9FFF2241E2990089B62A /* CustomViewDesignTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7A9FFE2241E2990089B62A /* CustomViewDesignTwo.swift */; };
 		0D7B6ED5222F05A200667806 /* custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED4222F05A200667806 /* custom.json */; };
 		0D7B6ED7222F0D9200667806 /* dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED6222F0D9200667806 /* dark.json */; };
 		0D7B6ED9222F19E000667806 /* clean.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED8222F19DF00667806 /* clean.json */; };
@@ -64,6 +64,9 @@
 		0DC1FAB22212243600AA272F /* HawkDriverSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC1FAB12212243600AA272F /* HawkDriverSignUpViewController.swift */; };
 		0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A622023A1300AAA621 /* SAButton.swift */; };
 		0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A922023B5900AAA621 /* Constrants.swift */; };
+		0DD671FE22415CE10020C3ED /* SetDropOffLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD671FD22415CE10020C3ED /* SetDropOffLocationVC.swift */; };
+		0DD67200224161750020C3ED /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD671FF224161750020C3ED /* SearchBarButton.swift */; };
+		0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD672012241747D0020C3ED /* GoLiveButton.swift */; };
 		0DE0ABDA2229950600FD766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE0ABD92229950600FD766C /* Assets.xcassets */; };
 		0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */; };
 		0DE91EE02202515A008C9B52 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */; };
@@ -96,7 +99,7 @@
 		0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
 		0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
 		0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPortalViewController.swift; sourceTree = "<group>"; };
-		0D6079372240943F00434918 /* SetDropOffLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDropOffLocationVC.swift; sourceTree = "<group>"; };
+		0D7A9FFE2241E2990089B62A /* CustomViewDesignTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewDesignTwo.swift; sourceTree = "<group>"; };
 		0D7B6ED4222F05A200667806 /* custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom.json; sourceTree = "<group>"; };
 		0D7B6ED6222F0D9200667806 /* dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dark.json; sourceTree = "<group>"; };
 		0D7B6ED8222F19DF00667806 /* clean.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clean.json; sourceTree = "<group>"; };
@@ -133,6 +136,9 @@
 		0DC1FAB12212243600AA272F /* HawkDriverSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkDriverSignUpViewController.swift; sourceTree = "<group>"; };
 		0DCD93A622023A1300AAA621 /* SAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAButton.swift; sourceTree = "<group>"; };
 		0DCD93A922023B5900AAA621 /* Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
+		0DD671FD22415CE10020C3ED /* SetDropOffLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDropOffLocationVC.swift; sourceTree = "<group>"; };
+		0DD671FF224161750020C3ED /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
+		0DD672012241747D0020C3ED /* GoLiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveButton.swift; sourceTree = "<group>"; };
 		0DE0ABD92229950600FD766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -186,12 +192,12 @@
 				0D4D8F4A22372CFA00653ADA /* Map View */,
 				0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */,
 				0D89CD6D223CC71E00DBE757 /* Driver Side Bar menu controllers */,
+				0DD671FD22415CE10020C3ED /* SetDropOffLocationVC.swift */,
 				0D45940F223AE3E20026E845 /* View */,
 				0D45940E223AE3CB0026E845 /* Protocols */,
 				0D2C7F402201516F007361EF /* Custom Fonts */,
 				0DBE04662239DCED00716501 /* Utils */,
 				0D2C7F2F22015132007361EF /* Main.storyboard */,
-				0D6079372240943F00434918 /* SetDropOffLocationVC.swift */,
 				0DE0ABD92229950600FD766C /* Assets.xcassets */,
 				0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */,
 				0D2C7F3A22015134007361EF /* Info.plist */,
@@ -267,9 +273,12 @@
 			isa = PBXGroup;
 			children = (
 				0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */,
+				0D7A9FFE2241E2990089B62A /* CustomViewDesignTwo.swift */,
+				0DD672012241747D0020C3ED /* GoLiveButton.swift */,
 				0DCD93A922023B5900AAA621 /* Constrants.swift */,
 				0D0450C9220A9234009BD21B /* SAButtonPart2.swift */,
 				0D2952202238A27400DDA9CC /* SAButtonThree.swift */,
+				0DD671FF224161750020C3ED /* SearchBarButton.swift */,
 				0DCD93A622023A1300AAA621 /* SAButton.swift */,
 			);
 			path = "Custom Button Style";
@@ -546,9 +555,11 @@
 			files = (
 				0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */,
 				0D2952212238A27400DDA9CC /* SAButtonThree.swift in Sources */,
+				0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */,
 				0D89CD73223CC79A00DBE757 /* SchedulePageController.swift in Sources */,
-				0D6079382240943F00434918 /* SetDropOffLocationVC.swift in Sources */,
+				0DD671FE22415CE10020C3ED /* SetDropOffLocationVC.swift in Sources */,
 				0D89CD6F223CC74D00DBE757 /* driverEditProfileVC.swift in Sources */,
+				0D7A9FFF2241E2990089B62A /* CustomViewDesignTwo.swift in Sources */,
 				0D459413223B51E30026E845 /* EditProfileController.swift in Sources */,
 				0D89CD6A223CC6F800DBE757 /* SettingPageController.swift in Sources */,
 				0DAB6653222612F3001F261A /* ErrorCodes.swift in Sources */,
@@ -575,6 +586,7 @@
 				0D5C97BD223E16F3007A4E66 /* SplashAnimatable.swift in Sources */,
 				0D89CD6C223CC70F00DBE757 /* LogOutController.swift in Sources */,
 				0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */,
+				0DD67200224161750020C3ED /* SearchBarButton.swift in Sources */,
 				0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */,
 				0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */,
 				0D89CD7D223CC82D00DBE757 /* driverLogOutVC.swift in Sources */,

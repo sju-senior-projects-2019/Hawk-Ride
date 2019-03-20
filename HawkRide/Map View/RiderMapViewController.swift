@@ -27,13 +27,27 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
+        customNavigationBar()
         initializeTheLocationManager()
         setupMapView()
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
     }
-    
+    /* Hint:
+   This function does not work in the rider map view controller - it works for the next view controller which is setDropOffLocationVc
+    */
+    func customNavigationBar() {
+        /** Customizing the navigation controller bar */
+        
+        self.navigationItem.backBarButtonItem?.title = "" // Changing the title of the navigation item
+        self.navigationItem.backBarButtonItem = UIBarButtonItem() // Enabling the back button
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) // Allowing the background image to display over the navigation bar
+        self.navigationController?.navigationBar.shadowImage = UIImage() // Shadowing the navigation bar under the image
+        self.navigationController?.navigationBar.isTranslucent = true // Navigation bar becomes transparent
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.black // Changing the color of the navigation item
+    }
     func setupMapView() {
         self.mapView.isMyLocationEnabled = true
         self.mapView.mapStyle(withFilename: "bright", andType: "json");
@@ -43,6 +57,11 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -111,16 +130,13 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     }
     
  
-    @IBAction func RequestRide(_ sender: Any) {
+  
+
+    
    
-    }
     
     
-    
-    @IBAction func enterLocationBtnPressed(_ sender: Any) {
-        let  dropOffLocation = storyboard?.instantiateViewController(withIdentifier: "dropOffLocation")
-        present(dropOffLocation!, animated: true, completion: nil)
-    }
+   
 }
 
 extension RiderMapViewController: SidebarViewRiderDelegate {

@@ -14,6 +14,7 @@ struct Colors {
     static let yellowBackground = UIColor(red:228/255, green: 255/255, blue: 82/255, alpha: 100)
    // static let blackBackground = UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 1)
     
+    static let blueBackground = UIColor(red:30/255, green: 144/255, blue: 255/255, alpha: 100)
 }
 
 struct Fonts {
