@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E62F9FA55BBC9AFD0A78A4469CA3079B"
-               BuildableName = "GeoFire.framework"
                BlueprintName = "GeoFire"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "GeoFire.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

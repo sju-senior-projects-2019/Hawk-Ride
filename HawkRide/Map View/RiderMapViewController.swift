@@ -12,8 +12,8 @@ import GoogleMaps
 import GeoFire
 import SVProgressHUD
 import GeoFire
-import SVProgressHUD
-
+import Alamofire
+import SwiftyJSON
 
 class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -22,7 +22,9 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     var sidebarView: SidebarViewRider!
     var blackScreen: UIView!
     var locationManager = CLLocationManager()
+    var tableView = UITableView()
     @IBOutlet  var mapView: GMSMapView!
+   
 
     // MARK: - Init
     override func viewDidLoad() {
@@ -33,7 +35,11 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
+     
+     
+      
     }
+    
     /* Hint:
    This function does not work in the rider map view controller - it works for the next view controller which is setDropOffLocationVc
     */
@@ -76,6 +82,7 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             mapView.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 16)
         }
     }
+ 
 
     
    
@@ -129,11 +136,8 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         }
     }
     
- 
-  
 
     
-   
     
     
    
@@ -187,7 +191,5 @@ extension GMSMapView {
         }
     }
 }
-
-
 
 

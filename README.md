@@ -1,24 +1,25 @@
 # Hawk Ride
 IOS application which has very similar functionality like Uber; however, the service this app provides is an student escort service where students who are considered Hawk Riders will get an escort from another student who is Hawk Driver to their dorm halls.
 
-Accomplished Tasks: 
+Accomplished Tasks:
 =================
 <!--ts-->
-*  [Re-designed the map view page] - Integrated a search bar that allows the user to search a location 
-*  [Built a side bar] - which allows use to navigate throughout the app
-* [Track user's current location] - When the user first uses the app service, they will receive an notification to enable the current location to the app, and the app fetches the location coordinates of the user and displays the current location.
+* I was able to design a tableview with a list of restricted locations
+* Met with Director of Public Safety to pitch the idea and they loved it!
+* I figured out how to a back-end system that pass this users location coordinates to a database, which is firebase! - This is away from me to track the driver & rider on real time
+
 
 Tasks(On Going):
 =================
 <!--ts-->
-*  [Search Bar] - building a list of restricted locations for the user (Not sure how this able to be done)
-*  [Supply Service] - tracks cars using geolocation (latitude & longitude). Every vehicle which is active keeps on sending lat-long to server every 5 sec once - 
-* [Demand Service]   - Demand service tracks the GPS location of the user when requested 
+*  [Search Bar] - Pass location information from the UIButton to the map view and draw a path from the current location to the location was selected
  ------------------------------------------------------------------------------------------------
 * [Saving and showing real time driver annoations on the map] - So riders are matched to drivers and also displaying cars on a map - figuring out a system that sends a request to geolocation - For instance, like DISCO - Dispath optimization
  - DISCO - is a dispatch system that reduce extra driving, reduce waiting time, lowest overall ETA
 * [Using Firebase for real time user requests]
 * [Building pages for the side bar]
+*  [Supply Service] - tracks cars using geolocation (latitude & longitude). Every vehicle which is active keeps on sending lat-long to server every 5 sec once -
+* [Demand Service]   - Demand service tracks the GPS location of the user when requested
 
 Table of contents:
 =================
@@ -45,7 +46,7 @@ Technologies Used And Cocoapods:
   - Google maps is used to show paths and locations of users.
   - Alamofire used to take the response of google map as Json respond and deserializing it.
   - SVProgressHUD is used to show load ring.
-  
+
 Prerequisites:
 =============
 
@@ -55,49 +56,49 @@ Prerequisites:
 Clone:
 =====
   Clone this repo?
-  
+
 User Guide For Customers:
 =======================
-  
+
   Sign Up And Sign In:		
   -------------------
-  
+
   - Enter your email and password and make sure you make switch button on customer side, then press sign up.
   - To sign in just press button sign in and enter your email and password.
   <p align="center">
   <img src="images/signupcustomer.png" width = "200">
     <img src="images/signincustomer.png" width = "200">
   </p>
-  
+
   Order Driver:
   -------------
-  
+
   - Just press on Order Driver button on the upper right side of screen to get the nearset driver for your location.
-  
+
   <p align="center">
   <img src="images/order.png" width = "200">  </p>
-  
+
 User Guide For Drivers:
 =======================
 
   Sign Up And Sign In For Driver:		
   ------------------------------
-  
+
   - Enter your email and password and make sure you make switch button on driver side, then press sign up.
   - To sign in just press button sign in and enter your email and password.
   <p align="center">
   <img src="" width = "200">
     <img src="" width = "200">
   </p>
-  
+
   Get Order:
   ---------
   - When driver get an order from customer, red path appears on the map to show him the shortest path from his location to the       customer.
-  
+
    <p align="center">
   <img src="" width = "200">  </p>
-  
- 
+
+
   Pick Up Customer And Reach Distination:		
   ---------------------------------------
 

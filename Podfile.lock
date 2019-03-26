@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.1)
   - Firebase/Auth (5.16.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.3.0)
@@ -76,6 +77,7 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
+  - IQKeyboardManager (6.2.0)
   - leveldb-library (1.20)
   - MaterialComponents (55.0.0):
     - MaterialComponents/ActivityIndicator (= 55.0.0)
@@ -520,8 +522,10 @@ PODS:
   - nanopb/encode (0.3.901)
   - RevealingSplashView (0.6.0)
   - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -529,12 +533,15 @@ DEPENDENCIES:
   - GeoFire
   - GoogleMaps
   - GooglePlaces
+  - IQKeyboardManager
   - MaterialComponents (from `https://github.com/material-components/material-components-ios`, branch `google-io-codelabs-2018`)
   - RevealingSplashView
   - SVProgressHUD
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -549,6 +556,7 @@ SPEC REPOS:
     - GooglePlaces
     - GoogleUtilities
     - GTMSessionFetcher
+    - IQKeyboardManager
     - leveldb-library
     - MDFInternationalization
     - MDFTextAccessibility
@@ -558,6 +566,7 @@ SPEC REPOS:
     - nanopb
     - RevealingSplashView
     - SVProgressHUD
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   MaterialComponents:
@@ -570,6 +579,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/material-components/material-components-ios
 
 SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseAuth: c9b3ff063c223d2841d97240af547ce511bce19a
@@ -584,6 +594,7 @@ SPEC CHECKSUMS:
   GooglePlaces: c086e0055dc5f0177d7c9d65fc77a1734f9a4825
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MaterialComponents: 71034ff1989c7d0b8ada2d4be7df2f488e41bfa5
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
@@ -594,7 +605,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   RevealingSplashView: 40c5a770894459736acdc95655eeba0dd30ce91c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 6b88df75c3bb543aabcb749275c8f2427b551062
+PODFILE CHECKSUM: 2befce10c8139f9bb1abc2df083b0685b0912632
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.6.0

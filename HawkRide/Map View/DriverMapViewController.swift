@@ -26,6 +26,7 @@ class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSM
     var locationManager = CLLocationManager()
     var sidebarView: SidebarViewDriver!
     var blackScreen: UIView!
+    
   
     override func viewDidLoad() {
         super.viewDidLoad()

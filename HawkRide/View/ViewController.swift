@@ -31,11 +31,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         initializeTheLocationManager()
     }
     
- 
-  
-   
-    
-   func initializeRevealingSplash() {
+ func initializeRevealingSplash() {
         //Initialize a revealing Splash with with the iconImage, the initial size and the background color
         let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "Hawk")!,iconInitialSize: CGSize(width:145, height:86), backgroundColor: UIColor(red: 161/255, green: 31/255, blue: 53/255, alpha: 1))
         self.view.addSubview(revealingSplashView)

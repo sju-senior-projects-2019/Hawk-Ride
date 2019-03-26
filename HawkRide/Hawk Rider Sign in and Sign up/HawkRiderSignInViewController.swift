@@ -55,6 +55,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
      */
     @IBAction func SubmitButton(_ sender: Any) {
         if EmailAddress.text == "" || Password.text == "" {
+            self.view.endEditing(true)
            } else {
             if let email = EmailAddress.text {
                 if let password = Password.text {
@@ -63,6 +64,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
                         if error != nil {
                             print(error!._code)
                             self.handleError(error!)
+
                             return
                         }
                         self.performSegue(withIdentifier: "RiderSegue", sender: sender)

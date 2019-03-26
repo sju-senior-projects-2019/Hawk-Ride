@@ -16,7 +16,7 @@ import GeoFire
 
 
 
-class HawkRiderSignUpViewController: UIViewController {
+class HawkRiderSignUpViewController: UIViewController, UITextFieldDelegate {
     
    
     var ref: DatabaseReference! //Create a reference to the database
@@ -51,6 +51,7 @@ class HawkRiderSignUpViewController: UIViewController {
     EmailAddressController = MDCTextInputControllerFilled(textInput: EmailAddress)
     PasswordController = MDCTextInputControllerFilled(textInput: Password)
     PhoneNumberController = MDCTextInputControllerFilled(textInput:PhoneNumber)
+   
 }
     
     
@@ -70,6 +71,8 @@ class HawkRiderSignUpViewController: UIViewController {
                       let PhoneNumber = self.PhoneNumber.text
                      
                     self.ref.child("Hawk Riders").child("\(user!)").setValue(["FirstName": "\(FirstName!)", "LastName": "\(LastName!)", "emailAddress": "\(emailAddress!)", "IDNumber": "\(IDNumber!)","PhoneNumber": "\(PhoneNumber!)"])
+                        
+                       
                      self.performSegue(withIdentifier: "RiderSegue", sender: sender)
               }
            }
