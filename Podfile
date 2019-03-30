@@ -17,7 +17,8 @@ target 'Hawk Ride' do
     pod 'RevealingSplashView'
     pod 'Alamofire'
     pod 'SwiftyJSON'
-    pod 'IQKeyboardManager'
+
+
 
     if(ENV['TEST_BRANCH'])
       pod 'MaterialComponents', :git => 'https://github.com/material-components/material-components-ios', :branch => ENV['TEST_BRANCH']

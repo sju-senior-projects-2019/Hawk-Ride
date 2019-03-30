@@ -11,38 +11,27 @@ import GoogleMaps
 import GooglePlaces
 
 
-class SetDropOffLocationVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class SetDropOffLocationVC: UIViewController {
   
   
     
-    @IBOutlet weak var tableView: UITableView!
-    
+  
     // Core Data Objects
-   /* var location: [Location] = [
-    Location(title: "LaFarge Hall", cllocation: CLLocation(latitude: 39.992853, longitude: -75.239888), regionRadius: 300.0, location: "Cardinal Ave", type: "Dorm Hall", coordinate: CLLocationCoordinate2DMake( 39.992853, -75.239888)) ] */
+   var location: [Location] = [
+    Location(title: "LaFarge Hall", cllocation: CLLocation(latitude: 39.992853, longitude: -75.239888), regionRadius: 300.0, location: "Cardinal Ave", type: "Dorm Hall", coordinate: CLLocationCoordinate2DMake( 39.992853, -75.239888)) ]
     
-    let locationLabel = [("LaFarge Hall"), ("McShain Hall"), ("Jordan Hall"), ("Sourin Hall"), ("Villiger Hall"), ("Hogan Hall"), ("Quirk Hall"), ("St.Albert's Hall"), ("Sullivan Hall"), ("Xaiver Hall"), ("Moore Hall"), ("Aswhood Hall"), ("Lannon Hall"), ("Pennbrook Hall"), ("Rashford"), ("Merion Gardens Apartments"), ("Townhouses")]
    
     
    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        setupNavBar()
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.tableView.tableFooterView = UIView()
-       // tableView.backgroundColor = [UIColor, clearColor];
-      
-        //tableView.backgroundView = nil;
-        
-        
-        }
-    
-    func setupNavBar() {
-         let navController = navigationController!
+       
     }
+    
    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   
+   /* func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locationLabel.count
     }
     
@@ -52,16 +41,37 @@ class SetDropOffLocationVC: UIViewController, UITableViewDelegate, UITableViewDa
         cell.locationButton.addTarget(self, action: Selector("tapDidNavi"), for: .touchUpInside)
         
         return cell
+    } */
+}
+class LocationButton: UIButton {
+    
+    public var location : Location
+    
+    init(location: Location, frame: CGRect) {
+        
+        self.location = location
+        
+        super.init(frame: frame)
+        
+        setProperties()
+      
     }
     
-    @IBAction func tapDidNavi(sender: UIButton) {
-        let destination = self.locationLabel[sender.tag]
-        
-        
+    ///needed for interface builder
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setProperties() {
+        //Set properties of button here...
+        setTitle("Button Title", for: .normal)
     }
 }
+    
+    // Creating a locationButton
+    let locationButton = LocationButton(location: Location(title: "LaFarge Hall", cllocation: CLLocation(latitude: 39.992853, longitude: -75.239888), regionRadius: 300.0, location:"Cardinal Ave", type: "Dorm Hall", coordinate: CLLocationCoordinate2D( latitude: 39.992853, longitude: -75.239888)), frame: CGRect())
 
-
+  
 
 
     

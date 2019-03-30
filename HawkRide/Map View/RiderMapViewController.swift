@@ -10,10 +10,9 @@ import UIKit
 import Firebase
 import GoogleMaps
 import GeoFire
-import SVProgressHUD
-import GeoFire
 import Alamofire
 import SwiftyJSON
+import GooglePlaces
 
 class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -24,7 +23,10 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     var locationManager = CLLocationManager()
     var tableView = UITableView()
     @IBOutlet  var mapView: GMSMapView!
-   
+    public var location = CLLocationManager()
+    
+    
+ 
 
     // MARK: - Init
     override func viewDidLoad() {
@@ -63,6 +65,8 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.stopMonitoringSignificantLocationChanges()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
@@ -70,6 +74,7 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         self.view.endEditing(true)
     }
     
+    //MARK: - Location Manager Delegates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locationManager.location?.coordinate
@@ -83,7 +88,42 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         }
     }
  
+    //MARK: function for create a marker pin on map
+    
+    func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
+        marker.title = titleMarker
+        marker.icon = iconMarker
+        marker.map = mapView
+    }
+    
+    //MARK - GMSMAPViewDelegate
+    
+    func mapView(_mapView: GMSMapView, willMove gesture: Bool) {
+        mapView.isMyLocationEnabled = true
+        
+        if(gesture) {
+            mapView.selectedMarker = nil
+            
+        }
+    }
+    
+    func mapView(_mapView: GMSMapView, didTap amrker: GMSMarker) -> Bool {
+      mapView.isMyLocationEnabled = true
+        return false
+    }
+    
+    func mapView(_mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("COORDINATE \(coordinate)") // when you tapped coordinate
+    }
+    
+    //MARK: this is function for create direction path, from start location to end destination
+    
+  
 
+    //MARK: SHOW DIRECTION WITH CLICK OF BUTTON
     
    
  /* Hamburger Menu Button
@@ -155,7 +195,7 @@ extension RiderMapViewController: SidebarViewRiderDelegate {
         switch row {
         case .editProfile:
            let controller = EditProfileController()
-           self.navigationController?.pushViewController(controller, animated: true)
+           present(UINavigationController(rootViewController:controller), animated: true, completion: nil)
             case .rideHistory:
             print("Ride History")
         case .becomeAHawkDriver:

@@ -13,7 +13,7 @@ import GoogleMaps
 import GooglePlaces
 import RevealingSplashView
 import FirebaseAuth
-import IQKeyboardManager
+
 
 
 
@@ -30,7 +30,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
          FirebaseApp.configure()
          GMSServices.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
          GMSPlacesClient.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
-       // IQKeyboardManager.shared().isEnabled = true
+       
 
         
         return true
