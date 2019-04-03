@@ -40,30 +40,36 @@ class RiderMapViewController: UIViewController {
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
+        setupTableView()
+        locations = createArray()
+    }
+    
+    func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        locations = createArray()
+        tableView.separatorColor = Colors.primarySlateBackground
+        tableView.backgroundColor = Colors.primarySlateBackground
     }
     
     func createArray() -> [Location] {
         
         var tempLocations: [Location] = []
         
-         let location1 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "LaFarge Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
-         let location2 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Sourin Residance Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993307, longitude: -75.240373), location: " 2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.993307, longitude: -75.2403732))
-         let location3 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "McShain Residence Center", desc: "W. City Avenue", coordinate: CLLocationCoordinate2D(latitude: 39.995423, longitude: -75.240397), location: "333 W.City Avenue", cllocation: CLLocation(latitude: 39.995423, longitude: -75.240397))
-         let location4 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Villiger Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993682, longitude:  -75.240787), location: " 2525 Cardinal Ave", cllocation: CLLocation(latitude: 39.993682, longitude:  -75.240787))
-         let location5 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Quirk Hall", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998535, longitude:-75.239560), location: "2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.998535, longitude: -75.239560))
-         let location6 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "St. Albert's Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 40.002363, longitude: -75.240681), location: "40 Lapsley Lane", cllocation: CLLocation(latitude: 40.002363, longitude: -75.240681))
-         let location7 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Xaiver Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.996367, longitude: -75.240180), location: "30 Lapsley Lane", cllocation: CLLocation(latitude: 39.996367, longitude: -75.240180))
-         let location8 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Moore Hall", desc: " Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.991035, longitude: -75.247312), location: "6051 Overbrook Ave", cllocation: CLLocation(latitude: 39.991035, longitude: -75.247312))
-         let location9 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Ashwood Apartments", desc: "Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990279, longitude: -75.248051),  location: "6050 Overbrook Ave", cllocation: CLLocation(latitude: 39.990279, longitude: -75.248051))
-         let location10 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Lannon Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.997343, longitude: -75.234780), location: "5320 City Ave", cllocation: CLLocation(latitude: 39.997343, longitude: -75.234780))
-         let location11 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Pennbrook Apartments", desc: "North 63rd Street", coordinate: CLLocationCoordinate2D(latitude: 39.989089, longitude:  -75.250746),  location: "2120-2134 North 63rd St", cllocation: CLLocation(latitude: 39.989089, longitude: -75.250746))
-         let location12 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Rashford Apartments", desc: "City ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962),  location: "5200 City Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
-         let location13 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Merion Gardens Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990907, longitude: 75.251342),  location: "701 City Ave", cllocation: CLLocation(latitude:  39.990907, longitude: 75.251342))
-         let location14 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Townhouses", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
-         let location15 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Hogan", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.998613, longitude: -75.239587), location: " 81 Lapsley Lane", cllocation: CLLocation(latitude: 39.998613, longitude: -75.239587))
+         let location1 =  Location(title: "LaFarge Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
+         let location2 =  Location(title: "Sourin Residance Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993307, longitude: -75.240373), location: " 2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.993307, longitude: -75.2403732))
+         let location3 =  Location(title: "McShain Residence Center", desc: "W. City Avenue", coordinate: CLLocationCoordinate2D(latitude: 39.995423, longitude: -75.240397), location: "333 W.City Ave", cllocation: CLLocation(latitude: 39.995423, longitude: -75.240397))
+         let location4 =  Location(title: "Villiger Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993682, longitude:  -75.240787), location: " 2525 Cardinal Ave", cllocation: CLLocation(latitude: 39.993682, longitude:  -75.240787))
+         let location5 =  Location(title: "Quirk Hall", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998535, longitude:-75.239560), location: "2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.998535, longitude: -75.239560))
+         let location6 =  Location(title: "St. Albert's Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 40.002363, longitude: -75.240681), location: "40 Lapsley Lane", cllocation: CLLocation(latitude: 40.002363, longitude: -75.240681))
+         let location7 =  Location(title: "Xaiver Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.996367, longitude: -75.240180), location: "30 Lapsley Lane", cllocation: CLLocation(latitude: 39.996367, longitude: -75.240180))
+         let location8 =  Location(title: "Moore Hall", desc: " Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.991035, longitude: -75.247312), location: "6051 Overbrook Ave", cllocation: CLLocation(latitude: 39.991035, longitude: -75.247312))
+         let location9 =  Location(title: "Ashwood Apartments", desc: "Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990279, longitude: -75.248051),  location: "6050 Overbrook Ave", cllocation: CLLocation(latitude: 39.990279, longitude: -75.248051))
+         let location10 = Location(title: "Lannon Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.997343, longitude: -75.234780), location: "5320 City Ave", cllocation: CLLocation(latitude: 39.997343, longitude: -75.234780))
+         let location11 = Location(title: "Pennbrook Apartments", desc: "North 63rd Street", coordinate: CLLocationCoordinate2D(latitude: 39.989089, longitude:  -75.250746),  location: "2120-2134 North 63rd St", cllocation: CLLocation(latitude: 39.989089, longitude: -75.250746))
+         let location12 = Location(title: "Rashford Apartments", desc: "City ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962),  location: "5200 City Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
+         let location13 = Location(title: "Merion Gardens Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990907, longitude: 75.251342),  location: "701 City Ave", cllocation: CLLocation(latitude:  39.990907, longitude: 75.251342))
+         let location14 = Location(title: "Townhouses", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
+         let location15 = Location(title: "Hogan", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.998613, longitude: -75.239587), location: " 81 Lapsley Lane", cllocation: CLLocation(latitude: 39.998613, longitude: -75.239587))
         
         
         
@@ -252,13 +258,28 @@ extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationcell", for:indexPath) as! LocationTableViewCell
         
         cell.setLocation(location: location)
-        
-        return cell
+       
+       return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
+       
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       
+        return CGFloat(85)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+   
+        if(indexPath.row % 2 == 0) {
+            cell.backgroundColor = Colors.primarySlateBackground
+        }
+        else
+        {
+            cell.backgroundColor = Colors.primaryBlueBackground
+        }
+    }
 }
-

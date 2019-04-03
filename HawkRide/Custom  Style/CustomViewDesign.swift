@@ -36,7 +36,7 @@ class CustomViewDesign: UIView {
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = 3
-        layer.cornerRadius  = frame.size.height/4
+       layer.cornerRadius  = frame.size.height/4
         
       
     }
