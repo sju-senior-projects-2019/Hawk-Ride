@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C3725C4190F8BB9B0A36BCC488FEA7B4"
+               BuildableName = "GoogleAppMeasurement"
                BlueprintName = "GoogleAppMeasurement"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "GoogleAppMeasurement">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

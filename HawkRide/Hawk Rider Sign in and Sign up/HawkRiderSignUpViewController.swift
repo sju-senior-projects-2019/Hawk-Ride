@@ -11,8 +11,7 @@ import MaterialComponents.MaterialTextFields
 import FirebaseAuth
 import FirebaseDatabase
 import Firebase
-import GoogleMaps
-import GeoFire
+
 
 
 
@@ -73,7 +72,7 @@ class HawkRiderSignUpViewController: UIViewController, UITextFieldDelegate {
                     self.ref.child("Hawk Riders").child("\(user!)").setValue(["FirstName": "\(FirstName!)", "LastName": "\(LastName!)", "emailAddress": "\(emailAddress!)", "IDNumber": "\(IDNumber!)","PhoneNumber": "\(PhoneNumber!)"])
                         
                        
-                     self.performSegue(withIdentifier: "RiderSegue", sender: sender)
+                     self.performSegue(withIdentifier: "RideSegue", sender: sender)
               }
            }
         }

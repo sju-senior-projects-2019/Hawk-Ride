@@ -5,28 +5,30 @@
 //  Created by Gregory Jones on 3/22/19.
 //
 
-import Foundation
-import UIKit
-import GoogleMaps
 
-class Location: NSObject {
+import UIKit
+import MapKit
+import CoreLocation
+
+
+struct Location {
     
-    var title: String?
+    var image: UIImage
+    var title: String
+    var desc:  String
     var coordinate: CLLocationCoordinate2D
-    var regionRadius: Double
-    var location: String?
-    var type: String?
-    
+    var location: String
     var cllocation: CLLocation
     
-    init(title: String, cllocation: CLLocation,regionRadius: Double, location: String,type: String,coordinate: CLLocationCoordinate2D) {
+    init(image: UIImage, title: String, desc: String, coordinate: CLLocationCoordinate2D, location: String, cllocation: CLLocation) {
+        self.image = image
         self.title = title
-        self.coordinate = coordinate 
-        self.regionRadius = regionRadius
+        self.desc = desc
+        self.coordinate = coordinate
         self.location = location
-        self.type = type
         self.cllocation = cllocation
-        
-        
     }
+    
 }
+
+

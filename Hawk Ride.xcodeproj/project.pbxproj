@@ -10,6 +10,10 @@
 		0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0450C9220A9234009BD21B /* SAButtonPart2.swift */; };
 		0D0450CD220A9AB3009BD21B /* clan-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */; };
 		0D0450CE220A9AB3009BD21B /* clan-med-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D0450CC220A9AB3009BD21B /* clan-med-webfont.ttf */; };
+		0D2368A822514858003020F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D2368A722514857003020F8 /* GoogleService-Info.plist */; };
+		0D2368AD22514D91003020F8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2368AC22514D91003020F8 /* DataService.swift */; };
+		0D2368B122514FA5003020F8 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2368B022514FA5003020F8 /* UpdateService.swift */; };
+		0D2368B3225153D0003020F8 /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2368B2225153D0003020F8 /* DriverAnnotation.swift */; };
 		0D2952212238A27400DDA9CC /* SAButtonThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2952202238A27400DDA9CC /* SAButtonThree.swift */; };
 		0D2C7F2C22015132007361EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2B22015132007361EF /* AppDelegate.swift */; };
 		0D2C7F2E22015132007361EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C7F2D22015132007361EF /* ViewController.swift */; };
@@ -19,8 +23,6 @@
 		0D2C7F4422015186007361EF /* MontserratAlternates-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */; };
 		0D2D73E52249748E00337FA6 /* CustomViewDesignThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D73E42249748E00337FA6 /* CustomViewDesignThree.swift */; };
 		0D2D73E72249808700337FA6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D73E62249808700337FA6 /* CustomTextField.swift */; };
-		0D2D73E92249869600337FA6 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D73E82249869600337FA6 /* UpdateService.swift */; };
-		0D2D73EB2249875300337FA6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D73EA2249875300337FA6 /* DataService.swift */; };
 		0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */; };
 		0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */; };
 		0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45940C223AE0800026E845 /* sidebarViewRider.swift */; };
@@ -38,9 +40,7 @@
 		0D7B6ED9222F19E000667806 /* clean.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED8222F19DF00667806 /* clean.json */; };
 		0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CF7B3221790D100159517 /* HawkRiderSignInViewController.swift */; };
 		0D7CF7B62217912B00159517 /* HawkDriverSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CF7B52217912B00159517 /* HawkDriverSignInViewController.swift */; };
-		0D8632722249DC7500484675 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8632712249DC7500484675 /* MapTableViewCell.swift */; };
 		0D8632742249E37800484675 /* GhostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8632732249E37800484675 /* GhostButton.swift */; };
-		0D89CD5B223CADBE00DBE757 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */; };
 		0D89CD5F223CBA7D00DBE757 /* sidebarViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */; };
 		0D89CD64223CC69C00DBE757 /* RideHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD63223CC69C00DBE757 /* RideHistoryController.swift */; };
 		0D89CD66223CC6B700DBE757 /* BecomeAHawkDriverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D89CD65223CC6B700DBE757 /* BecomeAHawkDriverController.swift */; };
@@ -63,6 +63,7 @@
 		0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB6650222609B4001F261A /* DriverMapViewController.swift */; };
 		0DAB6653222612F3001F261A /* ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB6652222612F3001F261A /* ErrorCodes.swift */; };
 		0DAB66552226277A001F261A /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAB66542226277A001F261A /* AlertController.swift */; };
+		0DBC61C6225140FA006FB18B /* uber.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DBC61C5225140F9006FB18B /* uber.json */; };
 		0DC1FAAC22121DD100AA272F /* Montserrat-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DC1FAA722121DD000AA272F /* Montserrat-UltraLight.otf */; };
 		0DC1FAAD22121DD100AA272F /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DC1FAA822121DD000AA272F /* Montserrat-Thin.ttf */; };
 		0DC1FAAE22121DD100AA272F /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DC1FAA922121DD000AA272F /* Montserrat-Light.otf */; };
@@ -71,14 +72,14 @@
 		0DC1FAB22212243600AA272F /* HawkDriverSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC1FAB12212243600AA272F /* HawkDriverSignUpViewController.swift */; };
 		0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A622023A1300AAA621 /* SAButton.swift */; };
 		0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A922023B5900AAA621 /* Constrants.swift */; };
-		0DD671FE22415CE10020C3ED /* SetDropOffLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD671FD22415CE10020C3ED /* SetDropOffLocationVC.swift */; };
 		0DD67200224161750020C3ED /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD671FF224161750020C3ED /* SearchBarButton.swift */; };
 		0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD672012241747D0020C3ED /* GoLiveButton.swift */; };
 		0DE0ABDA2229950600FD766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE0ABD92229950600FD766C /* Assets.xcassets */; };
 		0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */; };
 		0DE91EE02202515A008C9B52 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */; };
+		0DEA4DA02252E45F00E64E37 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */; };
+		0DEA4DA22252F69400E64E37 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA4DA12252F69400E64E37 /* Extensions.swift */; };
 		0DEE86EB223721BB0028F778 /* bright.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE86EA223721BB0028F778 /* bright.json */; };
-		0DEE86ED2237228B0028F778 /* uber.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE86EC2237228B0028F778 /* uber.json */; };
 		0DEEB92122385FBE004C2055 /* CustomViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */; };
 		0DFBB9B82248486B00F71C17 /* ButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFBB9B72248486B00F71C17 /* ButtonDelegate.swift */; };
 		A610A45E960549E4F9A64D3C /* Pods_Hawk_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312912B404ED9306EE8800BB /* Pods_Hawk_Ride.framework */; };
@@ -88,6 +89,10 @@
 		0D0450C9220A9234009BD21B /* SAButtonPart2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonPart2.swift; sourceTree = "<group>"; };
 		0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-book-webfont.ttf"; sourceTree = "<group>"; };
 		0D0450CC220A9AB3009BD21B /* clan-med-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-med-webfont.ttf"; sourceTree = "<group>"; };
+		0D2368A722514857003020F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0D2368AC22514D91003020F8 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		0D2368B022514FA5003020F8 /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
+		0D2368B2225153D0003020F8 /* DriverAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
 		0D2952202238A27400DDA9CC /* SAButtonThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonThree.swift; sourceTree = "<group>"; };
 		0D2C7F2822015132007361EF /* Hawk Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawk Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D2C7F2B22015132007361EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,8 +104,6 @@
 		0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-Bold.ttf"; sourceTree = "<group>"; };
 		0D2D73E42249748E00337FA6 /* CustomViewDesignThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewDesignThree.swift; sourceTree = "<group>"; };
 		0D2D73E62249808700337FA6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		0D2D73E82249869600337FA6 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
-		0D2D73EA2249875300337FA6 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderMapViewController.swift; sourceTree = "<group>"; };
 		0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderPortalViewController.swift; sourceTree = "<group>"; };
 		0D45940C223AE0800026E845 /* sidebarViewRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewRider.swift; sourceTree = "<group>"; };
@@ -118,9 +121,7 @@
 		0D7B6ED8222F19DF00667806 /* clean.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clean.json; sourceTree = "<group>"; };
 		0D7CF7B3221790D100159517 /* HawkRiderSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkRiderSignInViewController.swift; sourceTree = "<group>"; };
 		0D7CF7B52217912B00159517 /* HawkDriverSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkDriverSignInViewController.swift; sourceTree = "<group>"; };
-		0D8632712249DC7500484675 /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		0D8632732249E37800484675 /* GhostButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostButton.swift; sourceTree = "<group>"; };
-		0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewDriver.swift; sourceTree = "<group>"; };
 		0D89CD63223CC69C00DBE757 /* RideHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHistoryController.swift; sourceTree = "<group>"; };
 		0D89CD65223CC6B700DBE757 /* BecomeAHawkDriverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BecomeAHawkDriverController.swift; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 		0DAB6650222609B4001F261A /* DriverMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverMapViewController.swift; sourceTree = "<group>"; };
 		0DAB6652222612F3001F261A /* ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCodes.swift; sourceTree = "<group>"; };
 		0DAB66542226277A001F261A /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		0DBC61C5225140F9006FB18B /* uber.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uber.json; sourceTree = "<group>"; };
 		0DC1FAA722121DD000AA272F /* Montserrat-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-UltraLight.otf"; sourceTree = "<group>"; };
 		0DC1FAA822121DD000AA272F /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		0DC1FAA922121DD000AA272F /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
@@ -151,14 +153,14 @@
 		0DC1FAB12212243600AA272F /* HawkDriverSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkDriverSignUpViewController.swift; sourceTree = "<group>"; };
 		0DCD93A622023A1300AAA621 /* SAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAButton.swift; sourceTree = "<group>"; };
 		0DCD93A922023B5900AAA621 /* Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
-		0DD671FD22415CE10020C3ED /* SetDropOffLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDropOffLocationVC.swift; sourceTree = "<group>"; };
 		0DD671FF224161750020C3ED /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
 		0DD672012241747D0020C3ED /* GoLiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveButton.swift; sourceTree = "<group>"; };
 		0DE0ABD92229950600FD766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		0DEA4DA12252F69400E64E37 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0DEE86EA223721BB0028F778 /* bright.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bright.json; sourceTree = "<group>"; };
-		0DEE86EC2237228B0028F778 /* uber.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uber.json; sourceTree = "<group>"; };
 		0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewDesign.swift; sourceTree = "<group>"; };
 		0DFBB9B72248486B00F71C17 /* ButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDelegate.swift; sourceTree = "<group>"; };
 		312912B404ED9306EE8800BB /* Pods_Hawk_Ride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawk_Ride.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +180,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D2368A922514D03003020F8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0D2368AC22514D91003020F8 /* DataService.swift */,
+				0D2368B022514FA5003020F8 /* UpdateService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0D2C7F1F22015132007361EF = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +210,7 @@
 		0D2C7F2A22015132007361EF /* HawkRide */ = {
 			isa = PBXGroup;
 			children = (
+				0D2368A922514D03003020F8 /* Services */,
 				0D4D8F4422372C4E00653ADA /* Map Styles */,
 				0D4D8F4622372C9200653ADA /* Custom  Style */,
 				0D4D8F4522372C7500653ADA /* Hawk Rider Sign in and Sign up */,
@@ -208,20 +220,17 @@
 				0D4D8F4A22372CFA00653ADA /* Map View */,
 				0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */,
 				0D89CD6D223CC71E00DBE757 /* Driver Side Bar menu controllers */,
-				0DD671FD22415CE10020C3ED /* SetDropOffLocationVC.swift */,
 				0DFBB9B72248486B00F71C17 /* ButtonDelegate.swift */,
 				0D49DE4F2246D77F00B2ADAD /* Location.swift */,
-				0D2D73E82249869600337FA6 /* UpdateService.swift */,
-				0D2D73EA2249875300337FA6 /* DataService.swift */,
-				0D8632712249DC7500484675 /* MapTableViewCell.swift */,
+				0DEA4DA12252F69400E64E37 /* Extensions.swift */,
 				0D45940F223AE3E20026E845 /* View */,
 				0D45940E223AE3CB0026E845 /* Protocols */,
 				0D2C7F402201516F007361EF /* Custom Fonts */,
 				0DBE04662239DCED00716501 /* Utils */,
 				0D2C7F2F22015132007361EF /* Main.storyboard */,
 				0DE0ABD92229950600FD766C /* Assets.xcassets */,
-				0D89CD5A223CADBE00DBE757 /* GoogleService-Info.plist */,
 				0D2C7F3222015132007361EF /* HawkRide.xcdatamodeld */,
+				0D2368A722514857003020F8 /* GoogleService-Info.plist */,
 				0D2C7F3A22015134007361EF /* Info.plist */,
 				0D5C97AA223E0BCA007A4E66 /* LaunchScreen.storyboard */,
 			);
@@ -265,6 +274,7 @@
 				0D2C7F2D22015132007361EF /* ViewController.swift */,
 				0D45940C223AE0800026E845 /* sidebarViewRider.swift */,
 				0D89CD5E223CBA7D00DBE757 /* sidebarViewDriver.swift */,
+				0D2368B2225153D0003020F8 /* DriverAnnotation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,8 +285,8 @@
 				0DEE86EA223721BB0028F778 /* bright.json */,
 				0D7B6ED8222F19DF00667806 /* clean.json */,
 				0D7B6ED6222F0D9200667806 /* dark.json */,
+				0DBC61C5225140F9006FB18B /* uber.json */,
 				0D7B6ED4222F05A200667806 /* custom.json */,
-				0DEE86EC2237228B0028F778 /* uber.json */,
 			);
 			path = "Map Styles";
 			sourceTree = "<group>";
@@ -331,6 +341,7 @@
 			children = (
 				0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */,
 				0DAB6650222609B4001F261A /* DriverMapViewController.swift */,
+				0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */,
 			);
 			path = "Map View";
 			sourceTree = "<group>";
@@ -413,7 +424,6 @@
 				0D2C7F2522015132007361EF /* Frameworks */,
 				0D2C7F2622015132007361EF /* Resources */,
 				57891BFAC5CA0AF0276B6531 /* [CP] Embed Pods Frameworks */,
-				E02C641F4A9C9777202190FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -477,14 +487,14 @@
 				0D0450CD220A9AB3009BD21B /* clan-book-webfont.ttf in Resources */,
 				0D8C827522029FEC00838F8D /* clanpro-condbook-opentype.otf in Resources */,
 				0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */,
-				0DEE86ED2237228B0028F778 /* uber.json in Resources */,
 				0DC1FAAD22121DD100AA272F /* Montserrat-Thin.ttf in Resources */,
-				0D89CD5B223CADBE00DBE757 /* GoogleService-Info.plist in Resources */,
 				0DC1FAAF22121DD100AA272F /* Montserrat-Regular.otf in Resources */,
+				0D2368A822514858003020F8 /* GoogleService-Info.plist in Resources */,
 				0D2C7F3122015132007361EF /* Main.storyboard in Resources */,
 				0D8C827322029FEC00838F8D /* clanpro-bold-opentype.otf in Resources */,
 				0D2C7F4422015186007361EF /* MontserratAlternates-Bold.ttf in Resources */,
 				0D8C827422029FEC00838F8D /* clanpro-black-opentype.otf in Resources */,
+				0DBC61C6225140FA006FB18B /* uber.json in Resources */,
 				0DC1FAAE22121DD100AA272F /* Montserrat-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +512,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
@@ -519,6 +530,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
@@ -554,26 +566,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E02C641F4A9C9777202190FB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -585,11 +577,10 @@
 				0D2952212238A27400DDA9CC /* SAButtonThree.swift in Sources */,
 				0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */,
 				0D89CD73223CC79A00DBE757 /* SchedulePageController.swift in Sources */,
-				0DD671FE22415CE10020C3ED /* SetDropOffLocationVC.swift in Sources */,
 				0D89CD6F223CC74D00DBE757 /* driverEditProfileVC.swift in Sources */,
+				0D2368B122514FA5003020F8 /* UpdateService.swift in Sources */,
 				0D7A9FFF2241E2990089B62A /* CustomViewDesignTwo.swift in Sources */,
 				0D8632742249E37800484675 /* GhostButton.swift in Sources */,
-				0D2D73EB2249875300337FA6 /* DataService.swift in Sources */,
 				0D89CD6A223CC6F800DBE757 /* SettingPageController.swift in Sources */,
 				0DAB6653222612F3001F261A /* ErrorCodes.swift in Sources */,
 				0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */,
@@ -598,9 +589,7 @@
 				0DFBB9B82248486B00F71C17 /* ButtonDelegate.swift in Sources */,
 				0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */,
 				0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */,
-				0D8632722249DC7500484675 /* MapTableViewCell.swift in Sources */,
 				0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */,
-				0D2D73E92249869600337FA6 /* UpdateService.swift in Sources */,
 				0D89CD64223CC69C00DBE757 /* RideHistoryController.swift in Sources */,
 				0D89CD7B223CC80C00DBE757 /* driverSettingsPageVC.swift in Sources */,
 				0D2C7F2E22015132007361EF /* ViewController.swift in Sources */,
@@ -623,12 +612,16 @@
 				0DD67200224161750020C3ED /* SearchBarButton.swift in Sources */,
 				0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */,
 				0D586FCF224D70DE00F6A908 /* EditProfileController.swift in Sources */,
+				0D2368AD22514D91003020F8 /* DataService.swift in Sources */,
 				0D2D73E52249748E00337FA6 /* CustomViewDesignThree.swift in Sources */,
 				0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */,
 				0D89CD7D223CC82D00DBE757 /* driverLogOutVC.swift in Sources */,
+				0D2368B3225153D0003020F8 /* DriverAnnotation.swift in Sources */,
 				0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */,
 				0D5C97BE223E16F3007A4E66 /* Animations.swift in Sources */,
+				0DEA4DA22252F69400E64E37 /* Extensions.swift in Sources */,
 				0DA3A9F8221BA1C800E68CB8 /* HawkRiderSignUpViewController.swift in Sources */,
+				0DEA4DA02252E45F00E64E37 /* LocationTableViewCell.swift in Sources */,
 				0D89CD79223CC7DE00DBE757 /* BecomeAHawkRiderController.swift in Sources */,
 				0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */,
 			);

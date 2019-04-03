@@ -30,12 +30,12 @@ class CustomViewDesign: UIView {
      */
     func setupViewDesign() {
         layer.borderWidth = 0.0
-        layer.borderColor = UIColor(red: 208/255, green: 212/255, blue:217/255, alpha: 1.0).cgColor
-        backgroundColor = Colors.whiteBackground
-        layer.shadowColor = UIColor.lightGray.cgColor
-        layer.shadowOpacity = 0.8
+        layer.borderColor = UIColor(red: 161/255, green: 31/255, blue: 53/255, alpha: 1.0).cgColor
+        backgroundColor = Colors.redBackground
+       // layer.shadowColor = UIColor.white.cgColor
+        layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize.zero
-        layer.shadowRadius = 5
+        layer.shadowRadius = 3
         layer.cornerRadius  = frame.size.height/4
         
       

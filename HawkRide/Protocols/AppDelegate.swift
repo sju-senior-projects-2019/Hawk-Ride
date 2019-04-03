@@ -9,10 +9,9 @@
 import UIKit
 import CoreData
 import Firebase
-import GoogleMaps
-import GooglePlaces
 import RevealingSplashView
 import FirebaseAuth
+import IQKeyboardManagerSwift
 
 
 
@@ -28,8 +27,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
         // Override point for customization after application launch.
         Thread.sleep(forTimeInterval: 2.0) // Delay splash launch screen time
          FirebaseApp.configure()
-         GMSServices.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
-         GMSPlacesClient.provideAPIKey("AIzaSyCuQj7cc6D1JQzwTWFefCKLxaFTsxOmxBk")
+         IQKeyboardManager.shared.enable = true
+         
        
 
         

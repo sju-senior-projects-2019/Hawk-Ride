@@ -7,29 +7,68 @@
 //
 
 import UIKit
-import GooglePlaces
-import GoogleMaps
-import GeoFire
+import MapKit
+import CoreLocation
 import RevealingSplashView
 import FirebaseAuth
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
-    var mapView: GMSMapView!
-    let locationManager = CLLocationManager()
+    
+ 
     private var revealingLoaded = false
     @IBOutlet weak var HawkRiderButton: SAButton!
     @IBOutlet weak var HawkDriverButton: SAButton!
     @IBOutlet weak var BecomeAHawkDriverButton:SAButtonPart2!
+    let locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
     super.viewDidLoad()
+        checkLocationServices()
         initializeRevealingSplash()
         customNavigationBar()
-        initializeTheLocationManager()
+       
+       
     }
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+           
+        } else {
+            // Show alert letting the user know they have to turn this on.
+        }
+    }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+          locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            // Show alert instructing them how to turn on permissions
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Show an alert letting them know what's up
+            break
+        case .authorizedAlways:
+            break
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
+    }
+    
+    
     
  func initializeRevealingSplash() {
         //Initialize a revealing Splash with with the iconImage, the initial size and the background color
@@ -62,11 +101,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
     
     
-    func initializeTheLocationManager() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
     
    override var prefersStatusBarHidden: Bool {
         return !UIApplication.shared.isStatusBarHidden

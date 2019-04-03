@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
-import GeoFire
 import CoreLocation
 import MapKit
 import Firebase
@@ -17,49 +15,65 @@ import FirebaseDatabase
 
 
 
-
-class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate{
+class DriverMapViewController: UIViewController{
     
     //MARK: - Properties
-    
-    @IBOutlet var mapView: GMSMapView!
-    var locationManager = CLLocationManager()
     var sidebarView: SidebarViewDriver!
     var blackScreen: UIView!
+    @IBOutlet weak var mapView: MKMapView!
+    let locationManager = CLLocationManager()
+    let regionInMeters: Double = 550
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
-    initializeTheLocationManager()
-    setupMapView()
-    setupMenuButton()
-    setupBlackScreen()
-    setupSideBarView()
+        setupMenuButton()
+        setupBlackScreen()
+        setupSideBarView()
+        checkLocationServices()
     }
     
-    func setupMapView() {
-        self.mapView.isMyLocationEnabled = true
-        self.mapView.mapStyle(withFilename: "bright", andType: "json");
-    }
-    
-    func initializeTheLocationManager() {
+    func setupLocationManager() {
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    
-        let location = locationManager.location?.coordinate
-    
-        cameraMoveToLocation(toLocation: location)
-    }
-    
-    func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
-        if toLocation != nil {
-            mapView.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 16)
+    func centerViewOnUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
         }
     }
+    
+    
+    func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuthorization()
+        } else {
+            // Show alert letting the user know they have to turn this on.
+        }
+    }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            centerViewOnUserLocation()
+            locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            // Show alert instructing them how to turn on permissions
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Show an alert letting them know what's up
+            break
+        case .authorizedAlways:
+            break
+        }
+    }
+
     
     //MARK: - Handlers
     
@@ -114,6 +128,19 @@ class DriverMapViewController: UIViewController, CLLocationManagerDelegate, GMSM
     }
 
     
+}
+
+extension DriverMapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
+    }
 }
 
 

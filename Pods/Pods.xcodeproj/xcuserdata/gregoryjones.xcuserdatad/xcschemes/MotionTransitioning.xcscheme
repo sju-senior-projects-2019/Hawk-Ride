@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3D889A9FD9B721AC90CC2AAF1EA570B2"
+               BuildableName = "MotionTransitioning.framework"
                BlueprintName = "MotionTransitioning"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "MotionTransitioning.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

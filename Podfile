@@ -10,13 +10,11 @@ target 'Hawk Ride' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
-    pod 'GeoFire'
-    pod 'GoogleMaps'
     pod 'SVProgressHUD'
-    pod 'GooglePlaces'
     pod 'RevealingSplashView'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'IQKeyboardManagerSwift'
 
 
 

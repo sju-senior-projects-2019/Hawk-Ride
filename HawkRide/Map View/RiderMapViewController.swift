@@ -8,38 +8,84 @@
 
 import UIKit
 import Firebase
-import GoogleMaps
-import GeoFire
+import CoreLocation
+import MapKit
 import Alamofire
 import SwiftyJSON
-import GooglePlaces
+import CoreData
 
-class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+
+
+class RiderMapViewController: UIViewController {
     
-    
-    // MARK: - Properties
+   
+     // MARK: - Properties
     var sidebarView: SidebarViewRider!
     var blackScreen: UIView!
+    @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
-    var tableView = UITableView()
-    @IBOutlet  var mapView: GMSMapView!
-    public var location = CLLocationManager()
+    let regionInMeters: Double = 750
+    @IBOutlet weak var tableView: UITableView!
     
+    //Location Array
     
- 
-
+    var locations: [Location] = []
+  
     // MARK: - Init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkLocationServices()
         customNavigationBar()
-        initializeTheLocationManager()
-        setupMapView()
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
-     
-     
-      
+        tableView.dataSource = self
+        tableView.delegate = self
+        locations = createArray()
+    }
+    
+    func createArray() -> [Location] {
+        
+        var tempLocations: [Location] = []
+        
+         let location1 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "LaFarge Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
+         let location2 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Sourin Residance Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993307, longitude: -75.240373), location: " 2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.993307, longitude: -75.2403732))
+         let location3 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "McShain Residence Center", desc: "W. City Avenue", coordinate: CLLocationCoordinate2D(latitude: 39.995423, longitude: -75.240397), location: "333 W.City Avenue", cllocation: CLLocation(latitude: 39.995423, longitude: -75.240397))
+         let location4 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Villiger Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993682, longitude:  -75.240787), location: " 2525 Cardinal Ave", cllocation: CLLocation(latitude: 39.993682, longitude:  -75.240787))
+         let location5 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Quirk Hall", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998535, longitude:-75.239560), location: "2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.998535, longitude: -75.239560))
+         let location6 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "St. Albert's Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 40.002363, longitude: -75.240681), location: "40 Lapsley Lane", cllocation: CLLocation(latitude: 40.002363, longitude: -75.240681))
+         let location7 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Xaiver Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.996367, longitude: -75.240180), location: "30 Lapsley Lane", cllocation: CLLocation(latitude: 39.996367, longitude: -75.240180))
+         let location8 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Moore Hall", desc: " Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.991035, longitude: -75.247312), location: "6051 Overbrook Ave", cllocation: CLLocation(latitude: 39.991035, longitude: -75.247312))
+         let location9 =  Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Ashwood Apartments", desc: "Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990279, longitude: -75.248051),  location: "6050 Overbrook Ave", cllocation: CLLocation(latitude: 39.990279, longitude: -75.248051))
+         let location10 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Lannon Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.997343, longitude: -75.234780), location: "5320 City Ave", cllocation: CLLocation(latitude: 39.997343, longitude: -75.234780))
+         let location11 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Pennbrook Apartments", desc: "North 63rd Street", coordinate: CLLocationCoordinate2D(latitude: 39.989089, longitude:  -75.250746),  location: "2120-2134 North 63rd St", cllocation: CLLocation(latitude: 39.989089, longitude: -75.250746))
+         let location12 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Rashford Apartments", desc: "City ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962),  location: "5200 City Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
+         let location13 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Merion Gardens Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990907, longitude: 75.251342),  location: "701 City Ave", cllocation: CLLocation(latitude:  39.990907, longitude: 75.251342))
+         let location14 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Townhouses", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
+         let location15 = Location(image: #imageLiteral(resourceName: "whitearrow"), title: "Hogan", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.998613, longitude: -75.239587), location: " 81 Lapsley Lane", cllocation: CLLocation(latitude: 39.998613, longitude: -75.239587))
+        
+        
+        
+        tempLocations.append(location1)
+        tempLocations.append(location2)
+        tempLocations.append(location3)
+        tempLocations.append(location4)
+        tempLocations.append(location5)
+        tempLocations.append(location6)
+        tempLocations.append(location7)
+        tempLocations.append(location8)
+        tempLocations.append(location9)
+        tempLocations.append(location10)
+        tempLocations.append(location11)
+        tempLocations.append(location12)
+        tempLocations.append(location13)
+        tempLocations.append(location14)
+        tempLocations.append(location15)
+       
+       
+        
+        return tempLocations
     }
     
     /* Hint:
@@ -47,7 +93,7 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     */
     func customNavigationBar() {
         /** Customizing the navigation controller bar */
-        
+       
         self.navigationItem.backBarButtonItem?.title = "" // Changing the title of the navigation item
         self.navigationItem.backBarButtonItem = UIBarButtonItem() // Enabling the back button
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) // Allowing the background image to display over the navigation bar
@@ -56,77 +102,49 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.black // Changing the color of the navigation item
     }
-    func setupMapView() {
-        self.mapView.isMyLocationEnabled = true
-        self.mapView.mapStyle(withFilename: "bright", andType: "json");
-    }
     
-    func initializeTheLocationManager() {
+    func setupLocationManager() {
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.stopMonitoringSignificantLocationChanges()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>,
-                               with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    //MARK: - Location Manager Delegates
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let location = locationManager.location?.coordinate
-        
-        cameraMoveToLocation(toLocation: location)
-    }
-    
-    func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
-        if toLocation != nil {
-            mapView.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 16)
+   func centerViewOnUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
         }
     }
- 
-    //MARK: function for create a marker pin on map
-    
-    func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-        marker.title = titleMarker
-        marker.icon = iconMarker
-        marker.map = mapView
-    }
-    
-    //MARK - GMSMAPViewDelegate
-    
-    func mapView(_mapView: GMSMapView, willMove gesture: Bool) {
-        mapView.isMyLocationEnabled = true
-        
-        if(gesture) {
-            mapView.selectedMarker = nil
-            
+    func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuthorization()
+        } else {
+            // Show alert letting the user know they have to turn this on.
         }
     }
     
-    func mapView(_mapView: GMSMapView, didTap amrker: GMSMarker) -> Bool {
-      mapView.isMyLocationEnabled = true
-        return false
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            centerViewOnUserLocation()
+            locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            // Show alert instructing them how to turn on permissions
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Show an alert letting them know what's up
+            break
+        case .authorizedAlways:
+            break
+        }
     }
-    
-    func mapView(_mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("COORDINATE \(coordinate)") // when you tapped coordinate
-    }
-    
-    //MARK: this is function for create direction path, from start location to end destination
-    
-  
 
-    //MARK: SHOW DIRECTION WITH CLICK OF BUTTON
-    
-   
- /* Hamburger Menu Button
+/* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu
      */
@@ -151,7 +169,7 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     
     func setupSideBarView() {
         sidebarView=SidebarViewRider(frame: CGRect(x: 0, y: 0, width: 0, height: self.view.frame.height))
-        sidebarView.delegate=self
+        sidebarView.delegate = self
         sidebarView.layer.zPosition=100
         self.view.isUserInteractionEnabled=true
         self.navigationController?.view.addSubview(sidebarView)
@@ -174,14 +192,21 @@ class RiderMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         UIView.animate(withDuration: 0.3) {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
-    }
-    
+   }
 
-    
-    
-    
-   
 }
+extension RiderMapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        if status == .authorizedAlways
+        {
+            mapView.showsUserLocation = true
+            mapView.userTrackingMode = .follow
+        }
+    }
+}
+
 
 extension RiderMapViewController: SidebarViewRiderDelegate {
    
@@ -214,22 +239,26 @@ extension RiderMapViewController: SidebarViewRiderDelegate {
     }
    
 }
-    
 
-/* Check the Map Style for Google Maps */
-
-extension GMSMapView {
-    func mapStyle(withFilename name: String, andType type: String) {
-        do  {
-            if let styleURL = Bundle.main.url(forResource: name, withExtension: type) {
-                self.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-            }  else {
-                NSLog("Unable to find style.join")
-            }
-        } catch {
-            NSLog("One or more of the map styles failed to load. \(error)")
-        }
+extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
+   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let location = locations[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "locationcell", for:indexPath) as! LocationTableViewCell
+        
+        cell.setLocation(location: location)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }
-
 
