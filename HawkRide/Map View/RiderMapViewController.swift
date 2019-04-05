@@ -16,7 +16,7 @@ import CoreData
 
 
 
-class RiderMapViewController: UIViewController {
+class RiderMapViewController: UIViewController, MKMapViewDelegate {
     
    
      // MARK: - Properties
@@ -24,8 +24,17 @@ class RiderMapViewController: UIViewController {
     var blackScreen: UIView!
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
-    let regionInMeters: Double = 750
+    let regionInMeters: Double = 1500 //Originally at was 750
     @IBOutlet weak var tableView: UITableView!
+    var selectedLocation = Location()
+   
+    //Coordaintes of Locations
+    var currentLocationLatitude = CLLocationDegrees()
+    var currentLocationLongitude = CLLocationDegrees()
+   
+    var routeDistance = Double() //Distance of Route
+    var routeETA = Double() //Travel Time of Route
+
     
     //Location Array
     
@@ -44,6 +53,13 @@ class RiderMapViewController: UIViewController {
         locations = createArray()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+      
+    
+       
+    }
+    
+   
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -55,21 +71,21 @@ class RiderMapViewController: UIViewController {
         
         var tempLocations: [Location] = []
         
-         let location1 =  Location(title: "LaFarge Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
-         let location2 =  Location(title: "Sourin Residance Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993307, longitude: -75.240373), location: " 2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.993307, longitude: -75.2403732))
-         let location3 =  Location(title: "McShain Residence Center", desc: "W. City Avenue", coordinate: CLLocationCoordinate2D(latitude: 39.995423, longitude: -75.240397), location: "333 W.City Ave", cllocation: CLLocation(latitude: 39.995423, longitude: -75.240397))
-         let location4 =  Location(title: "Villiger Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993682, longitude:  -75.240787), location: " 2525 Cardinal Ave", cllocation: CLLocation(latitude: 39.993682, longitude:  -75.240787))
-         let location5 =  Location(title: "Quirk Hall", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998535, longitude:-75.239560), location: "2449 Cardinal Ave", cllocation: CLLocation(latitude: 39.998535, longitude: -75.239560))
-         let location6 =  Location(title: "St. Albert's Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 40.002363, longitude: -75.240681), location: "40 Lapsley Lane", cllocation: CLLocation(latitude: 40.002363, longitude: -75.240681))
-         let location7 =  Location(title: "Xaiver Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.996367, longitude: -75.240180), location: "30 Lapsley Lane", cllocation: CLLocation(latitude: 39.996367, longitude: -75.240180))
-         let location8 =  Location(title: "Moore Hall", desc: " Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.991035, longitude: -75.247312), location: "6051 Overbrook Ave", cllocation: CLLocation(latitude: 39.991035, longitude: -75.247312))
-         let location9 =  Location(title: "Ashwood Apartments", desc: "Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990279, longitude: -75.248051),  location: "6050 Overbrook Ave", cllocation: CLLocation(latitude: 39.990279, longitude: -75.248051))
-         let location10 = Location(title: "Lannon Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.997343, longitude: -75.234780), location: "5320 City Ave", cllocation: CLLocation(latitude: 39.997343, longitude: -75.234780))
-         let location11 = Location(title: "Pennbrook Apartments", desc: "North 63rd Street", coordinate: CLLocationCoordinate2D(latitude: 39.989089, longitude:  -75.250746),  location: "2120-2134 North 63rd St", cllocation: CLLocation(latitude: 39.989089, longitude: -75.250746))
-         let location12 = Location(title: "Rashford Apartments", desc: "City ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962),  location: "5200 City Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
-         let location13 = Location(title: "Merion Gardens Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990907, longitude: 75.251342),  location: "701 City Ave", cllocation: CLLocation(latitude:  39.990907, longitude: 75.251342))
-         let location14 = Location(title: "Townhouses", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave", cllocation: CLLocation(latitude: 39.998940, longitude: -75.238962))
-         let location15 = Location(title: "Hogan", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.998613, longitude: -75.239587), location: " 81 Lapsley Lane", cllocation: CLLocation(latitude: 39.998613, longitude: -75.239587))
+         let location1 =  Location(title: "LaFarge Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave")
+         let location2 =  Location(title: "Sourin Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993307, longitude: -75.240373), location: " 2449 Cardinal Ave")
+         let location3 =  Location(title: "McShain Residence Center", desc: "W. City Avenue", coordinate: CLLocationCoordinate2D(latitude: 39.995423, longitude: -75.240397), location: "333 W.City Ave")
+         let location4 =  Location(title: "Villiger Residence Center", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.993682, longitude:  -75.240787), location: " 2525 Cardinal Ave")
+         let location5 =  Location(title: "Quirk Hall", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998535, longitude:-75.239560), location: "2449 Cardinal Ave")
+         let location6 =  Location(title: "St. Albert's Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 40.002363, longitude: -75.240681), location: "40 Lapsley Lane")
+         let location7 =  Location(title: "Xaiver Hall", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.996367, longitude: -75.240180), location: "30 Lapsley Lane")
+         let location8 =  Location(title: "Moore Hall", desc: " Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.991035, longitude: -75.247312), location: "6051 Overbrook Ave")
+         let location9 =  Location(title: "Ashwood Apartments", desc: "Overbrook Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990279, longitude: -75.248051),  location: "6050 Overbrook Ave")
+         let location10 = Location(title: "Lannon Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.997343, longitude: -75.234780), location: "5320 City Ave")
+         let location11 = Location(title: "Pennbrook Apartments", desc: "North 63rd Street", coordinate: CLLocationCoordinate2D(latitude: 39.989089, longitude:  -75.250746),  location: "2120-2134 North 63rd St")
+         let location12 = Location(title: "Rashford Apartments", desc: "City ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962),  location: "5200 City Ave")
+         let location13 = Location(title: "Merion Gardens Apartments", desc: "City Ave", coordinate: CLLocationCoordinate2D(latitude: 39.990726, longitude: -75.251295),  location: "701 City Ave")
+         let location14 = Location(title: "Townhouses", desc: "Cardinal Ave", coordinate: CLLocationCoordinate2D(latitude: 39.998940, longitude: -75.238962), location: " 2425 Cardinal Ave")
+         let location15 = Location(title: "Hogan", desc: "Lapsley Lane", coordinate: CLLocationCoordinate2D(latitude: 39.998613, longitude: -75.239587), location: " 81 Lapsley Lane")
         
         
         
@@ -149,6 +165,128 @@ class RiderMapViewController: UIViewController {
             break
         }
     }
+    
+    func showRouteOnMap(location: Location) {
+       
+     let sourceLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+     let destinationLocation = location.coordinate
+        
+     let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+     let destinationPlacemark = MKPlacemark(coordinate: destinationLocation ?? CLLocationCoordinate2D(), addressDictionary: nil)
+        
+    let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+    let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+   
+        let sourceAnnotation = CustomPointAnnotation()
+        sourceAnnotation.title = "Pick Up Location"
+        sourceAnnotation.subtitle = "Pick Up Location"
+    
+        sourceAnnotation.pinCustomImageName = "pickuppin"
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
+            
+        }
+        
+        let destinationAnnotation =  CustomPointAnnotation()
+        destinationAnnotation.title = "Drop Off Location"
+        destinationAnnotation.subtitle = "Drop Off Location"
+        destinationAnnotation.pinCustomImageName = "destinationpin"
+        
+        //custom annotation
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        //
+        self.mapView.showAnnotations([sourceAnnotation, destinationAnnotation], animated: true)
+        //
+        let directionRequest = MKDirections.Request() //The start and end points of a route, along with the planned mode of transportation.
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        //
+        directions.calculate { (response, error) in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            
+            let route = response.routes[0]
+            self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
+            
+            self.routeDistance = route.distance //distance of route in meters
+            self.routeETA = route.expectedTravelTime / 60 //in seconds, so divide by 60
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+    
+        // UserlocationAnnoationView
+        let userLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+        let userPlaceMark = MKPlacemark(coordinate: userLocation, addressDictionary: nil)
+        
+        let userAnnotation =  CustomPointAnnotation()
+        userAnnotation.pinCustomImageName = "pickuppin"
+        
+        if let location = userPlaceMark.location {
+            userAnnotation.coordinate = location.coordinate
+        }
+        
+        mapView.showAnnotations([userAnnotation], animated: true)
+        
+      }
+    
+  
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .blue
+        
+        return renderer
+    }
+    
+  
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.first
+        
+        currentLocationLatitude = (location?.coordinate.latitude)!
+        currentLocationLongitude = (location?.coordinate.longitude)!
+        
+        let coordinateRegion = MKCoordinateRegion(center: (location?.coordinate)!, latitudinalMeters: regionInMeters * 2.0 , longitudinalMeters: regionInMeters * 2.0 ) // we have to multiply the regionradius by 2.0 because it's only one direction but we want 1000 meters in both directions;we're gonna set how wide we want the radius to be around the center location
+        mapView.setRegion(coordinateRegion, animated: true) //to set it
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //custom annotation
+        
+        let reuseIdentifier = "pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        if let customPointAnnotation = annotation as? CustomPointAnnotation {
+            annotationView?.image = UIImage(named: customPointAnnotation.pinCustomImageName)
+        }
+        
+        return annotationView
+    }
+        
+    
+  
 
 /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
@@ -201,18 +339,19 @@ class RiderMapViewController: UIViewController {
    }
 
 }
+//MARK: - Navigation
+
 extension RiderMapViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+ func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if status == .authorizedAlways
         {
-            mapView.showsUserLocation = true
-            mapView.userTrackingMode = .follow
+           mapView.showsUserLocation = true
+           mapView.userTrackingMode = .follow
         }
-    }
+ }
+    
 }
-
 
 extension RiderMapViewController: SidebarViewRiderDelegate {
    
@@ -248,6 +387,7 @@ extension RiderMapViewController: SidebarViewRiderDelegate {
 
 extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
     }
@@ -263,11 +403,27 @@ extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-       
-    }
+        selectedLocation = locations[indexPath.row]
+        performSegue(withIdentifier: "goToRiderPickUp", sender: self)
+}
+   
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        /*showRouteOnMap(location: selectedLocation)
+        let riderPickUpMapVC = RiderPickUpMapVC()
+        riderPickUpMapVC.location = selectedLocation
+        self.navigationController?.pushViewController(riderPickUpMapVC, animated: true)
+        performSegue(withIdentifier: "detailView", sender: selectedLocation) */
+ 
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToRiderPickUp" {
+            if let viewController = segue.destination as? RiderPickUpMapVC {
+                viewController.location = selectedLocation
+    
+            }
+        }
+    }
+       
+ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
         return CGFloat(85)
     }
@@ -282,4 +438,7 @@ extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
             cell.backgroundColor = Colors.primaryBlueBackground
         }
     }
+    
+
+
 }

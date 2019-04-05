@@ -34,6 +34,9 @@
 		0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */; };
 		0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */; };
 		0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */; };
+		0D5E93B222553B9F00DAC365 /* RiderPickUpMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E93B122553B9F00DAC365 /* RiderPickUpMapVC.swift */; };
+		0D5E93B6225593DF00DAC365 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5E93B5225593DF00DAC365 /* CustomPointAnnotation.swift */; };
+		0D5E93B82256C18D00DAC365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5E93B72256C18D00DAC365 /* Assets.xcassets */; };
 		0D7A9FFF2241E2990089B62A /* CustomViewDesignTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7A9FFE2241E2990089B62A /* CustomViewDesignTwo.swift */; };
 		0D7B6ED5222F05A200667806 /* custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED4222F05A200667806 /* custom.json */; };
 		0D7B6ED7222F0D9200667806 /* dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7B6ED6222F0D9200667806 /* dark.json */; };
@@ -74,14 +77,11 @@
 		0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A922023B5900AAA621 /* Constrants.swift */; };
 		0DD67200224161750020C3ED /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD671FF224161750020C3ED /* SearchBarButton.swift */; };
 		0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD672012241747D0020C3ED /* GoLiveButton.swift */; };
-		0DE0ABDA2229950600FD766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE0ABD92229950600FD766C /* Assets.xcassets */; };
 		0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */; };
 		0DE91EE02202515A008C9B52 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */; };
 		0DEA4DA02252E45F00E64E37 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */; };
-		0DEA4DA22252F69400E64E37 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA4DA12252F69400E64E37 /* Extensions.swift */; };
 		0DEE86EB223721BB0028F778 /* bright.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DEE86EA223721BB0028F778 /* bright.json */; };
 		0DEEB92122385FBE004C2055 /* CustomViewDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */; };
-		0DFBB9B82248486B00F71C17 /* ButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFBB9B72248486B00F71C17 /* ButtonDelegate.swift */; };
 		A610A45E960549E4F9A64D3C /* Pods_Hawk_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312912B404ED9306EE8800BB /* Pods_Hawk_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +115,9 @@
 		0D5C97BB223E16F3007A4E66 /* SplashAnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
 		0D5C97C1223E17A0007A4E66 /* RevealingSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
 		0D5E7CBB220B8DE000406575 /* DriverPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPortalViewController.swift; sourceTree = "<group>"; };
+		0D5E93B122553B9F00DAC365 /* RiderPickUpMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderPickUpMapVC.swift; sourceTree = "<group>"; };
+		0D5E93B5225593DF00DAC365 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		0D5E93B72256C18D00DAC365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D7A9FFE2241E2990089B62A /* CustomViewDesignTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewDesignTwo.swift; sourceTree = "<group>"; };
 		0D7B6ED4222F05A200667806 /* custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom.json; sourceTree = "<group>"; };
 		0D7B6ED6222F0D9200667806 /* dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dark.json; sourceTree = "<group>"; };
@@ -155,14 +158,11 @@
 		0DCD93A922023B5900AAA621 /* Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
 		0DD671FF224161750020C3ED /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
 		0DD672012241747D0020C3ED /* GoLiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveButton.swift; sourceTree = "<group>"; };
-		0DE0ABD92229950600FD766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
-		0DEA4DA12252F69400E64E37 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0DEE86EA223721BB0028F778 /* bright.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bright.json; sourceTree = "<group>"; };
 		0DEEB92022385FBE004C2055 /* CustomViewDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewDesign.swift; sourceTree = "<group>"; };
-		0DFBB9B72248486B00F71C17 /* ButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDelegate.swift; sourceTree = "<group>"; };
 		312912B404ED9306EE8800BB /* Pods_Hawk_Ride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawk_Ride.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BD179C54C81F3848C19CDA /* Pods-Hawk Ride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawk Ride.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride.debug.xcconfig"; sourceTree = "<group>"; };
 		E34FE70AF67AFCCFCE2E9EF3 /* Pods-Hawk Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawk Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawk Ride/Pods-Hawk Ride.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,15 +220,12 @@
 				0D4D8F4A22372CFA00653ADA /* Map View */,
 				0D89CD60223CC5F900DBE757 /* Rider Side Bar menu controllers */,
 				0D89CD6D223CC71E00DBE757 /* Driver Side Bar menu controllers */,
-				0DFBB9B72248486B00F71C17 /* ButtonDelegate.swift */,
 				0D49DE4F2246D77F00B2ADAD /* Location.swift */,
-				0DEA4DA12252F69400E64E37 /* Extensions.swift */,
 				0D45940F223AE3E20026E845 /* View */,
 				0D45940E223AE3CB0026E845 /* Protocols */,
 				0D2C7F402201516F007361EF /* Custom Fonts */,
 				0DBE04662239DCED00716501 /* Utils */,
 				0D2C7F2F22015132007361EF /* Main.storyboard */,
-				0DE0ABD92229950600FD766C /* Assets.xcassets */,
 				0D2C7F3222015132007361EF /* HawkRide.xcdatamodeld */,
 				0D2368A722514857003020F8 /* GoogleService-Info.plist */,
 				0D2C7F3A22015134007361EF /* Info.plist */,
@@ -342,6 +339,7 @@
 				0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */,
 				0DAB6650222609B4001F261A /* DriverMapViewController.swift */,
 				0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */,
+				0D5E93B122553B9F00DAC365 /* RiderPickUpMapVC.swift */,
 			);
 			path = "Map View";
 			sourceTree = "<group>";
@@ -366,6 +364,7 @@
 				0D89CD67223CC6CF00DBE757 /* HelpPageController.swift */,
 				0D89CD69223CC6F800DBE757 /* SettingPageController.swift */,
 				0D89CD6B223CC70F00DBE757 /* LogOutController.swift */,
+				0D5E93B5225593DF00DAC365 /* CustomPointAnnotation.swift */,
 			);
 			name = "Rider Side Bar menu controllers";
 			path = "Map View/Rider Side Bar menu controllers";
@@ -389,6 +388,7 @@
 		0DBE04662239DCED00716501 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0D5E93B72256C18D00DAC365 /* Assets.xcassets */,
 				0DAB6652222612F3001F261A /* ErrorCodes.swift */,
 				0DAB66542226277A001F261A /* AlertController.swift */,
 			);
@@ -478,7 +478,6 @@
 				0D7B6ED5222F05A200667806 /* custom.json in Resources */,
 				0DC1FAAC22121DD100AA272F /* Montserrat-UltraLight.otf in Resources */,
 				0DEE86EB223721BB0028F778 /* bright.json in Resources */,
-				0DE0ABDA2229950600FD766C /* Assets.xcassets in Resources */,
 				0D0450CE220A9AB3009BD21B /* clan-med-webfont.ttf in Resources */,
 				0D8C827622029FEC00838F8D /* clanpro-book-opentype.otf in Resources */,
 				0D5C97AB223E0BCA007A4E66 /* LaunchScreen.storyboard in Resources */,
@@ -495,6 +494,7 @@
 				0D2C7F4422015186007361EF /* MontserratAlternates-Bold.ttf in Resources */,
 				0D8C827422029FEC00838F8D /* clanpro-black-opentype.otf in Resources */,
 				0DBC61C6225140FA006FB18B /* uber.json in Resources */,
+				0D5E93B82256C18D00DAC365 /* Assets.xcassets in Resources */,
 				0DC1FAAE22121DD100AA272F /* Montserrat-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,10 +586,10 @@
 				0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */,
 				0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */,
 				0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */,
-				0DFBB9B82248486B00F71C17 /* ButtonDelegate.swift in Sources */,
 				0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */,
 				0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */,
 				0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */,
+				0D5E93B6225593DF00DAC365 /* CustomPointAnnotation.swift in Sources */,
 				0D89CD64223CC69C00DBE757 /* RideHistoryController.swift in Sources */,
 				0D89CD7B223CC80C00DBE757 /* driverSettingsPageVC.swift in Sources */,
 				0D2C7F2E22015132007361EF /* ViewController.swift in Sources */,
@@ -617,9 +617,9 @@
 				0D7CF7B4221790D100159517 /* HawkRiderSignInViewController.swift in Sources */,
 				0D89CD7D223CC82D00DBE757 /* driverLogOutVC.swift in Sources */,
 				0D2368B3225153D0003020F8 /* DriverAnnotation.swift in Sources */,
+				0D5E93B222553B9F00DAC365 /* RiderPickUpMapVC.swift in Sources */,
 				0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */,
 				0D5C97BE223E16F3007A4E66 /* Animations.swift in Sources */,
-				0DEA4DA22252F69400E64E37 /* Extensions.swift in Sources */,
 				0DA3A9F8221BA1C800E68CB8 /* HawkRiderSignUpViewController.swift in Sources */,
 				0DEA4DA02252E45F00E64E37 /* LocationTableViewCell.swift in Sources */,
 				0D89CD79223CC7DE00DBE757 /* BecomeAHawkRiderController.swift in Sources */,
