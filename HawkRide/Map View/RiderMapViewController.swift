@@ -24,7 +24,7 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
     var blackScreen: UIView!
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
-    let regionInMeters: Double = 1500 //Originally at was 750
+    let regionInMeters: Double = 750 //Originally at was 750
     @IBOutlet weak var tableView: UITableView!
     var selectedLocation = Location()
    
@@ -53,13 +53,6 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
         locations = createArray()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-      
-    
-       
-    }
-    
-   
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -165,129 +158,6 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
             break
         }
     }
-    
-    func showRouteOnMap(location: Location) {
-       
-     let sourceLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
-     let destinationLocation = location.coordinate
-        
-     let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-     let destinationPlacemark = MKPlacemark(coordinate: destinationLocation ?? CLLocationCoordinate2D(), addressDictionary: nil)
-        
-    let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-    let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-   
-        let sourceAnnotation = CustomPointAnnotation()
-        sourceAnnotation.title = "Pick Up Location"
-        sourceAnnotation.subtitle = "Pick Up Location"
-    
-        sourceAnnotation.pinCustomImageName = "pickuppin"
-        
-        if let location = sourcePlacemark.location {
-            sourceAnnotation.coordinate = location.coordinate
-            
-        }
-        
-        let destinationAnnotation =  CustomPointAnnotation()
-        destinationAnnotation.title = "Drop Off Location"
-        destinationAnnotation.subtitle = "Drop Off Location"
-        destinationAnnotation.pinCustomImageName = "destinationpin"
-        
-        //custom annotation
-        if let location = destinationPlacemark.location {
-            destinationAnnotation.coordinate = location.coordinate
-        }
-        
-        //
-        self.mapView.showAnnotations([sourceAnnotation, destinationAnnotation], animated: true)
-        //
-        let directionRequest = MKDirections.Request() //The start and end points of a route, along with the planned mode of transportation.
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .automobile
-        
-        let directions = MKDirections(request: directionRequest)
-        //
-        directions.calculate { (response, error) in
-            
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                
-                return
-            }
-            
-            
-            let route = response.routes[0]
-            self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-            
-            self.routeDistance = route.distance //distance of route in meters
-            self.routeETA = route.expectedTravelTime / 60 //in seconds, so divide by 60
-            
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-        }
-    
-        // UserlocationAnnoationView
-        let userLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
-        let userPlaceMark = MKPlacemark(coordinate: userLocation, addressDictionary: nil)
-        
-        let userAnnotation =  CustomPointAnnotation()
-        userAnnotation.pinCustomImageName = "pickuppin"
-        
-        if let location = userPlaceMark.location {
-            userAnnotation.coordinate = location.coordinate
-        }
-        
-        mapView.showAnnotations([userAnnotation], animated: true)
-        
-      }
-    
-  
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        renderer.strokeColor = .blue
-        
-        return renderer
-    }
-    
-  
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        
-        currentLocationLatitude = (location?.coordinate.latitude)!
-        currentLocationLongitude = (location?.coordinate.longitude)!
-        
-        let coordinateRegion = MKCoordinateRegion(center: (location?.coordinate)!, latitudinalMeters: regionInMeters * 2.0 , longitudinalMeters: regionInMeters * 2.0 ) // we have to multiply the regionradius by 2.0 because it's only one direction but we want 1000 meters in both directions;we're gonna set how wide we want the radius to be around the center location
-        mapView.setRegion(coordinateRegion, animated: true) //to set it
-        
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //custom annotation
-        
-        let reuseIdentifier = "pin"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.canShowCallout = true
-        } else {
-            annotationView?.annotation = annotation
-        }
-        
-        if let customPointAnnotation = annotation as? CustomPointAnnotation {
-            annotationView?.image = UIImage(named: customPointAnnotation.pinCustomImageName)
-        }
-        
-        return annotationView
-    }
-        
-    
-  
-
 /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu

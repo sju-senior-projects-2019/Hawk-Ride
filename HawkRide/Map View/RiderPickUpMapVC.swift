@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import CoreData
 
+
 class RiderPickUpMapVC: UIViewController {
    
     //MARK: - Properties
@@ -20,6 +21,7 @@ class RiderPickUpMapVC: UIViewController {
     var blackScreen: UIView!
     var locationManager = CLLocationManager()
     let regionInMeters: Double = 1500
+   
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
@@ -31,19 +33,24 @@ class RiderPickUpMapVC: UIViewController {
     
     override func viewDidLoad() {
        super.viewDidLoad()
+        mapView.delegate = self
+       
     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkLocationServices()
-        showRouteOnMap(location: location)
-        self.userLocationAnnotationView()
+        
+         self.userLocationAnnotationView()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorization()
+        showRouteOnMap(location: location)
+        
     }
+   
 }
     
 extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
@@ -62,7 +69,7 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         let sourceAnnotation = CustomPointAnnotation()
         sourceAnnotation.title = "Pick Up Location"
         sourceAnnotation.subtitle = "Pick Up Location"
-        sourceAnnotation.pinCustomImageName = "pickup"
+        sourceAnnotation.pinCustomImageName = "centerMapBtn"
         
         if let location = sourcePlacemark.location  {
             sourceAnnotation.coordinate = location.coordinate
@@ -72,7 +79,7 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         let destinationAnnotation = CustomPointAnnotation()
         destinationAnnotation.title = "Drop Off Location"
         destinationAnnotation.subtitle = "Drop Off Location"
-        destinationAnnotation.pinCustomImageName = "destination"
+        destinationAnnotation.pinCustomImageName = "centerMapBtn"
         
         // Custom Annotation
         
@@ -90,7 +97,6 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         
         let directions  = MKDirections(request: directionRequest)
         
-        //
         directions.calculate { (response, error) in
             
             guard let response = response else {
@@ -103,35 +109,60 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
             let route = response.routes[0]
             self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
             
-            self.routeDistance = route.distance //distance of route in meters
-            self.routeETA = route.expectedTravelTime / 60 //in seconds, so divide by 60
+           self.routeDistance = route.distance //distance of route in meters
+           self.routeETA = route.expectedTravelTime / 60 //in seconds, so divide by 60
             
             let rect = route.polyline.boundingMapRect
             self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+            
+           
         }
+        
+       
     }
+    
         func userLocationAnnotationView() {
             let userLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
             
             let userPlacemark = MKPlacemark(coordinate: userLocation, addressDictionary: nil)
             
             let userAnnotation = CustomPointAnnotation()
-            userAnnotation.pinCustomImageName = "pickup"
+            userAnnotation.pinCustomImageName = "centerMapBtn"
             
             if let location = userPlacemark.location {
                 userAnnotation.coordinate = location.coordinate
             }
             mapView.showAnnotations([userAnnotation], animated: true)
         }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        print("render called")
+        renderer.strokeColor = UIColor.black
+        renderer.lineWidth = 4.0
         
-        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            
-            renderer.strokeColor = #colorLiteral(red: 0.2980392157, green: 0.631372549, blue: 0.9254901961, alpha: 1)
-            renderer.lineWidth = 4.0
-            
-            return renderer
+        return renderer
+    }
+    
+   
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //custom annotation
+        
+        let reuseIdentifier = "pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
         }
+        
+        if let customPointAnnotation = annotation as? CustomPointAnnotation {
+            annotationView?.image = UIImage(named: customPointAnnotation.pinCustomImageName)
+        }
+        
+        return annotationView
+    }
         
         
         
@@ -152,8 +183,7 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
             case .authorizedWhenInUse:
                 mapView.showsUserLocation = true
                 // centerViewOnUserLocation()
-                showRouteOnMap(location: location)
-                locationManager.startUpdatingLocation()
+                 locationManager.startUpdatingLocation()
                 break
             case .denied:
                 // Show alert instructing them how to turn on permissions

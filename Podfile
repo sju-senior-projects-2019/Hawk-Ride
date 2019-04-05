@@ -15,6 +15,7 @@ target 'Hawk Ride' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'IQKeyboardManagerSwift'
+    
 
 
 

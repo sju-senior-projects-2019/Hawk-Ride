@@ -23,6 +23,9 @@
 		0D2C7F4422015186007361EF /* MontserratAlternates-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */; };
 		0D2D73E52249748E00337FA6 /* CustomViewDesignThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D73E42249748E00337FA6 /* CustomViewDesignThree.swift */; };
 		0D2D73E72249808700337FA6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2D73E62249808700337FA6 /* CustomTextField.swift */; };
+		0D30E50B2257128D0023F2FD /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D30E50A2257128D0023F2FD /* Mapbox.framework */; };
+		0D30E50C2257128D0023F2FD /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0D30E50A2257128D0023F2FD /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0D30E5102257E65D0023F2FD /* RequestCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D30E50F2257E65D0023F2FD /* RequestCustomButton.swift */; };
 		0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */; };
 		0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */; };
 		0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45940C223AE0800026E845 /* sidebarViewRider.swift */; };
@@ -85,6 +88,30 @@
 		A610A45E960549E4F9A64D3C /* Pods_Hawk_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312912B404ED9306EE8800BB /* Pods_Hawk_Ride.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0D52E9D822570E0600472925 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D52E9DE22570FAB00472925 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0D30E50C2257128D0023F2FD /* Mapbox.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0D0450C9220A9234009BD21B /* SAButtonPart2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAButtonPart2.swift; sourceTree = "<group>"; };
 		0D0450CB220A9AB3009BD21B /* clan-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "clan-book-webfont.ttf"; sourceTree = "<group>"; };
@@ -104,6 +131,8 @@
 		0D2C7F4222015186007361EF /* MontserratAlternates-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-Bold.ttf"; sourceTree = "<group>"; };
 		0D2D73E42249748E00337FA6 /* CustomViewDesignThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewDesignThree.swift; sourceTree = "<group>"; };
 		0D2D73E62249808700337FA6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		0D30E50A2257128D0023F2FD /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		0D30E50F2257E65D0023F2FD /* RequestCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCustomButton.swift; sourceTree = "<group>"; };
 		0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderMapViewController.swift; sourceTree = "<group>"; };
 		0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderPortalViewController.swift; sourceTree = "<group>"; };
 		0D45940C223AE0800026E845 /* sidebarViewRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewRider.swift; sourceTree = "<group>"; };
@@ -174,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A610A45E960549E4F9A64D3C /* Pods_Hawk_Ride.framework in Frameworks */,
+				0D30E50B2257128D0023F2FD /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +222,7 @@
 		0D2C7F1F22015132007361EF = {
 			isa = PBXGroup;
 			children = (
+				0D30E50A2257128D0023F2FD /* Mapbox.framework */,
 				0D2C7F2A22015132007361EF /* HawkRide */,
 				0D2C7F2922015132007361EF /* Products */,
 				166C167C622E9FCEF438743C /* Pods */,
@@ -222,6 +253,7 @@
 				0D89CD6D223CC71E00DBE757 /* Driver Side Bar menu controllers */,
 				0D49DE4F2246D77F00B2ADAD /* Location.swift */,
 				0D45940F223AE3E20026E845 /* View */,
+				0D5E93B72256C18D00DAC365 /* Assets.xcassets */,
 				0D45940E223AE3CB0026E845 /* Protocols */,
 				0D2C7F402201516F007361EF /* Custom Fonts */,
 				0DBE04662239DCED00716501 /* Utils */,
@@ -311,6 +343,7 @@
 				0D2D73E62249808700337FA6 /* CustomTextField.swift */,
 				0DD671FF224161750020C3ED /* SearchBarButton.swift */,
 				0DCD93A622023A1300AAA621 /* SAButton.swift */,
+				0D30E50F2257E65D0023F2FD /* RequestCustomButton.swift */,
 			);
 			path = "Custom  Style";
 			sourceTree = "<group>";
@@ -388,7 +421,6 @@
 		0DBE04662239DCED00716501 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0D5E93B72256C18D00DAC365 /* Assets.xcassets */,
 				0DAB6652222612F3001F261A /* ErrorCodes.swift */,
 				0DAB66542226277A001F261A /* AlertController.swift */,
 			);
@@ -424,6 +456,9 @@
 				0D2C7F2522015132007361EF /* Frameworks */,
 				0D2C7F2622015132007361EF /* Resources */,
 				57891BFAC5CA0AF0276B6531 /* [CP] Embed Pods Frameworks */,
+				0D52E9D822570E0600472925 /* Embed PlugIns */,
+				0D52E9DE22570FAB00472925 /* Embed Frameworks */,
+				0D52E9DF22570FFB00472925 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -502,6 +537,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0D52E9DF22570FFB00472925 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework/strip-frameworks.sh\"\n";
+		};
 		57891BFAC5CA0AF0276B6531 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -586,6 +638,7 @@
 				0DAB6651222609B4001F261A /* DriverMapViewController.swift in Sources */,
 				0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */,
 				0D5C97BF223E16F3007A4E66 /* SplashAnimationType.swift in Sources */,
+				0D30E5102257E65D0023F2FD /* RequestCustomButton.swift in Sources */,
 				0D5C97C2223E17A0007A4E66 /* RevealingSplashView.swift in Sources */,
 				0D5E7CBC220B8DE000406575 /* DriverPortalViewController.swift in Sources */,
 				0D0450CA220A9234009BD21B /* SAButtonPart2.swift in Sources */,
@@ -766,6 +819,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PLVE3LACR9;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HawkRide/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -790,6 +847,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PLVE3LACR9;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HawkRide/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
