@@ -4,22 +4,27 @@ IOS application which has very similar functionality like Uber; however, the ser
 Accomplished Tasks:
 =================
 <!--ts-->
-* I was able to design a tableview with a list of restricted locations
-* Met with Director of Public Safety to pitch the idea and they loved it!
-* I figured out how to a back-end system that pass this users location coordinates to a database, which is firebase! - This is away from me to track the driver & rider on real time
+* Setup driver's view map
+* BIG ACCOMPLISHMENT: Was able to get a list of a tableview to work!
+* Draw the path
+* Set backs - I realized the way of setup database was correct; I couldn't pass in the driver's coordinates to the database and the users coordiantes - this is important because the driver wants to know where there user is when the driver accepts the users' request same for the user; the user wants to know where the driver is when the user clicks request a ride - so I re-build the database and now I should be able to pass coordinates.
 
 
 Tasks(On Going):
 =================
 <!--ts-->
-*  [Search Bar] - Pass location information from the UIButton to the map view and draw a path from the current location to the location was selected
- ------------------------------------------------------------------------------------------------
+* Save user's firstname, lastname, and phonenumber to the database
 * [Saving and showing real time driver annoations on the map] - So riders are matched to drivers and also displaying cars on a map - figuring out a system that sends a request to geolocation - For instance, like DISCO - Dispath optimization
  - DISCO - is a dispatch system that reduce extra driving, reduce waiting time, lowest overall ETA
 * [Using Firebase for real time user requests]
 * [Building pages for the side bar]
 *  [Supply Service] - tracks cars using geolocation (latitude & longitude). Every vehicle which is active keeps on sending lat-long to server every 5 sec once -
 * [Demand Service]   - Demand service tracks the GPS location of the user when requested
+* Fix the path line
+* Change from apple map to google maps
+* Support all all iphone devices
+* Fix bugs and clean up code
+
 
 Table of contents:
 =================
