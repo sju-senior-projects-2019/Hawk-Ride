@@ -13,9 +13,9 @@ target 'Hawk Ride' do
     pod 'SVProgressHUD'
     pod 'RevealingSplashView'
     pod 'Alamofire'
-    pod 'SwiftyJSON'
     pod 'IQKeyboardManagerSwift'
-    
+
+
 
 
 

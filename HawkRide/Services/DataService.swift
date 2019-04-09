@@ -8,40 +8,84 @@
 
 import Foundation
 import Firebase
+import MapKit
 
-let DB_BASE = Database.database().reference()
+let ref = Database.database().reference(fromURL: "https://hawk-ride-233122.firebaseio.com/")
 
 class DataService {
     static let instance = DataService()
    
     // Create a child
-    private var _REF_BASE = DB_BASE
-    private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_DRIVERS = DB_BASE.child("drivers")
-    private var _REF_TRIPS = DB_BASE.child("trips")
+    private let DATABASE_REF = ref
+    private let USER_REF = ref.child("riders")
+    private let DRIVER_REF = ref.child("drivers")
+    private let TRIPS_REF = ref.child("trips")
     
-    var REF_BASE: DatabaseReference {
-        return REF_BASE
+    
+    var databaseRef : DatabaseReference {
+        return DATABASE_REF
     }
     
-    var REF_USERS: DatabaseReference {
-        return REF_USERS
+    var usersRef: DatabaseReference {
+        return USER_REF
     }
     
-    var REF_DRIVERS: DatabaseReference {
-        return _REF_DRIVERS
+    var driversRef: DatabaseReference {
+        return DRIVER_REF
     }
     
-    var REF_TRIPS: DatabaseReference {
-        return _REF_TRIPS
+    var tripsRef: DatabaseReference {
+        return TRIPS_REF
     }
+   
     
-    func createFirebaseDBUser(uid: String, userData: Dictionary<String, Any>, isDriver: Bool) {
+    //MARK:- users
+    func createFirebaseDBUser(uID: String, userData: Dictionary<String,Any>, isDriver: Bool){
         if isDriver {
-            REF_DRIVERS.child(uid).updateChildValues(userData)
-        } else {
-            REF_USERS.child(uid).updateChildValues(userData)
+            driversRef.child(uID).updateChildValues(userData)
+        }else {
+            usersRef.child(uID).updateChildValues(userData)
+        }
+    }
+    
+    func updateUser(id: String, with userData: [String: Any]){
+        
+        usersRef.child(id).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists()  {
+                self.usersRef.child(id).updateChildValues(userData)
+                
+            }
         }
         
     }
+    
+    func deleteFromUser(id: String, value: String){
+        usersRef.child(id).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists()  {
+                self.usersRef.child(id).child(value).removeValue()
+                
+            }
+        }
+    }
+    func checkUser(id:String, forValue value: String, completion: @escaping (Bool) -> Void ){
+        
+        usersRef.child(id).child(value).observeSingleEvent(of: .value) { (snapShot) in
+            if snapShot.exists() {
+                completion(true)
+            }else{
+                completion(false)
+            }
+        }
+    }
+    
+    func updateUserLocation(userID: String, withCoordinate coordinate: CLLocationCoordinate2D ){
+        
+        usersRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists()  {
+                self.usersRef.child(userID).updateChildValues([kCOORDINATES: [coordinate.latitude,coordinate.longitude]])
+            }
+        }
+        
+    }
+    
 }

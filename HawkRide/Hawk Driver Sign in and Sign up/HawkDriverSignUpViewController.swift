@@ -67,27 +67,18 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
      * TODO: if the user's information is already in the database send a warning message
      */
     @IBAction func SubmitButtonPressed(_ sender: Any) {
-        if let email = EmailAddress.text {
-            if let password = Password.text {
-                
-                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                    if error == nil {
-                        
-                        let user = Auth.auth().currentUser?.uid // get the users UID
-                        let emailAddress = self.EmailAddress.text
-                        let FirstName = self.FirstName.text
-                        let LastName = self.LastName.text
-                        let IDNumber = self.IDNumber.text
-                        let PhoneNumber = self.PhoneNumber.text
-                        
-                        self.ref.child("Hawk Drivers").child("\(user!)").setValue(["FirstName": "\(FirstName!)", "LastName": "\(LastName!)", "emailAddress": "\(emailAddress!)", "IDNumber": "\(IDNumber!)","PhoneNumber": "\(PhoneNumber!)"])
-                        
-                        self.performSegue(withIdentifier: "DriverSegue", sender: sender)
-                    } else {
-                    }
-                }
-            }
-        }
+        guard let email = EmailAddress.text else {return}
+        guard let password = Password.text else {return}
+        guard let firstName = FirstName.text else {return}
+        guard let lastName = LastName.text else {return}
+        guard let idNumber = IDNumber.text else {return}
+        guard let phoneNumber = PhoneNumber.text else {return}
+        
+        createUser(withEmail: email, password: password, firstName: firstName, lastName: lastName, idNumber: idNumber, phoneNumber: phoneNumber)
+        
+        self.performSegue(withIdentifier: "DriverSegue", sender: sender)
+        
+    
     }
     /* Forgot Password
      * User's are able to forget their password
@@ -121,6 +112,48 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
         }))
         // Present Alert:
         self.present(forgotPasswordAlert, animated: true, completion: nil)
+    }
+    func createUser(withEmail email: String, password: String, firstName: String, lastName: String, idNumber: String, phoneNumber: String) {
+        // user doesn't exist
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (result, error) in
+            
+            if error == nil {
+                // sign up sucessful
+                if let user = result?.user {
+                    
+                    self.updateDatabase(user)
+                    
+                }
+                print("sign Up successful")
+                self.dismiss(animated: true, completion: nil)
+                
+            } else {
+                //sign Up failed
+                if let errorCode = AuthErrorCode(rawValue: error!._code){
+                    
+                    switch errorCode {
+                    case .invalidEmail:
+                        print("invalid email address")
+                    case .emailAlreadyInUse:
+                        print("email already exist")
+                    default:
+                        print("unexpected error please try again")
+                        
+                    }
+                }
+            }
+        })
+    }
+    func updateDatabase(_ user: User) {
+        
+        // user is a driver
+        let userData = [kPROVIDER: user.providerID,
+                        kISDRIVER : true,
+                        kIS_PICKUP_MODE_ENABLED : false,
+                        kDRIVER_IS_ON_TRIP: false] as [String: Any]
+        
+        DataService.instance.createFirebaseDBUser(uID: user.uid, userData: userData, isDriver: true)
+        
     }
     
 }

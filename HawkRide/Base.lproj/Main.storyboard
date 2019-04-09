@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XAm-wh-Wad">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XAm-wh-Wad">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,13 +38,13 @@
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ride App" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sl6-JE-cel">
-                                <rect key="frame" x="13" y="638.66666666666663" width="309" height="23.333333333333371"/>
+                                <rect key="frame" x="13" y="637.33333333333337" width="309" height="24.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the Hawk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jD-hh-190">
-                                <rect key="frame" x="13" y="613.66666666666663" width="196" height="23.333333333333371"/>
+                                <rect key="frame" x="13" y="612.33333333333337" width="229.66666666666666" height="24.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                 <color key="tintColor" red="0.57647058819999997" green="0.1058823529" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="BECOME A HAWK DRIVER"/>
                                 <connections>
-                                    <segue destination="SpT-Aw-07E" kind="show" id="znL-2Y-pTJ"/>
+                                    <segue destination="TQk-Ts-yuy" kind="show" id="pi7-4R-5MC"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainscreen" translatesAutoresizingMaskIntoConstraints="NO" id="Dhp-Ug-lbO">
@@ -66,7 +66,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hawk Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="win-vP-2QY">
-                                <rect key="frame" x="13" y="64" width="82.666666666666671" height="20"/>
+                                <rect key="frame" x="13" y="64" width="96.333333333333329" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -141,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver Portal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzy-Tc-vKb">
-                                <rect key="frame" x="20" y="705.66666666666663" width="111" height="23.333333333333371"/>
+                                <rect key="frame" x="20" y="704.33333333333337" width="130.66666666666666" height="24.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -280,13 +280,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9h-dv-byX">
-                                        <rect key="frame" x="297.66666666666669" y="101.33333333333333" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="297.66666666666669" y="101" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up |  Hawk Rider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFa-Zp-pfu">
-                                        <rect key="frame" x="100.99999999999999" y="77" width="196.66666666666663" height="24"/>
+                                        <rect key="frame" x="101" y="77" width="213" height="24"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -488,18 +488,18 @@
                                 <state key="normal" title="Button" image="backButton"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdz-ay-s1s">
-                                <rect key="frame" x="33.666666666666664" y="111" width="123.66666666666669" height="24"/>
+                                <rect key="frame" x="29" y="111" width="133" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffi-VF-7D6">
-                                <rect key="frame" x="37" y="195" width="34.333333333333343" height="17"/>
+                                <rect key="frame" x="37" y="195" width="37" height="17"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.12767841799999999" blue="0.053035294150000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETX-FF-8gC">
-                                <rect key="frame" x="135.66666666666666" y="415" width="122.99999999999997" height="28"/>
+                                <rect key="frame" x="130" y="415" width="134" height="28"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                 <state key="normal" title="I forgot my password">
                                     <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -551,15 +551,15 @@
         <scene sceneID="GU1-q3-lqB">
             <objects>
                 <viewController id="Yam-Zp-1mx" customClass="DriverMapViewController" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BLd-2p-PWp">
+                    <view key="view" contentMode="scaleToFill" id="BLd-2p-PWp" customClass="SwiftySwitch" customModule="Hawk_Ride" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAS-b5-ar2">
-                                <rect key="frame" x="0.0" y="861" width="414" height="35"/>
+                                <rect key="frame" x="0.0" y="860" width="414" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDq-WV-MPl" customClass="GoLiveButton" customModule="Hawk_Ride" customModuleProvider="target">
-                                        <rect key="frame" x="156" y="-42" width="79" height="50"/>
+                                        <rect key="frame" x="156" y="-42" width="79" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="79" id="rWi-zu-Tw3"/>
                                         </constraints>
@@ -577,16 +577,19 @@
                                     <constraint firstItem="mDq-WV-MPl" firstAttribute="top" secondItem="CAS-b5-ar2" secondAttribute="top" constant="-42" id="sdh-Ll-7DE"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-54-cms">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="730"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-54-cms">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="915"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ydz-54-cms" firstAttribute="trailing" secondItem="CAS-b5-ar2" secondAttribute="trailing" id="SuK-T4-6UB"/>
                             <constraint firstItem="CAS-b5-ar2" firstAttribute="leading" secondItem="BLd-2p-PWp" secondAttribute="leading" id="dR7-hE-se7"/>
                             <constraint firstAttribute="trailing" secondItem="CAS-b5-ar2" secondAttribute="trailing" id="j1u-fx-DEd"/>
+                            <constraint firstItem="Ydz-54-cms" firstAttribute="leading" secondItem="CAS-b5-ar2" secondAttribute="leading" id="mDD-sa-NlC"/>
                             <constraint firstAttribute="bottom" secondItem="CAS-b5-ar2" secondAttribute="bottom" id="mdt-PF-bCb"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Ydz-54-cms" secondAttribute="bottom" constant="-53" id="rNd-v9-ejX"/>
+                            <constraint firstItem="Ydz-54-cms" firstAttribute="top" secondItem="BLd-2p-PWp" secondAttribute="top" id="uLA-eO-bCN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fcj-4G-veU"/>
                     </view>
@@ -598,6 +601,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T42-RN-jkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4418.840579710145" y="1277.6785714285713"/>
+        </scene>
+        <!--Driver Pick Up MapVC-->
+        <scene sceneID="dpg-qm-HU9">
+            <objects>
+                <viewController storyboardIdentifier="DriverPickUpMap" id="qjS-oo-Q1k" customClass="DriverPickUpMapVC" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4B3-U3-eP9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nu-CM-hs5">
+                                <rect key="frame" x="9" y="44" width="40" height="40"/>
+                                <state key="normal" image="CancelButton"/>
+                                <connections>
+                                    <action selector="cancelBtnWasPressed:" destination="qjS-oo-Q1k" eventType="touchUpInside" id="KXS-Hk-5yW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hawk Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yr-RH-P6T">
+                                <rect key="frame" x="126.66666666666669" y="92" width="162" height="36"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Clp-Sk-UBU" customClass="SAButtonPart2" customModule="Hawk_Ride" customModuleProvider="target">
+                                <rect key="frame" x="56" y="815" width="286" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="JP8-VP-FmO"/>
+                                </constraints>
+                                <state key="normal" title="Accept Trip">
+                                    <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="acceptBtnWasPressed:" destination="qjS-oo-Q1k" eventType="touchUpInside" id="F55-Pr-nBt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to pick up this hawk rider?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odH-wr-zDZ">
+                                <rect key="frame" x="31" y="794" width="352" height="21"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="96g-fL-dIj" customClass="RoundMapView" customModule="Hawk_Ride" customModuleProvider="target">
+                                <rect key="frame" x="45.333333333333343" y="285.66666666666669" width="325" height="325.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="0Yn-md-yGr"/>
+                                    <constraint firstAttribute="width" constant="325" id="L3k-sz-qXS"/>
+                                </constraints>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.61960784310000006" green="0.1058823529" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="96g-fL-dIj" firstAttribute="centerX" secondItem="6yr-RH-P6T" secondAttribute="centerX" id="18o-th-8CT"/>
+                            <constraint firstItem="9nu-CM-hs5" firstAttribute="leading" secondItem="3UG-uX-jSj" secondAttribute="leading" constant="9" id="5De-aN-cMx"/>
+                            <constraint firstItem="Clp-Sk-UBU" firstAttribute="leading" secondItem="3UG-uX-jSj" secondAttribute="leading" constant="56" id="6cz-O4-ts4"/>
+                            <constraint firstItem="Clp-Sk-UBU" firstAttribute="bottom" secondItem="3UG-uX-jSj" secondAttribute="bottom" id="CPW-87-WBm"/>
+                            <constraint firstItem="3UG-uX-jSj" firstAttribute="trailing" secondItem="Clp-Sk-UBU" secondAttribute="trailing" constant="72" id="Dmz-Ql-wRR"/>
+                            <constraint firstItem="3UG-uX-jSj" firstAttribute="bottom" secondItem="9nu-CM-hs5" secondAttribute="bottom" constant="778" id="IIl-gL-bRn"/>
+                            <constraint firstItem="3UG-uX-jSj" firstAttribute="trailing" secondItem="6yr-RH-P6T" secondAttribute="trailing" constant="125.33333333333331" id="KXb-Qa-Pyt"/>
+                            <constraint firstItem="3UG-uX-jSj" firstAttribute="trailing" secondItem="9nu-CM-hs5" secondAttribute="trailing" constant="365" id="Kmt-xf-xy7"/>
+                            <constraint firstItem="3UG-uX-jSj" firstAttribute="trailing" secondItem="Clp-Sk-UBU" secondAttribute="trailing" constant="72" id="NeG-Xv-yNq"/>
+                            <constraint firstItem="9nu-CM-hs5" firstAttribute="top" secondItem="3UG-uX-jSj" secondAttribute="top" id="Sdk-90-MLG"/>
+                            <constraint firstItem="96g-fL-dIj" firstAttribute="centerY" secondItem="4B3-U3-eP9" secondAttribute="centerY" id="TLQ-qY-60Y"/>
+                            <constraint firstItem="6yr-RH-P6T" firstAttribute="leading" secondItem="3UG-uX-jSj" secondAttribute="leading" constant="126.67" id="U0a-nm-OXD"/>
+                            <constraint firstItem="Clp-Sk-UBU" firstAttribute="leading" secondItem="3UG-uX-jSj" secondAttribute="leading" constant="56" id="V6c-Kp-e5l"/>
+                            <constraint firstItem="6yr-RH-P6T" firstAttribute="top" secondItem="3UG-uX-jSj" secondAttribute="top" constant="48" id="WCf-vp-oMM"/>
+                            <constraint firstItem="Clp-Sk-UBU" firstAttribute="bottom" secondItem="3UG-uX-jSj" secondAttribute="bottom" id="Xby-3H-Hxd"/>
+                            <constraint firstItem="6yr-RH-P6T" firstAttribute="top" secondItem="3UG-uX-jSj" secondAttribute="top" constant="48" id="eQW-dp-LJA"/>
+                            <constraint firstItem="6yr-RH-P6T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3UG-uX-jSj" secondAttribute="leading" id="jU8-Vw-X8e"/>
+                            <constraint firstItem="odH-wr-zDZ" firstAttribute="centerX" secondItem="4B3-U3-eP9" secondAttribute="centerX" id="qw9-FD-0qr"/>
+                            <constraint firstItem="Clp-Sk-UBU" firstAttribute="top" secondItem="odH-wr-zDZ" secondAttribute="bottom" id="x4e-wF-9Av"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3UG-uX-jSj"/>
+                    </view>
+                    <connections>
+                        <outlet property="pickUpMapView" destination="96g-fL-dIj" id="lk1-cF-j1N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3cy-6F-cJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5128.985507246377" y="1277.6785714285713"/>
         </scene>
         <!--Rider Map View Controller-->
         <scene sceneID="23W-1x-1WA">
@@ -663,7 +745,7 @@
                                 <rect key="frame" x="15" y="435" width="385" height="62"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ApL-8k-rWZ">
-                                        <rect key="frame" x="47" y="16" width="83" height="30"/>
+                                        <rect key="frame" x="47" y="16" width="91" height="30"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                         <state key="normal" title="Where to?"/>
                                     </button>
@@ -738,45 +820,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilE-d0-mt2">
-                                <rect key="frame" x="0.0" y="572" width="414" height="324"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1l-fC-goI" customClass="RequestCustomButton" customModule="Hawk_Ride" customModuleProvider="target">
-                                        <rect key="frame" x="29" y="226" width="357" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="VTb-QC-c9z"/>
-                                        </constraints>
-                                        <state key="normal" title="Request Hawk Ride">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="a1l-fC-goI" secondAttribute="bottom" constant="42" id="IkC-7R-1Pl"/>
-                                    <constraint firstItem="a1l-fC-goI" firstAttribute="centerX" secondItem="ilE-d0-mt2" secondAttribute="centerX" constant="0.5" id="TK5-Lg-npQ"/>
-                                    <constraint firstItem="a1l-fC-goI" firstAttribute="leading" secondItem="ilE-d0-mt2" secondAttribute="leading" constant="29" id="ugh-AX-d4Y"/>
-                                </constraints>
-                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uw1-qm-bRV">
-                                <rect key="frame" x="0.0" y="-15" width="414" height="618"/>
+                                <rect key="frame" x="0.0" y="-15" width="414" height="911"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-9R-j3Y" customClass="RequestCustomButton" customModule="Hawk_Ride" customModuleProvider="target">
+                                <rect key="frame" x="67" y="804" width="286" height="47"/>
+                                <state key="normal" title="Request Hawk Ride">
+                                    <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="sz4-9R-j3Y" firstAttribute="top" secondItem="6ja-aR-XKg" secondAttribute="top" constant="716" id="2M2-nj-dj8"/>
                             <constraint firstItem="uw1-qm-bRV" firstAttribute="top" secondItem="6ja-aR-XKg" secondAttribute="top" constant="-103" id="83O-cl-gLp"/>
                             <constraint firstItem="6ja-aR-XKg" firstAttribute="trailing" secondItem="uw1-qm-bRV" secondAttribute="trailing" id="8bg-Vq-cIV"/>
-                            <constraint firstItem="ilE-d0-mt2" firstAttribute="trailing" secondItem="uw1-qm-bRV" secondAttribute="trailing" id="Acr-pG-Aqv"/>
                             <constraint firstItem="uw1-qm-bRV" firstAttribute="leading" secondItem="6ja-aR-XKg" secondAttribute="leading" id="NbX-02-PwT"/>
-                            <constraint firstItem="6ja-aR-XKg" firstAttribute="bottom" secondItem="uw1-qm-bRV" secondAttribute="bottom" constant="259" id="UQJ-zz-rnl"/>
-                            <constraint firstItem="ilE-d0-mt2" firstAttribute="top" secondItem="ePS-cd-AGW" secondAttribute="top" constant="572" id="YQL-KI-sgL"/>
-                            <constraint firstItem="ilE-d0-mt2" firstAttribute="leading" secondItem="uw1-qm-bRV" secondAttribute="leading" id="bOV-MY-GCW"/>
-                            <constraint firstAttribute="bottom" secondItem="ilE-d0-mt2" secondAttribute="bottom" id="jkZ-RZ-mt0"/>
+                            <constraint firstItem="6ja-aR-XKg" firstAttribute="bottom" secondItem="uw1-qm-bRV" secondAttribute="bottom" constant="-34" id="UQJ-zz-rnl"/>
+                            <constraint firstItem="sz4-9R-j3Y" firstAttribute="leading" secondItem="6ja-aR-XKg" secondAttribute="leading" constant="67" id="jyA-hB-63G"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="sz4-9R-j3Y" secondAttribute="bottom" constant="11" id="lsp-KK-hZT"/>
+                            <constraint firstItem="6ja-aR-XKg" firstAttribute="trailing" secondItem="sz4-9R-j3Y" secondAttribute="trailing" constant="61" id="xNx-hc-O34"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6ja-aR-XKg"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="uw1-qm-bRV" id="AIq-C9-uKr"/>
+                        <outlet property="requestButton" destination="sz4-9R-j3Y" id="z1T-Lt-TLH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cx1-Rc-at2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -795,7 +864,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Escort Service Program" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT7-oX-F6c">
-                                        <rect key="frame" x="77.333333333333343" y="77" width="287.66666666666663" height="24"/>
+                                        <rect key="frame" x="49" y="77" width="316" height="24"/>
                                         <color key="tintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -844,25 +913,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="federal work study students" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4L-7V-z5e">
-                                <rect key="frame" x="62.000000000000014" y="299" width="248.33333333333337" height="24"/>
+                                <rect key="frame" x="62" y="299" width="270.66666666666669" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="who provide transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2s-Wx-L0O">
-                                <rect key="frame" x="93.333333333333314" y="332" width="241" height="24"/>
+                                <rect key="frame" x="67" y="332" width="267.33333333333331" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on request to students" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdm-eU-vHq">
-                                <rect key="frame" x="84.999999999999986" y="364" width="201.66666666666663" height="24"/>
+                                <rect key="frame" x="84.999999999999986" y="364" width="221.66666666666663" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="throughout our campus." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z90-4V-Ox1">
-                                <rect key="frame" x="78.000000000000014" y="395.33333333333331" width="215.33333333333337" height="24"/>
+                                <rect key="frame" x="78.000000000000014" y="395.33333333333331" width="239.33333333333337" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -874,7 +943,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhk-c3-LKH" customClass="SAButton" customModule="Hawk_Ride" customModuleProvider="target">
-                                <rect key="frame" x="65.666666666666657" y="725" width="296.33333333333337" height="47"/>
+                                <rect key="frame" x="39.333333333333343" y="725" width="322.66666666666663" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="xbc-28-lx6"/>
                                 </constraints>
@@ -942,7 +1011,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up | Hawk Driver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afg-0s-6qL">
-                                        <rect key="frame" x="100" y="77" width="193" height="24"/>
+                                        <rect key="frame" x="100" y="77" width="210" height="24"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -956,7 +1025,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6w-c2-xnk">
-                                <rect key="frame" x="120.00000000000001" y="140" width="151.33333333333337" height="24"/>
+                                <rect key="frame" x="120" y="140" width="159" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1117,7 +1186,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWm-mq-ijX">
-                                <rect key="frame" x="24.999999999999993" y="107" width="126.33333333333331" height="24"/>
+                                <rect key="frame" x="25" y="107" width="136" height="24"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1129,7 +1198,7 @@
                                 <state key="normal" title="Button" image="backButton"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f33-0f-aK6">
-                                <rect key="frame" x="35" y="196" width="34.333333333333343" height="17"/>
+                                <rect key="frame" x="35" y="196" width="37" height="17"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.12767841799999999" blue="0.053035294150000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1151,7 +1220,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-9r-v28">
-                                <rect key="frame" x="122" y="438" width="123" height="28"/>
+                                <rect key="frame" x="122" y="438" width="134" height="28"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                 <state key="normal" title="I forgot my password">
                                     <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1220,17 +1289,18 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backButton" width="48" height="48"/>
-        <image name="driverportal" width="354" height="560"/>
+        <image name="CancelButton" width="72" height="72"/>
+        <image name="backButton" width="30" height="30"/>
+        <image name="driverportal" width="177" height="280"/>
         <image name="home" width="72" height="72"/>
         <image name="locationsearch" width="72" height="72"/>
-        <image name="mainscreen" width="337" height="683"/>
-        <image name="riderportal" width="474" height="933"/>
+        <image name="mainscreen" width="168.5" height="341.5"/>
+        <image name="riderportal" width="237" height="466.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LrN-gj-Qaf"/>
-        <segue reference="BdZ-Kw-eEg"/>
-        <segue reference="znL-2Y-pTJ"/>
+        <segue reference="pi7-4R-5MC"/>
+        <segue reference="sMT-A3-2vN"/>
+        <segue reference="JR7-CD-nle"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

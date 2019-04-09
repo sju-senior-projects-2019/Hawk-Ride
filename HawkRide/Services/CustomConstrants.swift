@@ -8,69 +8,47 @@
 
 import Foundation
 
-// Account
-let ACCOUNT_IS_DRIVER = "isDriver"
-let ACCOUNT_PICKUP_MODE_ENABLED = "isPickupModeEnabled"
-let ACCOUNT_TYPE_PASSENGER = "PASSENGER"
-let ACCOUNT_TYPE_DRIVER = "DRIVER"
 
-// Location
-let COORDINATE = "coordinate"
+public let kCURRENTUSER = "currentUser"
 
-// Trip
-let TRIP_COORDINATE = "tripCoordinate"
-let TRIP_IS_ACCEPTED = "tripIsAccepted"
-let TRIP_IN_PROGRESS = "tripIsInProgress"
+//MARK:- Firebase database first Chiledren
+public let kUSERS = "users"
+public let kDRIVERS = "drivers"
 
-// User
-let USER_PICKUP_COORDINATE = "pickupCoordinate"
-let USER_DESTINATION_COORDINATE = "destinationCoordinate"
-let USER_PASSENGER_KEY = "passengerKey"
-let USER_IS_DRIVER = "userIsDriver"
 
-// Driver
-let DRIVER_KEY = "driverKey"
-let DRIVER_IS_ON_TRIP = "driverIsOnTrip"
+//MARK:- users
+public let kPROVIDER = "provider"
+public let kCOORDINATES = "coordinates"
+public let kDESTINATION_COORDINTE = "destinationCoordinte"
 
-// Map Annotations
-let ANNO_DRIVER = "driverAnnotation"
-let ANNO_PICKUP = "currentLocationAnnotation"
-let ANNO_DESTINATION = "destinationAnnotation"
 
-// Map Regions
-let REGION_PICKUP = "pickup"
-let REGION_DESTINATION = "destination"
+//MARK:- drivers
 
-// Storyboard
-let MAIN_STORYBOARD = "Main"
+public let kDRIVER_IS_ON_TRIP = "driverIsOnTtrip"
+public let kIS_PICKUP_MODE_ENABLED = "isPickUpModeIsEnabled"
+public let kISDRIVER = "isDriver"
 
-// ViewControllers
-let VC_LEFT_PANEL = "LeftSidePanelVC"
-let VC_HOME = "HomeVC"
-let VC_LOGIN = "LoginVC"
-let VC_PICKUP = "PickupVC"
+//MARK:- trips
+public let kPICKUP_COORDINATE = "pickUpCoordinate"
+public let kPASSENGER = "passenger"
+public let kTRIP_IS_ACCEPTED =  "tripIsAccepted"
+public let kDRIVERID = "driverId"
+public let kTRIP_ON_PROGRESS = "tripOnProgress"
+public let kTRIP_ENDED = "tripEnded"
 
-// TableViewCells
-let CELL_LOCATION = "locationCell"
 
-// UI Messaging
-let MSG_SIGN_UP_SIGN_IN = "Sign Up / Login"
-let MSG_SIGN_OUT = "Sign Out"
-let MSG_PICKUP_MODE_ENABLED = "PICKUP MODE ENABLED"
-let MSG_PICKUP_MODE_DISABLED = "PICKUP MODE DISABLED"
-let MSG_REQUEST_RIDE = "REQUEST RIDE"
-let MSG_START_TRIP = "START TRIP"
-let MSG_END_TRIP = "END TRIP"
-let MSG_GET_DIRECTIONS = "GET DIRECTIONS"
-let MSG_CANCEL_TRIP = "CANCEL TRIP"
-let MSG_DRIVER_COMING = "DRIVER COMING"
-let MSG_ON_TRIP = "ON TRIP"
-let MSG_PASSENGER_PICKUP = "Passenger Pickup Point"
-let MSG_PASSENGER_DESTINATION = "Passenger Destination"
+//MARK:- region monitoring
+public let kDESTINATION = "destination"
+public let kPICKUP = "pickup"
 
-// Error Messages
-let ERROR_MSG_NO_MATCHES_FOUND = "No matches found. Please try again!"
-let ERROR_MSG_INVALID_EMAIL = "Sorry, the email you've entered appears to be invalid. Please try another email."
-let ERROR_MSG_EMAIL_ALREADY_IN_USE = "It appears that email is already in use by another user. Please try again."
-let ERROR_MSG_WRONG_PASSWORD = "The password you tried is incorrect. Please try again."
-let ERROR_MSG_UNEXPECTED_ERROR = "There has been an unexpected error. Please try again."
+//MARK:- button Titles
+public let kSTART_TRIP = "START TRIP"
+public let kEND_TRIP = "END TRIP"
+public let kGET_DIRECTIONS = "GET DIRECTIONS"
+public let kCANCEL_TRIP = "CANCEL TRIP"
+public let kON_TRIP =  "ON TRIP"
+public let kREQUEST_RIDE = "REQUEST RIDE"
+
+
+//MARK:- CELLS
+public let kLOCATION_CELL = "locationCell"

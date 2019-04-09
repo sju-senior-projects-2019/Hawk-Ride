@@ -12,24 +12,28 @@ import MapKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import RevealingSplashView
 
 
 
-class DriverMapViewController: UIViewController{
-    
+class DriverMapViewController: UIViewController, MKMapViewDelegate {
+   
     //MARK: - Properties
     var sidebarView: SidebarViewDriver!
     var blackScreen: UIView!
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 550
-    
+   
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMenuButton()
         setupBlackScreen()
         setupSideBarView()
         checkLocationServices()
+       // loadDriverAnnotationsFromFB()
+        
     }
     
     func setupLocationManager() {
@@ -53,6 +57,16 @@ class DriverMapViewController: UIViewController{
             // Show alert letting the user know they have to turn this on.
         }
     }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? DriverAnnotation {
+            let identifier = "driver"
+            var view: MKAnnotationView
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.image = UIImage(named: "hawkcar")
+            return view
+        }
+        return nil
+    }
     
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
@@ -73,6 +87,32 @@ class DriverMapViewController: UIViewController{
             break
         }
     }
+    
+  /*  func loadDriverAnnotationsFromFB() {
+        
+        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let driverSnapshot = snapshot.children.allObjects as? [DataSnapshot]
+            {
+                for driver in driverSnapshot
+                {
+                    if driver.hasChild(COORDINATE)
+                    {
+                        if driver.childSnapshot(forPath: ACCOUNT_PICKUP_MODE_ENABLED).value as? Bool == true
+                        {
+                            if let driverDict = driver.value as? Dictionary<String, AnyObject>
+                            {
+                                let coordinateArray = driverDict[COORDINATE] as! NSArray
+                                let driverCoordinate = CLLocationCoordinate2D(latitude: coordinateArray[0] as! CLLocationDegrees, longitude: coordinateArray[1] as! CLLocationDegrees)
+                                let annotation = DriverAnnotation(coordinate: driverCoordinate, withKey: driver.key)
+                            }
+                          }
+                         }
+                      }
+                    }
+                })
+         } */
+
 
     
     //MARK: - Handlers
@@ -126,8 +166,7 @@ class DriverMapViewController: UIViewController{
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
     }
-
-    
+ 
 }
 
 extension DriverMapViewController: CLLocationManagerDelegate {
@@ -169,11 +208,15 @@ extension DriverMapViewController: SidebarDriverViewDelegate {
             print("Help")
         case .settings:
             print("Settings")
+        case .pickUpMode:
+            print("Pick up mode")
         case .logOut:
             print("Log out")
-        case .none:
+       case .none:
             break
             // default: //Default will never be executed
+       
+       
         }
     }
     

@@ -25,6 +25,7 @@ enum RowDriver: String {
     case help
     case settings
     case logOut
+    case pickUpMode
     case none
     
     init(rowDriver: Int) {
@@ -36,7 +37,9 @@ enum RowDriver: String {
         case 4: self = .becomeAHawkRider
         case 6: self = .help
         case 7: self = .settings
-        case 8: self = .logOut
+        case 8: self =  .pickUpMode
+        case 9: self = .logOut
+        
             
         default: self = .none
         }
@@ -46,7 +49,7 @@ enum RowDriver: String {
   class SidebarViewDriver: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var titleArr = [String]()
-    
+   
     
     weak var delegate: SidebarDriverViewDelegate?
     
@@ -55,7 +58,10 @@ enum RowDriver: String {
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
         
-        titleArr = ["Greg Jones", "Ride History", "Schedule", "Vehicle", "Become a Hawk Rider","Help", "Settings", "Log out"]
+        titleArr = ["Greg Jones", "Ride History", "Schedule", "Vehicle", "Become a Hawk Rider","Help", "Settings","",
+                "Log out"]
+        
+
         
         setupViews()
         myTableView.delegate=self
@@ -145,15 +151,24 @@ enum RowDriver: String {
             cellImg7.image=#imageLiteral(resourceName: "baseline_settings_white_24dp")
             cell.addSubview(cellImg7)
             
+          
+            // Go live text
+            let cellLb3 = UILabel(frame: CGRect(x: 70, y: 480, width: 250, height: 30))
+            cell.addSubview(cellLb3)
+            cellLb3.text = "Go Live"
+            cellLb3.font = UIFont(name: Fonts.montserratLight, size: 15)
+            cellLb3.textColor=UIColor.white
+            
+          
             // Log out Image Icon
             let cellImg8: UIImageView!
-            cellImg8 = UIImageView(frame: CGRect(x: 13, y: 480, width:20, height:20))
+            cellImg8 = UIImageView(frame: CGRect(x: 13, y: 540, width:20, height:20))
             cellImg8.layer.masksToBounds=true
             cellImg8.contentMode = .scaleAspectFill
             cellImg8.layer.masksToBounds=true
             cellImg8.image=#imageLiteral(resourceName: "baseline_clear_white_36pt_1x")
             cell.addSubview(cellImg8)
-            
+           
             // User's Profile Name
             let cellLbl = UILabel(frame: CGRect(x: 85, y: cell.frame.height/2-15, width: 250, height: 30))
             cell.addSubview(cellLbl)
@@ -161,6 +176,13 @@ enum RowDriver: String {
             cellLbl.font = UIFont(name: Fonts.montserratLight, size: 15)
             cellLbl.textColor=UIColor.white
             
+            //Go live switch
+            let pickupModeSwitch = UISwitch(frame: CGRect(x: 13, y: 400, width: 20, height: 20))
+            pickupModeSwitch.isOn = false
+            pickupModeSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControl.Event.valueChanged)
+            cell.accessoryView = pickupModeSwitch
+         
+          
             // Horizontal Line that separates users' profile from the labels
             let label = UILabel()
             label.frame = CGRect(x:1, y:140, width:300, height: 1.0)
@@ -173,10 +195,18 @@ enum RowDriver: String {
             let cellLb2 = UILabel(frame: CGRect(x: 40, y: cell.frame.height/2-15, width: 250, height: 30))
             cell.addSubview(cellLb2)
             cellLb2.text = titleArr[indexPath.row]
-            cellLb2.font = UIFont(name: Fonts.montserratLight, size: 15)
+            cellLb2.font = UIFont(name: Fonts.montserratLight, size: 16)
             cellLb2.textColor=UIColor.white
+         
+            
+            
         }
         return cell
+       
+    }
+    
+    @objc func switchChanged(sender: UISwitch!) {
+        print("Switch value is \(sender.isOn)")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

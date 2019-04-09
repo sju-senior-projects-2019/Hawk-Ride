@@ -102,6 +102,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
+    
+    
    override var prefersStatusBarHidden: Bool {
         return !UIApplication.shared.isStatusBarHidden
     }

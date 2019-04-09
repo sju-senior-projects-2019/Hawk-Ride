@@ -11,7 +11,6 @@ import Firebase
 import CoreLocation
 import MapKit
 import Alamofire
-import SwiftyJSON
 import CoreData
 
 

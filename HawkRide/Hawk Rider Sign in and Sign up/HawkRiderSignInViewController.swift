@@ -54,25 +54,33 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
      * if the user's data is valid, then the user is able to move to the rider's map view page and request a ride
      */
     @IBAction func SubmitButton(_ sender: Any) {
-        if EmailAddress.text == "" || Password.text == "" {
+       if EmailAddress.text != "" && Password.text != "" {
             self.view.endEditing(true)
-           } else {
-            if let email = EmailAddress.text {
-                if let password = Password.text {
-                      // Login
-                        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                        if error != nil {
-                            print(error!._code)
-                            self.handleError(error!)
-
-                            return
-                        }
-                        self.performSegue(withIdentifier: "RiderSegue", sender: sender)
-                    }
-                 }
-                }
-             }
-          }
+        }
+        if let email = EmailAddress.text,
+            let password = Password.text  {
+            
+            signIn(email: email, password: password)
+            self.performSegue(withIdentifier: "RiderSegue", sender: sender)
+        }
+       
+    }
+    //MARK: Database Helpers
+    
+    func signIn(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) {(result, error) in
+            
+            if error == nil {
+                //login sucessful user is exist
+                
+                print("Login successful")
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                //Login failed
+               
+            }
+    }
+}
 
     /* Forgot Password
      * User's are able to forget their password
@@ -107,6 +115,7 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
     self.present(forgotPasswordAlert, animated: true, completion: nil)
   }
     
-}
-
+    
+    
+  }
 

@@ -23,12 +23,12 @@
 	<string>1.0</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>UIAppFonts</key>
@@ -49,6 +49,8 @@
 		<string>Montserrat-Thin.ttf</string>
 		<string>Montserrat-UltraLight.otf</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>CFBundleDisplayName</key>
@@ -57,13 +59,9 @@
 	<string>Hawk Ride picks you up exactly where you are. To start riding, choose &quot;Allow&quot; so the app can find your location.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Hawk Ride picks you up exactly where you are. To start riding, choose &quot;Allow&quot; so the app can find your location.</string>
-	<key></key>
-	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Hawk Ride picks you up exactly where you are. To start riding, choose &quot;Allow&quot; so the app can find your location.</string>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1IjoiZ2o2NDQ2MzUiLCJhIjoiY2p1M2swcXFkMG8xbDQ0bjd0N29manJqYiJ9.VM2XMYVw-mjaNNo_WY-4gg</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 </dict>
 </plist>

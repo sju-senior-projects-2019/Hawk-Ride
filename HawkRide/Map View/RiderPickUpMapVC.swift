@@ -20,16 +20,15 @@ class RiderPickUpMapVC: UIViewController {
     var sidebarView: SidebarViewRider!
     var blackScreen: UIView!
     var locationManager = CLLocationManager()
-    let regionInMeters: Double = 1500
-   
+    let regionInMeters: Double = 1800
+    @IBOutlet weak var requestButton: RoundedShadowButton!
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
     var currentLocationLongitude = CLLocationDegrees()
     var location = Location()
-    
-    var routeDistance = Double() //Distance of Route
-    var routeETA = Double() //Travel Time of Route
+  
+    var route: MKRoute!
     
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -42,131 +41,120 @@ class RiderPickUpMapVC: UIViewController {
         super.viewWillAppear(animated)
         checkLocationServices()
         
-         self.userLocationAnnotationView()
+       //  self.userLocationAnnotationView()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorization()
-        showRouteOnMap(location: location)
+        setupAnnotation(location: location)
+        drawRoute(location: location)
         
     }
    
+    @IBAction func requestButtonWasPressed(_sender: Any) {
+        requestButton.animateButton(shouldLoad: true, withMessage: nil)
+        
+    }
+    
 }
     
 extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
     
-    func showRouteOnMap(location: Location) {
-        let sourceLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+  
+    
+    func setupAnnotation(location: Location) {
+        let riderLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+        
+        let riderAnnotation = PassengerAnnotation(coordinate: riderLocation)
+        
+        mapView.addAnnotation(riderAnnotation)
+        
         let destinationLocation = location.coordinate!
-        
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-        
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        
-        let sourceAnnotation = CustomPointAnnotation()
-        sourceAnnotation.title = "Pick Up Location"
-        sourceAnnotation.subtitle = "Pick Up Location"
-        sourceAnnotation.pinCustomImageName = "centerMapBtn"
-        
-        if let location = sourcePlacemark.location  {
-            sourceAnnotation.coordinate = location.coordinate
-            
-        }
-        
-        let destinationAnnotation = CustomPointAnnotation()
-        destinationAnnotation.title = "Drop Off Location"
-        destinationAnnotation.subtitle = "Drop Off Location"
-        destinationAnnotation.pinCustomImageName = "centerMapBtn"
-        
-        // Custom Annotation
-        
-        if let location = destinationPlacemark.location {
-            destinationAnnotation.coordinate = location.coordinate
-        }
-        
-        self.mapView.showAnnotations([sourceAnnotation, destinationAnnotation], animated: true)
-        
-        let directionRequest = MKDirections.Request() // The start and end points of a route, along the planned mode of transporation
-        
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .automobile
-        
-        let directions  = MKDirections(request: directionRequest)
-        
-        directions.calculate { (response, error) in
-            
-            guard let response = response else {
-                if let error = error  {
-                    print("Error: \(error)")
-                }
-                return
-            }
-            
-            let route = response.routes[0]
-            self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-            
-           self.routeDistance = route.distance //distance of route in meters
-           self.routeETA = route.expectedTravelTime / 60 //in seconds, so divide by 60
-            
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-            
-           
-        }
-        
-       
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = destinationLocation
+        mapView.addAnnotation(annotation)
+   
     }
     
-        func userLocationAnnotationView() {
-            let userLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
-            
-            let userPlacemark = MKPlacemark(coordinate: userLocation, addressDictionary: nil)
-            
-            let userAnnotation = CustomPointAnnotation()
-            userAnnotation.pinCustomImageName = "centerMapBtn"
-            
-            if let location = userPlacemark.location {
-                userAnnotation.coordinate = location.coordinate
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? PassengerAnnotation {
+            let identifier = "passenger"
+            var view: MKAnnotationView
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.image = UIImage(named: "destinationAnnotation")
+            return view
+        } else if let annotation = annotation as? MKPointAnnotation {
+            let identifier = "destination"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            }else {
+                annotationView?.annotation = annotation
             }
-            mapView.showAnnotations([userAnnotation], animated: true)
+            annotationView?.image = UIImage(named: "destinationAnnotation")
+            return annotationView
         }
+        return nil
+    }
+    
+    func drawRoute(location: Location) {
+        
+        let sourceLocation = MKMapItem.forCurrentLocation()
+        let destinationLocation = location.coordinate!
+        
+        let sourcePlacemark = sourceLocation
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        
+        let sourceMapItem = sourcePlacemark
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        
+        let request = MKDirections.Request()
+        request.source = sourceMapItem
+        request.destination = destinationMapItem
+        request.transportType = MKDirectionsTransportType.automobile
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculate { (response, error) in
+            guard let response = response else {
+                print(error.debugDescription)
+                return
+            }
+            self.route = response.routes[0]
+            
+            self.mapView.addOverlay(self.route.polyline)
+        }
+        
+     
+    }
+    
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        print("render called")
-        renderer.strokeColor = UIColor.black
-        renderer.lineWidth = 4.0
+        guard let polyline = overlay as? MKPolyline else {
+            return MKOverlayRenderer()
+        }
+        
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.lineWidth = 3.0
+        renderer.strokeColor = UIColor(red: 161/255, green: 31/255, blue: 53/255, alpha: 1)
         
         return renderer
     }
-    
    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? { //custom annotation
+   
+ /*  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+         let renderer = MKPolylineRenderer(overlay: self.route.polyline)
+                renderer.lineWidth = 3.0
+                renderer.alpha = 0.5
+                renderer.strokeColor = UIColor.black
+    
         
-        let reuseIdentifier = "pin"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.canShowCallout = true
-        } else {
-            annotationView?.annotation = annotation
-        }
-        
-        if let customPointAnnotation = annotation as? CustomPointAnnotation {
-            annotationView?.image = UIImage(named: customPointAnnotation.pinCustomImageName)
-        }
-        
-        return annotationView
-    }
-        
-        
-        
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        return renderer
+    } */
+    
+
+   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             let location = locations.first
             
             currentLocationLatitude = (location?.coordinate.latitude)!
@@ -177,12 +165,13 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
             
             locationManager.stopUpdatingLocation()
         }
-        
+
+    
         func checkLocationAuthorization() {
             switch CLLocationManager.authorizationStatus() {
             case .authorizedWhenInUse:
                 mapView.showsUserLocation = true
-                // centerViewOnUserLocation()
+              centerViewOnUserLocation()
                  locationManager.startUpdatingLocation()
                 break
             case .denied:
