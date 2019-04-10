@@ -28,6 +28,7 @@
 		0D4341F32225C79D009A6DFA /* RiderMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */; };
 		0D434D0E220B63B900D757C2 /* RiderPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */; };
 		0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D45940C223AE0800026E845 /* sidebarViewRider.swift */; };
+		0D460E32225E333000A24942 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D460E31225E333000A24942 /* UpdateService.swift */; };
 		0D49DE502246D77F00B2ADAD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D49DE4F2246D77F00B2ADAD /* Location.swift */; };
 		0D547E33225AA44000F25416 /* GOCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D547E32225AA44000F25416 /* GOCustomButton.swift */; };
 		0D547E35225AAC9000F25416 /* DriverPickUpMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D547E34225AAC9000F25416 /* DriverPickUpMapVC.swift */; };
@@ -140,6 +141,7 @@
 		0D4341F22225C79D009A6DFA /* RiderMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderMapViewController.swift; sourceTree = "<group>"; };
 		0D434D0D220B63B900D757C2 /* RiderPortalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderPortalViewController.swift; sourceTree = "<group>"; };
 		0D45940C223AE0800026E845 /* sidebarViewRider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sidebarViewRider.swift; sourceTree = "<group>"; };
+		0D460E31225E333000A24942 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		0D49DE4F2246D77F00B2ADAD /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0D547E32225AA44000F25416 /* GOCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOCustomButton.swift; sourceTree = "<group>"; };
 		0D547E34225AAC9000F25416 /* DriverPickUpMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverPickUpMapVC.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				0D49DE4F2246D77F00B2ADAD /* Location.swift */,
 				0D2368AC22514D91003020F8 /* DataService.swift */,
+				0D460E31225E333000A24942 /* UpdateService.swift */,
 				0D547E3F225BA46C00F25416 /* CustomConstrants.swift */,
 			);
 			path = Services;
@@ -682,6 +685,7 @@
 				0D2368B3225153D0003020F8 /* DriverAnnotation.swift in Sources */,
 				0D5E93B222553B9F00DAC365 /* RiderPickUpMapVC.swift in Sources */,
 				0D45940D223AE0800026E845 /* sidebarViewRider.swift in Sources */,
+				0D460E32225E333000A24942 /* UpdateService.swift in Sources */,
 				0D5C97BE223E16F3007A4E66 /* Animations.swift in Sources */,
 				0DA3A9F8221BA1C800E68CB8 /* HawkRiderSignUpViewController.swift in Sources */,
 				0DEA4DA02252E45F00E64E37 /* LocationTableViewCell.swift in Sources */,

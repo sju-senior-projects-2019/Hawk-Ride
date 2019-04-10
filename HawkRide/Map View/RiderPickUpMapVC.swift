@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import CoreData
+import Firebase
 
 
 class RiderPickUpMapVC: UIViewController {
@@ -33,19 +34,20 @@ class RiderPickUpMapVC: UIViewController {
     override func viewDidLoad() {
        super.viewDidLoad()
         mapView.delegate = self
-       
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        checkLocationAuthStatus()
     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        checkLocationServices()
-        
-       //  self.userLocationAnnotationView()
+       
+      
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkLocationAuthorization()
+        
         setupAnnotation(location: location)
         drawRoute(location: location)
         
@@ -141,82 +143,37 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         
         return renderer
     }
-   
-   
- /*  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-         let renderer = MKPolylineRenderer(overlay: self.route.polyline)
-                renderer.lineWidth = 3.0
-                renderer.alpha = 0.5
-                renderer.strokeColor = UIColor.black
-    
-        
-        return renderer
-    } */
-    
-
-   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            let location = locations.first
-            
-            currentLocationLatitude = (location?.coordinate.latitude)!
-            currentLocationLongitude = (location?.coordinate.longitude)!
-            
-            let coordinateRegion = MKCoordinateRegion(center: (location?.coordinate)!, latitudinalMeters: regionInMeters * 2.0 , longitudinalMeters: regionInMeters * 2.0 ) // we have to multiply the regionradius by 2.0 because it's only one direction but we want 1000 meters in both directions;we're gonna set how wide we want the radius to be around the center location
-            mapView.setRegion(coordinateRegion, animated: true) //to set it
-            
-            locationManager.stopUpdatingLocation()
-        }
-
-    
-        func checkLocationAuthorization() {
-            switch CLLocationManager.authorizationStatus() {
-            case .authorizedWhenInUse:
-                mapView.showsUserLocation = true
-              centerViewOnUserLocation()
-                 locationManager.startUpdatingLocation()
-                break
-            case .denied:
-                // Show alert instructing them how to turn on permissions
-                break
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:
-                // Show an alert letting them know what's up
-                break
-            case .authorizedAlways:
-                break
-            }
-        }
-
-    
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
-    }
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // Show alert letting the user know they have to turn this on.
-        }
-    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthStatus()
         
-        if status == .authorizedAlways
-        {
+        if status == .authorizedAlways {
             mapView.showsUserLocation = true
             mapView.userTrackingMode = .follow
         }
     }
     
+    func checkLocationAuthStatus(){
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            
+            
+        } else {
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+       UpdateService.instance.updateUserLocation(withCoordinate: userLocation.coordinate)
+    }
+   
+ 
+
+    
+    
+   
+   
 }
 
 extension RiderPickUpMapVC: SidebarViewRiderDelegate {

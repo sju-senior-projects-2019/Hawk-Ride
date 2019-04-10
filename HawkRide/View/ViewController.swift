@@ -21,56 +21,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var HawkRiderButton: SAButton!
     @IBOutlet weak var HawkDriverButton: SAButton!
     @IBOutlet weak var BecomeAHawkDriverButton:SAButtonPart2!
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
     super.viewDidLoad()
-        checkLocationServices()
+       
         initializeRevealingSplash()
         customNavigationBar()
-       
+       checkLocationAuthStatus()
        
     }
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
-           
+            
         } else {
             // Show alert letting the user know they have to turn this on.
         }
     }
     
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-          locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            // Show alert instructing them how to turn on permissions
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            // Show an alert letting them know what's up
-            break
-        case .authorizedAlways:
-            break
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    
+    func checkLocationAuthStatus(){
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            
+            
+        }else {
+            locationManager.requestAlwaysAuthorization()
         }
     }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
-    }
     
     
-    
- func initializeRevealingSplash() {
+    func initializeRevealingSplash() {
         //Initialize a revealing Splash with with the iconImage, the initial size and the background color
         let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "Hawk")!,iconInitialSize: CGSize(width:145, height:86), backgroundColor: UIColor(red: 161/255, green: 31/255, blue: 53/255, alpha: 1))
         self.view.addSubview(revealingSplashView)

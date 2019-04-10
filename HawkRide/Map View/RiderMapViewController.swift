@@ -11,12 +11,13 @@ import Firebase
 import CoreLocation
 import MapKit
 import Alamofire
-import CoreData
 
 
 
-class RiderMapViewController: UIViewController, MKMapViewDelegate {
+
+class RiderMapViewController: UIViewController {
     
+  
    
      // MARK: - Properties
     var sidebarView: SidebarViewRider!
@@ -26,8 +27,9 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
     let regionInMeters: Double = 750 //Originally at was 750
     @IBOutlet weak var tableView: UITableView!
     var selectedLocation = Location()
+    var currentUserId: String?
    
-    //Coordaintes of Locations
+    //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
     var currentLocationLongitude = CLLocationDegrees()
    
@@ -43,13 +45,20 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkLocationServices()
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        mapView.delegate = self
+        checkLocationAuthStatus()
+        centerMapOnUserLocation()
         customNavigationBar()
         setupMenuButton()
         setupSideBarView()
         setupBlackScreen()
         setupTableView()
         locations = createArray()
+        currentUserId = Auth.auth().currentUser?.uid
+    
     }
     
     func setupTableView() {
@@ -117,46 +126,8 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.black // Changing the color of the navigation item
     }
     
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
+  
     
-   func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
-    }
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // Show alert letting the user know they have to turn this on.
-        }
-    }
-    
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            // Show alert instructing them how to turn on permissions
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            // Show an alert letting them know what's up
-            break
-        case .authorizedAlways:
-            break
-        }
-    }
 /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
      * It calls the function btnMenuAction to interacte with the animation to display the slide menu
@@ -206,21 +177,44 @@ class RiderMapViewController: UIViewController, MKMapViewDelegate {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
    }
-
-}
-//MARK: - Navigation
-
-extension RiderMapViewController: CLLocationManagerDelegate {
- func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-        if status == .authorizedAlways
-        {
-           mapView.showsUserLocation = true
-           mapView.userTrackingMode = .follow
-        }
- }
     
+    func checkLocationAuthStatus(){
+        if CLLocationManager.authorizationStatus() == .authorizedAlways
+        {
+            locationManager.startUpdatingLocation()
+        }
+        else
+        {
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+
 }
+
+
+
+//MARK: - Navigation
+extension RiderMapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthStatus()
+        
+        if status == .authorizedAlways {
+            mapView.showsUserLocation = true
+            mapView.userTrackingMode = .follow
+        }
+    }
+}
+    
+
+extension RiderMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+    UpdateService.instance.updateUserLocation(withCoordinate: userLocation.coordinate)
+    }
+}
+
+
+
 
 extension RiderMapViewController: SidebarViewRiderDelegate {
    
@@ -275,15 +269,7 @@ extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
         selectedLocation = locations[indexPath.row]
         performSegue(withIdentifier: "goToRiderPickUp", sender: self)
 }
-   
-    
-        /*showRouteOnMap(location: selectedLocation)
-        let riderPickUpMapVC = RiderPickUpMapVC()
-        riderPickUpMapVC.location = selectedLocation
-        self.navigationController?.pushViewController(riderPickUpMapVC, animated: true)
-        performSegue(withIdentifier: "detailView", sender: selectedLocation) */
- 
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToRiderPickUp" {
             if let viewController = segue.destination as? RiderPickUpMapVC {
                 viewController.location = selectedLocation
@@ -307,7 +293,16 @@ extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
             cell.backgroundColor = Colors.primaryBlueBackground
         }
     }
-    
-
-
 }
+extension RiderMapViewController {
+    
+    func centerMapOnUserLocation(){
+        let regionRadious: CLLocationDistance = 2000
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    
+}
+
+

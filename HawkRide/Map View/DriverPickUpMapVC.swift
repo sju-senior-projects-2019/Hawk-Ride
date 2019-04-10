@@ -30,19 +30,7 @@ class DriverPickUpMapVC: UIViewController {
 }
 
 extension DriverPickUpMapVC: MKMapViewDelegate {
-   
-  /*  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "pickupPoint"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-        } else {
-            annotationView?.annotation = annotation
-        }
-        annotationView?.image = UIImage(named: "destinationAnnotation")
-        
-        return annotationView
-    } */
+ 
     
     
     
@@ -65,7 +53,9 @@ extension DriverPickUpMapVC: MKMapViewDelegate {
         pickUpMapView.addAnnotation(annotation)
     }
    
-   
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        UpdateService.instance.updateDriverLocation(withCoordinate: userLocation.coordinate)
+    }
     
     
 }

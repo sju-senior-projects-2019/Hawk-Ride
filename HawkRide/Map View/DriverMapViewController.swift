@@ -10,112 +10,44 @@ import UIKit
 import CoreLocation
 import MapKit
 import Firebase
-import FirebaseAuth
-import FirebaseDatabase
-import RevealingSplashView
 
 
 
-class DriverMapViewController: UIViewController, MKMapViewDelegate {
+
+
+
+class DriverMapViewController: UIViewController {
    
     //MARK: - Properties
     var sidebarView: SidebarViewDriver!
     var blackScreen: UIView!
     @IBOutlet weak var mapView: MKMapView!
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     let regionInMeters: Double = 550
-   
+    var currentUserId: String?
+    
+    //Coordinates of Locations
+    var currentLocationLatitude = CLLocationDegrees()
+    var currentLocationLongitude = CLLocationDegrees()
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        mapView.delegate = self
+        checkLocationAuthStatus()
+        centerMapOnUserLocation()
         setupMenuButton()
         setupBlackScreen()
         setupSideBarView()
-        checkLocationServices()
-       // loadDriverAnnotationsFromFB()
+        currentUserId = Auth.auth().currentUser?.uid
+       
         
     }
     
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
-    }
-    
-    
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // Show alert letting the user know they have to turn this on.
-        }
-    }
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? DriverAnnotation {
-            let identifier = "driver"
-            var view: MKAnnotationView
-            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.image = UIImage(named: "hawkcar")
-            return view
-        }
-        return nil
-    }
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            // Show alert instructing them how to turn on permissions
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            // Show an alert letting them know what's up
-            break
-        case .authorizedAlways:
-            break
-        }
-    }
-    
-  /*  func loadDriverAnnotationsFromFB() {
-        
-        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let driverSnapshot = snapshot.children.allObjects as? [DataSnapshot]
-            {
-                for driver in driverSnapshot
-                {
-                    if driver.hasChild(COORDINATE)
-                    {
-                        if driver.childSnapshot(forPath: ACCOUNT_PICKUP_MODE_ENABLED).value as? Bool == true
-                        {
-                            if let driverDict = driver.value as? Dictionary<String, AnyObject>
-                            {
-                                let coordinateArray = driverDict[COORDINATE] as! NSArray
-                                let driverCoordinate = CLLocationCoordinate2D(latitude: coordinateArray[0] as! CLLocationDegrees, longitude: coordinateArray[1] as! CLLocationDegrees)
-                                let annotation = DriverAnnotation(coordinate: driverCoordinate, withKey: driver.key)
-                            }
-                          }
-                         }
-                      }
-                    }
-                })
-         } */
-
-
-    
-    //MARK: - Handlers
+     // MARK: - Handlers
     
     /* Hamburger Menu Button
      * Using navigation bar button to integrate the interaction with the menu icon image
@@ -166,22 +98,44 @@ class DriverMapViewController: UIViewController, MKMapViewDelegate {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
     }
- 
+    
+    //MARK: - Navigation
+    func checkLocationAuthStatus(){
+        if CLLocationManager.authorizationStatus() == .authorizedAlways
+        {
+            locationManager.startUpdatingLocation()
+        }
+        else
+        {
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+   
+   
 }
 
+//MARK: - Navigation
 extension DriverMapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
-    }
-    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
+        checkLocationAuthStatus()
+        
+        if status == .authorizedAlways {
+            mapView.showsUserLocation = true
+            mapView.userTrackingMode = .follow
+        }
     }
+    
+    
+    
 }
 
+
+extension DriverMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        UpdateService.instance.updateDriverLocation(withCoordinate: userLocation.coordinate)
+    }
+}
 
 extension DriverMapViewController: SidebarDriverViewDelegate {
     
@@ -221,6 +175,18 @@ extension DriverMapViewController: SidebarDriverViewDelegate {
     }
     
 }
+
+extension DriverMapViewController {
+    
+    func centerMapOnUserLocation(){
+        let regionRadious: CLLocationDistance = 2000
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    
+}
+
 
 
 

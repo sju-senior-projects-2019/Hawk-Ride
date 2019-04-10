@@ -9,6 +9,7 @@
 
 
 import UIKit
+import Firebase
 
 protocol SidebarDriverViewDelegate: class {
     func sidebarDidSelectRow(rowDriver: RowDriver)
@@ -49,7 +50,7 @@ enum RowDriver: String {
   class SidebarViewDriver: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var titleArr = [String]()
-   
+    let currentUserId = Auth.auth().currentUser?.uid
     
     weak var delegate: SidebarDriverViewDelegate?
     
@@ -60,8 +61,7 @@ enum RowDriver: String {
         
         titleArr = ["Greg Jones", "Ride History", "Schedule", "Vehicle", "Become a Hawk Rider","Help", "Settings","",
                 "Log out"]
-        
-
+      
         
         setupViews()
         myTableView.delegate=self
@@ -181,8 +181,30 @@ enum RowDriver: String {
             pickupModeSwitch.isOn = false
             pickupModeSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControl.Event.valueChanged)
             cell.accessoryView = pickupModeSwitch
-         
-          
+            
+            
+            //Observe Drivers
+           
+            DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot]
+                {
+                    for snap in snapshot
+                    {
+                        if snap.key == Auth.auth().currentUser?.uid
+                        {
+                           
+                           pickupModeSwitch.isHidden = false
+                            
+                            let switchStatus = snap.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool
+                           pickupModeSwitch.isOn = switchStatus
+                           
+                        }
+                    }
+                }
+            })
+            
+        
             // Horizontal Line that separates users' profile from the labels
             let label = UILabel()
             label.frame = CGRect(x:1, y:140, width:300, height: 1.0)
@@ -205,8 +227,13 @@ enum RowDriver: String {
        
     }
     
+    
+    
     @objc func switchChanged(sender: UISwitch!) {
-        print("Switch value is \(sender.isOn)")
+       // print("Switch value is \(sender.isOn)")
+        if sender.isOn {
+  DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: true])
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
