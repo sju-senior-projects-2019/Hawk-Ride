@@ -179,30 +179,40 @@ enum RowDriver: String {
             //Go live switch
             let pickupModeSwitch = UISwitch(frame: CGRect(x: 13, y: 400, width: 20, height: 20))
             pickupModeSwitch.isOn = false
+         
             pickupModeSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControl.Event.valueChanged)
             cell.accessoryView = pickupModeSwitch
             
-            
-            //Observe Drivers
-           
-            DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if let snapshot = snapshot.children.allObjects as? [DataSnapshot]
-                {
-                    for snap in snapshot
-                    {
-                        if snap.key == Auth.auth().currentUser?.uid
-                        {
-                           
+            DataService.instance.REF_DRIVERS.observe(.value) { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for snap in snapshot {
+                        if snap.key == Auth.auth().currentUser?.uid  {
                            pickupModeSwitch.isHidden = false
-                            
-                            let switchStatus = snap.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool
-                           pickupModeSwitch.isOn = switchStatus
                            
+                           let switchStatus = snap.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool
+                               pickupModeSwitch.isOn = switchStatus
+                            
+                            
                         }
                     }
                 }
-            })
+            }
+            
+            
+           /* DataService.instance.REF_USERS.observe(.value, with: { (snapshot) in
+                    if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                        for snap in snapshot  {
+                            if snap.key == Auth.auth().currentUser?.uid {
+                                
+                            }
+                        }
+                    }
+                }) */
+            
+            
+            
+            
+           
             
         
             // Horizontal Line that separates users' profile from the labels
@@ -229,10 +239,13 @@ enum RowDriver: String {
     
     
     
+    
     @objc func switchChanged(sender: UISwitch!) {
        // print("Switch value is \(sender.isOn)")
         if sender.isOn {
   DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: true])
+        } else {
+    DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: false])
         }
     }
     

@@ -48,6 +48,7 @@ class DataService {
            REF_USERS.child(uID).updateChildValues(userData)
         }
     }
+   
     
     
     func driverIsAvailable(key : String, handler : @escaping (_ status : Bool?) -> Void) {

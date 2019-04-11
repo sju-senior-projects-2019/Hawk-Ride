@@ -11,11 +11,6 @@ import CoreLocation
 import MapKit
 import Firebase
 
-
-
-
-
-
 class DriverMapViewController: UIViewController {
    
     //MARK: - Properties
@@ -23,7 +18,7 @@ class DriverMapViewController: UIViewController {
     var blackScreen: UIView!
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
-    let regionInMeters: Double = 550
+    let regionRadius: CLLocationDistance = 1000
     var currentUserId: String?
     
     //Coordinates of Locations
@@ -43,8 +38,17 @@ class DriverMapViewController: UIViewController {
         setupBlackScreen()
         setupSideBarView()
         currentUserId = Auth.auth().currentUser?.uid
-       
+        DataService.instance.REF_DRIVERS.observe(.value, with: {(snapshot) in
+           self.loadDriverAnnotationsFromFB()
+        })
         
+       
+    
+    }
+    
+    func observePassengerAndDrivers() {
+        
+    
     }
     
      // MARK: - Handlers
@@ -110,9 +114,71 @@ class DriverMapViewController: UIViewController {
             locationManager.requestAlwaysAuthorization()
         }
     }
-   
-   
-}
+    
+    func loadDriverAnnotationsFromFB() {
+        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let driverSnapshot = snapshot.children.allObjects as? [DataSnapshot]
+            {
+                for driver in driverSnapshot
+                {
+                    if driver.hasChild(kCOORDINATES)
+                    {
+                        if driver.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as? Bool == true
+                        {
+                            if let driverDict = driver.value as? Dictionary<String, AnyObject>
+                            {
+                                let coordinateArray = driverDict[kCOORDINATES] as! NSArray
+                                let driverCoordinate = CLLocationCoordinate2D(latitude: coordinateArray[0] as! CLLocationDegrees, longitude: coordinateArray[1] as! CLLocationDegrees)
+                                
+                                let annotation = DriverAnnotation(coordinate: driverCoordinate, withKey: driver.key)
+                                
+                                var driverIsVisible: Bool
+                                {
+                                    return self.mapView.annotations.contains(where: { (annotation) -> Bool in
+                                        if let driverAnnotation = annotation as? DriverAnnotation
+                                        {
+                                            if driverAnnotation.key == driver.key
+                                            {
+                                                driverAnnotation.update(annotationPosition: driverAnnotation, withCoordinate: driverCoordinate)
+                                                return true
+                                            }
+                                        }
+                                        return false
+                                    })
+                                }
+                                
+                                if !driverIsVisible {
+                                    self.mapView.addAnnotation(annotation)
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for annotation in self.mapView.annotations
+                            {
+                                if annotation.isKind(of: DriverAnnotation.self)
+                                {
+                                    if let annotation = annotation as? DriverAnnotation
+                                    {
+                                        if annotation.key == driver.key
+                                        {
+                                            self.mapView.removeAnnotation(annotation)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+     
+    }
+        
+  }
+    
+
 
 //MARK: - Navigation
 extension DriverMapViewController: CLLocationManagerDelegate {
@@ -125,16 +191,42 @@ extension DriverMapViewController: CLLocationManagerDelegate {
             mapView.userTrackingMode = .follow
         }
     }
-    
-    
-    
 }
 
 
 extension DriverMapViewController: MKMapViewDelegate {
+   
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         UpdateService.instance.updateDriverLocation(withCoordinate: userLocation.coordinate)
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? DriverAnnotation {
+            let identifier = "driver"
+            var view: MKAnnotationView
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.image = UIImage(named: "map-vehicle-icon-xl")
+            return view
+        }
+        else if let annotation = annotation as? MKPointAnnotation
+        {
+            let identifier = "destination"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            
+            if annotationView == nil
+            {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            }
+            else
+            {
+                annotationView?.annotation = annotation
+            }
+            annotationView?.image = UIImage(named:"destinationAnnotation")
+            return annotationView
+        }
+        return nil
+    }
+    
 }
 
 extension DriverMapViewController: SidebarDriverViewDelegate {
@@ -179,8 +271,7 @@ extension DriverMapViewController: SidebarDriverViewDelegate {
 extension DriverMapViewController {
     
     func centerMapOnUserLocation(){
-        let regionRadious: CLLocationDistance = 2000
-        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
