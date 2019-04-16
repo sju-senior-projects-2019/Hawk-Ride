@@ -45,7 +45,6 @@ class RiderMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mapView.delegate = self
@@ -178,15 +177,20 @@ class RiderMapViewController: UIViewController {
         }
    }
     
-    func checkLocationAuthStatus(){
-        if CLLocationManager.authorizationStatus() == .authorizedAlways
-        {
+    func centerMapOnUserLocation(){
+        let regionRadious: CLLocationDistance = 2000
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func checkLocationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+          
             locationManager.startUpdatingLocation()
-        }
-        else
-        {
+        } else {
             locationManager.requestAlwaysAuthorization()
         }
+
     }
 
 }
@@ -197,9 +201,10 @@ class RiderMapViewController: UIViewController {
 extension RiderMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthStatus()
+       
         
         if status == .authorizedAlways {
+            checkLocationAuthStatus()
             mapView.showsUserLocation = true
             mapView.userTrackingMode = .follow
         }
@@ -209,10 +214,11 @@ extension RiderMapViewController: CLLocationManagerDelegate {
 
 extension RiderMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-    UpdateService.instance.updateUserLocation(withCoordinate: userLocation.coordinate)
+        if let id = Auth.auth().currentUser?.uid {
+   DataService.instance.updateUserLocation(userID: id, withCoordinate: userLocation.coordinate)
     }
+  } 
 }
-
 
 
 
@@ -294,15 +300,9 @@ extension RiderMapViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
-extension RiderMapViewController {
+
     
-    func centerMapOnUserLocation(){
-        let regionRadious: CLLocationDistance = 2000
-        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
-        mapView.setRegion(coordinateRegion, animated: true)
-    }
-    
-    
-}
+
+
 
 

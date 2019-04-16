@@ -22,14 +22,18 @@ class RiderPickUpMapVC: UIViewController {
     var blackScreen: UIView!
     var locationManager = CLLocationManager()
     let regionInMeters: Double = 1800
-    @IBOutlet weak var requestButton: RoundedShadowButton!
+    @IBOutlet weak var RequestButton: RequestCustomButton!
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
     var currentLocationLongitude = CLLocationDegrees()
     var location = Location()
+    var currentUserId : String?
+   
   
     var route: MKRoute!
+    
+    var buttonAction: ButtonAction = .requestTrip
     
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -37,8 +41,11 @@ class RiderPickUpMapVC: UIViewController {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         checkLocationAuthStatus()
-    
-    }
+        currentUserId = Auth.auth().currentUser?.uid
+        
+        
+  }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -53,16 +60,18 @@ class RiderPickUpMapVC: UIViewController {
         
     }
    
-    @IBAction func requestButtonWasPressed(_sender: Any) {
-        requestButton.animateButton(shouldLoad: true, withMessage: nil)
-        
+    @IBAction func requestButton(_ sender: RequestCustomButton) {
+        if Auth.auth().currentUser?.uid != nil {
+            buttonSelector(forAction: buttonAction)
+            
+        }else {
+            let vc = UIStoryboard.init(name: "Login", bundle: Bundle.main).instantiateInitialViewController() as! HawkRiderSignInViewController
+            present(vc, animated: true)
+        }
     }
-    
 }
-    
+
 extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
-    
-  
     
     func setupAnnotation(location: Location) {
         let riderLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
@@ -140,8 +149,7 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.lineWidth = 3.0
         renderer.strokeColor = UIColor(red: 161/255, green: 31/255, blue: 53/255, alpha: 1)
-        
-        return renderer
+       return renderer
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -165,17 +173,15 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-       UpdateService.instance.updateUserLocation(withCoordinate: userLocation.coordinate)
+        if let id = Auth.auth().currentUser?.uid {
+            DataService.instance.updateUserLocation(userID: id, withCoordinate: userLocation.coordinate)
+            
+          
     }
-   
- 
-
+}
     
-    
-   
    
 }
-
 extension RiderPickUpMapVC: SidebarViewRiderDelegate {
     
     /* Adding the rows to the side bar */
@@ -207,6 +213,23 @@ extension RiderPickUpMapVC: SidebarViewRiderDelegate {
     }
     
 }
+
+extension RiderPickUpMapVC {
+    
+    func buttonSelector(forAction action: ButtonAction) {
+        guard let userId = Auth.auth().currentUser?.uid
+            else {return}
+        
+        switch action {
+        case .requestTrip:
+            DataService.instance.createTrip()
+        }
+    }
+    
+    
+}
+
+
 
     
 

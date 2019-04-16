@@ -13,49 +13,85 @@ import Firebase
 
 
 class DriverPickUpMapVC: UIViewController {
-
-
-    @IBOutlet weak var pickUpMapView: RoundMapView!
-    var regionRadius: CLLocationDistance = 2000
-    var pin: MKPlacemark? = nil
+    
+  @IBOutlet weak var pickUpMapView: RoundMapView!
+    let currentUserId = Auth.auth().currentUser?.uid
+    var passengerKey: String!
+    var placeMark: MKPlacemark!
+    var pickUpCoordinate: CLLocationCoordinate2D!
+    
+    
+    
+    func initData(coordinate: CLLocationCoordinate2D, passenger: String) {
+        self.pickUpCoordinate = coordinate
+        self.passengerKey = passenger
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        pickUpMapView.delegate = self
+        placeMark = MKPlacemark(coordinate: pickUpCoordinate)
+        dropPinFor(placeMark: placeMark)
+        centerMapOnLocation(location: placeMark.location!)
+        
+       
+        DataService.instance.REF_TRIPS.child(passengerKey).observe(.value) {(tripSnapshot) in
+            if tripSnapshot.exists() {
+                if tripSnapshot.childSnapshot(forPath: kTRIP_IS_ACCEPTED).value as! Bool {
+                    self.dismiss(animated: true, completion: nil)
+                  
+                }
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        
+      }
+        
+    }
+    
     
     @IBAction func acceptBtnWasPressed(_ sender: Any) {
+        
+        if let driverId = currentUserId {
+            DataService.instance.acceptTrip(withPassengerId: passengerKey, forDriverId: driverId)
+        }
+        
+        
+        
     }
+    
     
     @IBAction func cancelBtnWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        }
+    
+    }
+    
+   
     
   
 }
 
 extension DriverPickUpMapVC: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "userAnnotation")
+        annotationView.image = UIImage(named: "passengerPin")
+        return annotationView
+    }
  
-    
-    
-    
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-            pickUpMapView.setRegion(coordinateRegion, animated: true)
-    }
-    
-    
-    
-    func dropPinFor(placemark: MKPlacemark) {
-        pin = placemark
-    
-        for annotation in pickUpMapView.annotations {
-            pickUpMapView.removeAnnotation(annotation)
-        }
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
+    func centerMapOnLocation(location: CLLocation){
         
-        pickUpMapView.addAnnotation(annotation)
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
+        pickUpMapView.setRegion(region, animated: true)
     }
-   
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        UpdateService.instance.updateDriverLocation(withCoordinate: userLocation.coordinate)
+    
+    
+    func dropPinFor(placeMark: MKPlacemark) {
+        let userAnnotation = MKPointAnnotation()
+        userAnnotation.coordinate = placeMark.coordinate
+        pickUpMapView.addAnnotation(userAnnotation)
     }
+ 
     
     
 }

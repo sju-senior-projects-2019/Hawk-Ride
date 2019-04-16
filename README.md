@@ -4,11 +4,9 @@ IOS application which has very similar functionality like Uber; however, the ser
 Accomplished Tasks:
 =================
 <!--ts-->
-* Setup driver's view map
-* BIG ACCOMPLISHMENT: Was able to get a list of a tableview to work!
-* Draw the path
-* Set backs - I realized the way of setup database was correct; I couldn't pass in the driver's coordinates to the database and the users coordiantes - this is important because the driver wants to know where there user is when the driver accepts the users' request same for the user; the user wants to know where the driver is when the user clicks request a ride - so I re-build the database and now I should be able to pass coordinates.
-
+* Database is setup correctly! - I can pass driver's and riders coordinates to firebase
+*  I can track the trips and track old coordinates of the users
+* 
 
 Tasks(On Going):
 =================

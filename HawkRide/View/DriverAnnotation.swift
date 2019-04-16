@@ -10,24 +10,22 @@ import Foundation
 import MapKit
 
 class DriverAnnotation: NSObject, MKAnnotation {
+    dynamic var coordinate: CLLocationCoordinate2D
+    var driverID: String
     
-   dynamic var coordinate: CLLocationCoordinate2D
-    var key: String
-    
-    init(coordinate: CLLocationCoordinate2D, withKey key: String) {
+    init(coordinate: CLLocationCoordinate2D, driverID: String) {
         self.coordinate = coordinate
-        self.key = key
-        super.init()
-     }
+        self.driverID = driverID
+    }
     
-    func update(annotationPosition annotation: DriverAnnotation, withCoordinate coordinate: CLLocationCoordinate2D) {
-        
-        var location = self.coordinate
-        location.latitude = coordinate.latitude
-        location.longitude = coordinate.longitude
+    
+    func update(withCoordinate coordinate: CLLocationCoordinate2D){
+        let location = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         UIView.animate(withDuration: 0.2) {
             self.coordinate = location
-            
         }
     }
+    
+    
 }
+

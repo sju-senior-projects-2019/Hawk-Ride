@@ -577,7 +577,7 @@
                                     <constraint firstItem="mDq-WV-MPl" firstAttribute="top" secondItem="CAS-b5-ar2" secondAttribute="top" constant="-42" id="sdh-Ll-7DE"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-54-cms">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-54-cms">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="915"/>
                             </mapView>
                         </subviews>
@@ -605,7 +605,7 @@
         <!--Driver Pick Up MapVC-->
         <scene sceneID="dpg-qm-HU9">
             <objects>
-                <viewController storyboardIdentifier="DriverPickUpMap" id="qjS-oo-Q1k" customClass="DriverPickUpMapVC" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PickupVC" id="qjS-oo-Q1k" customClass="DriverPickUpMapVC" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4B3-U3-eP9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -641,7 +641,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="96g-fL-dIj" customClass="RoundMapView" customModule="Hawk_Ride" customModuleProvider="target">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96g-fL-dIj" customClass="RoundMapView" customModule="Hawk_Ride" customModuleProvider="target">
                                 <rect key="frame" x="45.333333333333343" y="285.66666666666669" width="325" height="325.00000000000006"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="325" id="0Yn-md-yGr"/>
@@ -689,7 +689,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-Nn-rvh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-Nn-rvh">
                                 <rect key="frame" x="0.0" y="-10" width="414" height="572"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qXB-os-jfm">
@@ -820,7 +820,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uw1-qm-bRV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uw1-qm-bRV">
                                 <rect key="frame" x="0.0" y="-15" width="414" height="911"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-9R-j3Y" customClass="RequestCustomButton" customModule="Hawk_Ride" customModuleProvider="target">
@@ -828,6 +828,9 @@
                                 <state key="normal" title="Request Hawk Ride">
                                     <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="requestButton:" destination="UxD-z9-bFh" eventType="touchUpInside" id="maQ-eB-Qlg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -844,8 +847,8 @@
                         <viewLayoutGuide key="safeArea" id="6ja-aR-XKg"/>
                     </view>
                     <connections>
+                        <outlet property="RequestButton" destination="sz4-9R-j3Y" id="uDX-Cn-9LO"/>
                         <outlet property="mapView" destination="uw1-qm-bRV" id="AIq-C9-uKr"/>
-                        <outlet property="requestButton" destination="sz4-9R-j3Y" id="z1T-Lt-TLH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cx1-Rc-at2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1168,7 +1171,7 @@
         <!--Hawk Rider Sign In View Controller-->
         <scene sceneID="xbj-MX-cgh">
             <objects>
-                <viewController id="fDY-jB-Kuq" customClass="HawkRiderSignInViewController" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="fDY-jB-Kuq" customClass="HawkRiderSignInViewController" customModule="Hawk_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w4O-2P-YpQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1314,7 +1317,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pi7-4R-5MC"/>
-        <segue reference="LrN-gj-Qaf"/>
+        <segue reference="sMT-A3-2vN"/>
         <segue reference="JR7-CD-nle"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

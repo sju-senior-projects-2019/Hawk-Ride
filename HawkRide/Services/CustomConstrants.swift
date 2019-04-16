@@ -5,11 +5,18 @@
 //  Created by Gregory Jones on 4/8/19.
 //  Copyright © 2019 Gregory Jones. All rights reserved.
 //
-
 import Foundation
 
 
 public let kCURRENTUSER = "currentUser"
+
+// Storyboard
+let MAIN_STORYBOARD = "Main"
+
+
+// View Controller
+
+let VC_PICKUP = "PickupVC"
 
 //MARK:- Firebase database first Chiledren
 public let kUSERS = "users"
@@ -52,3 +59,4 @@ public let kREQUEST_RIDE = "REQUEST RIDE"
 
 //MARK:- CELLS
 public let kLOCATION_CELL = "locationCell"
+

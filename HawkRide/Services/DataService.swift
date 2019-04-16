@@ -10,17 +10,19 @@ import Foundation
 import Firebase
 import MapKit
 
-let DB_BASE = Database.database().reference()
+fileprivate  let DB_BASE = Database.database().reference()
 
-class DataService {
+final class DataService {
    
     static let instance = DataService()
+    
+    private init(){}
    
     // Create a child
-    private var _REF_BASE = DB_BASE
-    private var _REF_USERS = DB_BASE.child("riders")
-    private var _REF_DRIVERS = DB_BASE.child("drivers")
-    private var _REF_TRIPS = DB_BASE.child("trips")
+    private let _REF_BASE = DB_BASE
+    private let _REF_USERS = DB_BASE.child("riders")
+    private let _REF_DRIVERS = DB_BASE.child("drivers")
+    private let _REF_TRIPS = DB_BASE.child("trips")
     
     
     var REF_BASE: DatabaseReference {
@@ -48,34 +50,104 @@ class DataService {
            REF_USERS.child(uID).updateChildValues(userData)
         }
     }
-   
     
-    
-    func driverIsAvailable(key : String, handler : @escaping (_ status : Bool?) -> Void) {
+    func updateUser(id: String, with userData: [String: Any]){
         
-        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let driverSnapshot = snapshot.children.allObjects as? [DataSnapshot]
-            {
-                for driver in driverSnapshot
-                {
-                    if driver.key == key
-                    {
-                        if driver.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as? Bool == true
-                        {
-                            if driver.childSnapshot(forPath: kDRIVER_IS_ON_TRIP).value as? Bool == true
-                            {
-                                handler(false)
-                            }
-                            else
-                            {
-                                handler(true)
-                            }
+        REF_USERS.child(id).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists()  {
+                self.REF_USERS.child(id).updateChildValues(userData)
+                
+            }
+        }
+        
+    }
+    func deleteFromUser(id: String, value: String){
+        REF_USERS.child(id).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists()  {
+                self.REF_USERS.child(id).child(value).removeValue()
+                
+            }
+        }
+    }
+    
+    func checkUser(id:String, forValue value: String, completion: @escaping (Bool) -> Void ){
+        
+        REF_USERS.child(id).child(value).observeSingleEvent(of: .value) { (snapShot) in
+            if snapShot.exists() {
+                completion(true)
+            }else{
+                completion(false)
+            }
+        }
+    }
+    
+    func updateUserLocation(userID: String, withCoordinate coordinate: CLLocationCoordinate2D ){
+        
+        REF_USERS.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists()  {
+                self.REF_USERS.child(userID).updateChildValues([kCOORDINATES: [coordinate.latitude,coordinate.longitude]])
+            }
+        }
+        
+    }
+    
+    func passengerIsOnTrip(passengerId: String, handler: @escaping (_ status: Bool, _ driverKey: String?, _ tripKey: String?) -> Void) {
+            REF_TRIPS.observe(.value, with: { (tripSnapshot) in
+            if let tripSnapshot = tripSnapshot.children.allObjects as? [DataSnapshot] {
+                for trip in tripSnapshot {
+                    if trip.key == passengerId {
+                        if trip.childSnapshot(forPath: kTRIP_IS_ACCEPTED).value as? Bool == true {
+                            let driverId = trip.childSnapshot(forPath: kDRIVERID).value as? String
+                            handler(true, driverId, trip.key)
+                        } else {
+                            handler(false, nil, nil)
                         }
                     }
                 }
             }
         })
+    }
+    
+    //MARK:- drivers
+    
+    func userIsDriver(userId: String, handler: @escaping (_ status: Bool) -> Void) {
+        
+       REF_DRIVERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                handler(true)
+            }else{
+                handler(false)
+            }
+        }
+    }
+    
+    func updateDriverLocation(userID: String, withCoordinate coordinate: CLLocationCoordinate2D ){
+        
+       REF_DRIVERS.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            
+            if snapshot.exists() {
+                
+                if  snapshot.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool {
+                    self.REF_DRIVERS.child(userID).updateChildValues([kCOORDINATES: [coordinate.latitude,coordinate.longitude]])
+                }
+            }
+            
+        }
+        
+    }
+    
+    
+    func driverIsAvailable(id:String, completion: @escaping (Bool?)-> Void){
+       REF_DRIVERS.child(id).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                if snapshot.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as? Bool == true &&
+                    snapshot.childSnapshot(forPath: kDRIVER_IS_ON_TRIP).value as? Bool == false {
+                    completion(true)
+                }else {
+                    completion(false)
+                }
+            }
+        }
     }
     
     func driverIsOnTrip(driverKey: String, handler: @escaping (_ status: Bool?, _ driverKey: String?, _ tripKey: String?) -> Void) {
@@ -111,51 +183,113 @@ class DataService {
             }
         })
     }
-    func passengerIsOnTrip(passengerKey: String, handler: @escaping (_ status: Bool?, _ driverKey: String?, _ tripKey: String?) -> Void) {
-        
-        DataService.instance.REF_TRIPS.observe(.value, with: { (tripSnapshot) in
-            
-            if let tripSnapshot = tripSnapshot.children.allObjects as? [DataSnapshot]
-            {
-                for trip in tripSnapshot
-                {
-                    if trip.key == passengerKey
-                    {
-                        if trip.childSnapshot(forPath: kTRIP_IS_ACCEPTED).value as? Bool == true
-                        {
-                            let driverKey = trip.childSnapshot(forPath: kDRIVERS).value as? String
-                            handler(true, driverKey, trip.key)
+    
+    func loadDriverAnnotaitonsFromDB(mapView: MKMapView){
+        REF_DRIVERS.observeSingleEvent(of: .value) { (snapshot) in
+            for snapshot in snapshot.children.allObjects as! [DataSnapshot] {
+                
+                if snapshot.hasChild(kCOORDINATES) {
+                    if  snapshot.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool {
+                        
+                        let driverDict = snapshot.value as! [String: Any]
+                        let coordinateArray = driverDict[kCOORDINATES] as! [CLLocationDegrees]
+                        let location = CLLocationCoordinate2D(latitude: coordinateArray[0], longitude: coordinateArray[1])
+                        
+                        let driverAnnotation = DriverAnnotation(coordinate: location, driverID: snapshot.key)
+                        
+                        var driverIsVisible: Bool {
+                            return mapView.annotations.contains(where: { (annotation) -> Bool in
+                                if let driverAnnotation = annotation as? DriverAnnotation {
+                                    if  driverAnnotation.driverID == snapshot.key {
+                                        driverAnnotation.update(withCoordinate: location)
+                                        return true
+                                    }
+                                }
+                                return false
+                            })
                         }
-                        else
-                        {
-                            handler(false, nil, nil)
+                        // if driver is not on the map add him
+                        if !driverIsVisible {
+                            mapView.addAnnotation(driverAnnotation)
+                        }
+                    }else {
+                        // if pick up mode is not enabled remove driver annotation
+                        for annotation in mapView.annotations {
+                            if annotation.isKind(of: DriverAnnotation.self) {
+                                if let annotation = annotation as? DriverAnnotation {
+                                    if annotation.driverID == snapshot.key {
+                                        mapView.removeAnnotation(annotation)
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-        })
+        }
+    }
+    //MARK:- trips
+    func createTrip(){
+        if let userId = Auth.auth().currentUser?.uid {
+            
+            REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
+                if let snapshot = snapshot.value as? [String: Any] {
+                    let pickUpCoordinate = snapshot[kCOORDINATES] as? NSArray
+                    let destinationCoordinate = snapshot[kDESTINATION_COORDINTE] as? NSArray
+                    
+                    let tripData = [kPICKUP_COORDINATE: pickUpCoordinate,
+                                    kDESTINATION_COORDINTE: destinationCoordinate,
+                                    kPASSENGER: userId,
+                                    kTRIP_IS_ACCEPTED: false] as! [String: Any]
+                    self.REF_TRIPS.child(userId).updateChildValues(tripData)
+                    
+                }
+            }
+            
+        }
     }
     
-    func userIsDriver(userKey: String, handler: @escaping (_ status: Bool) -> Void) {
-        
-        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (driverSnapshot) in
-            
-            if let driverSnapshot = driverSnapshot.children.allObjects as? [DataSnapshot]
-            {
-                for driver in driverSnapshot
-                {
-                    if driver.key == userKey
-                    {
-                        handler(true)
-                    }
-                    else
-                    {
-                        handler(false)
+    func fetchTrip(forDriver driverId: String, completion: @escaping (_ trip: [String:Any]?)->Void){
+       REF_TRIPS.observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                for tripSnapshot in snapshot.children.allObjects as! [DataSnapshot] {
+                    if tripSnapshot.childSnapshot(forPath: kDRIVERID).value as? String == driverId {
+                        completion(tripSnapshot.value as? [String:Any])
                     }
                 }
             }
-        })
+        }
+    }
+    
+    func observeTrips(completion: @escaping ([String:Any]?)-> Void){
+        
+       REF_TRIPS.observe(.value) { (snapshot) in
+            if snapshot.exists() {
+                
+                for tripSnapshot in snapshot.children.allObjects as! [DataSnapshot] {
+                    if let tripDict = tripSnapshot.value as? [String: Any] {
+                        completion(tripDict)
+                    }
+                }
+            }
+        }
+    }
+    
+    func acceptTrip(withPassengerId passengerId: String,forDriverId driverId: String) {
+        REF_TRIPS.child(passengerId).updateChildValues([kTRIP_IS_ACCEPTED: true,
+                                                       kDRIVERID: driverId])
+        REF_DRIVERS.child(driverId).updateChildValues([kDRIVER_IS_ON_TRIP: true])
+    }
+    
+    func cancelTrip(withPassengerId passengerId: String,forDriverId driverId: String) {
+        REF_TRIPS.child(passengerId).removeValue()
+        REF_DRIVERS.child(driverId).updateChildValues([kDRIVER_IS_ON_TRIP: false])
+       REF_USERS.child(passengerId).child(kDESTINATION_COORDINTE).removeValue()
     }
     
     
 }
+
+
+
+
