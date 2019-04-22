@@ -177,7 +177,7 @@ enum RowDriver: String {
             cellLbl.textColor=UIColor.white
             
             //Go live switch
-            let pickupModeSwitch = UISwitch(frame: CGRect(x: 13, y: 400, width: 20, height: 20))
+         /*   let pickupModeSwitch = UISwitch(frame: CGRect(x: 13, y: 400, width: 20, height: 20))
             pickupModeSwitch.isOn = false
          
             pickupModeSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControl.Event.valueChanged)
@@ -196,7 +196,7 @@ enum RowDriver: String {
                         }
                     }
                 }
-            }
+            } */
             
             
            /* DataService.instance.REF_USERS.observe(.value, with: { (snapshot) in
@@ -240,14 +240,14 @@ enum RowDriver: String {
     
     
     
-    @objc func switchChanged(sender: UISwitch!) {
+  /*  @objc func switchChanged(sender: UISwitch!) {
        // print("Switch value is \(sender.isOn)")
         if sender.isOn {
   DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: true])
         } else {
     DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: false])
         }
-    }
+    } */
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.delegate?.sidebarDidSelectRow(rowDriver: RowDriver(rowDriver: indexPath.row))

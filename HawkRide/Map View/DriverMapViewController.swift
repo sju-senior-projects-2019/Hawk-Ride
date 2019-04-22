@@ -20,6 +20,8 @@ class DriverMapViewController: UIViewController {
     var locationManager = CLLocationManager()
     let regionRadius: CLLocationDistance = 1000
     var currentUserId: String?
+    @IBOutlet weak var pickUpSwitch: UISwitch!
+    
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
@@ -83,9 +85,39 @@ class DriverMapViewController: UIViewController {
             }
         }
         
+        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]
+            {
+                for snap in snapshot
+                {
+                    if snap.key == Auth.auth().currentUser?.uid
+                    {
+                    
+                        self.pickUpSwitch.isHidden = false
+                        
+                        let switchStatus = snap.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool
+                        self.pickUpSwitch.isOn = switchStatus
+                       
+                    }
+                }
+            }
+        })
+    }
 
     
-}
+    @IBAction func switchWasToggled(_ sender: Any) {
+        let currentUserId = Auth.auth().currentUser?.uid
+        if pickUpSwitch.isOn {
+            DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: true])
+        }
+        else {
+            DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: false])
+        }
+        }
+        
+    
+    
         
        
 // MARK: - Handlers
@@ -152,9 +184,9 @@ class DriverMapViewController: UIViewController {
         }
     }
     
-    
+
         
-  }
+}
     
 
 

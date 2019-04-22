@@ -54,14 +54,24 @@ class HawkRiderSignInViewController: UIViewController, UITextFieldDelegate {
      * if the user's data is valid, then the user is able to move to the rider's map view page and request a ride
      */
     @IBAction func SubmitButton(_ sender: Any) {
-       if EmailAddress.text != "" && Password.text != "" {
-            self.view.endEditing(true)
-        }
-        if let email = EmailAddress.text,
-            let password = Password.text  {
+        if EmailAddress.text == "" && Password.text == "" {
             
-            signIn(email: email, password: password)
-            self.performSegue(withIdentifier: "RiderSegue", sender: sender)
+        } else {
+            if let email = EmailAddress.text,
+                let password = Password.text  {
+                
+                // Login
+                Auth.auth().signIn(withEmail: email, password: password) {(user, error) in
+                    
+                    if error != nil {
+                        print(error!._code)
+                        self.handleError(error!)
+                        return
+                    }
+                    
+                    self.performSegue(withIdentifier: "RiderSegue", sender: sender)
+                }
+            }
         }
        
     }

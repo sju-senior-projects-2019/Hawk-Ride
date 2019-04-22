@@ -16,7 +16,6 @@ import Firebase
 class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
     
     
-    var ref: DatabaseReference! //Create a reference to the database
     
 
     @IBOutlet weak var FirstName: MDCTextField!
@@ -38,7 +37,7 @@ class HawkDriverSignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference()
+     
         
         FirstName.delegate = self
         LastName.delegate = self

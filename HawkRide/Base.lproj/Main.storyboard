@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XAm-wh-Wad">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XAm-wh-Wad">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -234,7 +234,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rider Portal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1u-BI-ceJ">
-                                <rect key="frame" x="20.000000000000007" y="704.66666666666663" width="105.66666666666669" height="23.333333333333371"/>
+                                <rect key="frame" x="20" y="703.33333333333337" width="123" height="24.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -580,6 +580,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-54-cms">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="915"/>
                             </mapView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-CQ-jRP">
+                                <rect key="frame" x="183" y="768" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchWasToggled:" destination="Yam-Zp-1mx" eventType="valueChanged" id="Kod-Yj-W3M"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -596,6 +603,7 @@
                     <navigationItem key="navigationItem" id="e6F-w8-xHv"/>
                     <connections>
                         <outlet property="mapView" destination="Ydz-54-cms" id="Fwc-VQ-3D1"/>
+                        <outlet property="pickUpSwitch" destination="yRJ-CQ-jRP" id="vEb-u4-cbS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T42-RN-jkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1308,12 +1316,12 @@
     </scenes>
     <resources>
         <image name="CancelButton" width="72" height="72"/>
-        <image name="backButton" width="30" height="30"/>
-        <image name="driverportal" width="177" height="280"/>
+        <image name="backButton" width="48" height="48"/>
+        <image name="driverportal" width="354" height="560"/>
         <image name="home" width="72" height="72"/>
         <image name="locationsearch" width="72" height="72"/>
-        <image name="mainscreen" width="168.5" height="341.5"/>
-        <image name="riderportal" width="237" height="466.5"/>
+        <image name="mainscreen" width="337" height="683"/>
+        <image name="riderportal" width="474" height="933"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pi7-4R-5MC"/>
