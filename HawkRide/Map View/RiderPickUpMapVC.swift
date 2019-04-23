@@ -55,7 +55,7 @@ class RiderPickUpMapVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        setupAnnotation(location: location)
+       setupAnnotation(location: location)
         drawRoute(location: location)
         
     }
@@ -74,9 +74,12 @@ class RiderPickUpMapVC: UIViewController {
 extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func setupAnnotation(location: Location) {
-        let riderLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
         
-        let riderAnnotation = PassengerAnnotation(coordinate: riderLocation)
+         let passengerId = kPASSENGER
+       
+         let riderLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+        
+        let riderAnnotation = PassengerAnnotation(coordinate: riderLocation, key: passengerId)
         
         mapView.addAnnotation(riderAnnotation)
         
