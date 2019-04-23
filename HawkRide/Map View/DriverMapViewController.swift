@@ -61,7 +61,7 @@ class DriverMapViewController: UIViewController {
         DataService.instance.observeTrips { (tripDictionary) in
             if let tripDict = tripDictionary {
                 let pickUpCoordinateArray =
-                tripDict[kPICKUP_COORDINATE] as! [CLLocationDegrees]
+                    tripDict[kPICKUP_COORDINATE] as! [CLLocationDegrees]
                 let passengerId = tripDict[kPASSENGER] as! String
                 let isTripAccepted = tripDict[kTRIP_IS_ACCEPTED] as! Bool
                 
@@ -71,12 +71,12 @@ class DriverMapViewController: UIViewController {
                             guard isTripAccepted == false else
                             {return}
                             if isAvailable == true {
-                               
+                                
                                 let storyboard = UIStoryboard(name: MAIN_STORYBOARD, bundle: Bundle.main)
                                 let pickupVC = storyboard.instantiateViewController(withIdentifier:VC_PICKUP) as? DriverPickUpMapVC
                                 
                                 pickupVC?.initData(coordinate: CLLocationCoordinate2D(latitude: pickUpCoordinateArray[0], longitude: pickUpCoordinateArray[1]), passenger:
-                                passengerId)
+                                    passengerId)
                                 self.present(pickupVC!, animated: true)
                             }
                         }
@@ -84,6 +84,26 @@ class DriverMapViewController: UIViewController {
                 }
             }
         }
+        
+        DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]
+            {
+                for snap in snapshot
+                {
+                    if snap.key == Auth.auth().currentUser?.uid
+                    {
+                        
+                        self.pickUpSwitch.isHidden = false
+                        
+                        let switchStatus = snap.childSnapshot(forPath: kIS_PICKUP_MODE_ENABLED).value as! Bool
+                        self.pickUpSwitch.isOn = switchStatus
+                        
+                    }
+                }
+            }
+        })
+    
         
         DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -232,22 +252,8 @@ extension DriverMapViewController: MKMapViewDelegate {
             view.image = UIImage(named: "mapcar")
             return view
         }
-        else if let annotation = annotation as? MKPointAnnotation
-        {
-            let identifier = "destination"
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            
-            if annotationView == nil
-            {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            }
-            else
-            {
-                annotationView?.annotation = annotation
-            }
-            annotationView?.image = UIImage(named:"destinationAnnotation")
-            return annotationView
-        }
+       
+        
         return nil
     }
     

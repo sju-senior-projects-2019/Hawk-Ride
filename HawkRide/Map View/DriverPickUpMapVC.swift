@@ -63,6 +63,7 @@ class DriverPickUpMapVC: UIViewController {
     
     @IBAction func cancelBtnWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+       DataService.instance.REF_TRIPS.removeValue()
     
     }
     
@@ -75,7 +76,7 @@ extension DriverPickUpMapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "userAnnotation")
-        annotationView.image = UIImage(named: "passengerPin")
+        annotationView.image = UIImage(named: "pickupannotation")
         return annotationView
     }
  
