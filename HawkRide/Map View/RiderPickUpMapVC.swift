@@ -79,18 +79,21 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
        
          let riderLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
         
+        
         let riderAnnotation = PassengerAnnotation(coordinate: riderLocation, key: passengerId)
+        
         
         mapView.addAnnotation(riderAnnotation)
         
         let destinationLocation = location.coordinate!
         let annotation = MKPointAnnotation()
         annotation.coordinate = destinationLocation
+      
         mapView.addAnnotation(annotation)
    
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+  /*  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? PassengerAnnotation {
             let identifier = "passenger"
             var view: MKAnnotationView
@@ -106,6 +109,28 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
                 annotationView?.annotation = annotation
             }
             annotationView?.image = UIImage(named: "destinationAnnotation")
+            return annotationView
+        }
+        return nil
+    }  */
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let passengerAnnotation = annotation as? PassengerAnnotation {
+            let annotationView = MKAnnotationView(annotation: passengerAnnotation, reuseIdentifier: "destinationAnnotation")
+            annotationView.image = UIImage(named: "destinationAnnotation")
+            return annotationView
+        }
+        else if let destinationAnnotation = annotation as? MKPointAnnotation {
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "destinationAnnotation")
+            
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: destinationAnnotation, reuseIdentifier: "destinationAnnotation")
+            } else {
+                annotationView?.annotation = destinationAnnotation
+            }
+            annotationView!.image = UIImage(named: "destinationAnnotation")
             return annotationView
         }
         return nil
@@ -143,6 +168,43 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
      
     }
     
+    func zoom(toFitAnnotationsFromMapView mapView: MKMapView, forActiveTripWithDriver: Bool, withKey key: String?) {
+        if mapView.annotations.count == 0 {
+            return
+        }
+        var topLeftCoordinate = CLLocationCoordinate2D(latitude: -90, longitude: 180)
+        var bottomRightCoordinate = CLLocationCoordinate2D(latitude: 90, longitude: -180)
+        
+        if forActiveTripWithDriver {
+            for annotation in mapView.annotations {
+                if let annotation = annotation as? DriverAnnotation {
+                    if annotation.driverID == key {
+                        topLeftCoordinate.longitude = fmin(topLeftCoordinate.longitude, annotation.coordinate.longitude)
+                        topLeftCoordinate.latitude = fmax(topLeftCoordinate.latitude, annotation.coordinate.latitude)
+                        bottomRightCoordinate.longitude = fmax(bottomRightCoordinate.longitude, annotation.coordinate.longitude)
+                        bottomRightCoordinate.latitude = fmin(bottomRightCoordinate.latitude, annotation.coordinate.latitude)
+                    }
+                } else {
+                    topLeftCoordinate.longitude = fmin(topLeftCoordinate.longitude, annotation.coordinate.longitude)
+                    topLeftCoordinate.latitude = fmax(topLeftCoordinate.latitude, annotation.coordinate.latitude)
+                    bottomRightCoordinate.longitude = fmax(bottomRightCoordinate.longitude, annotation.coordinate.longitude)
+                    bottomRightCoordinate.latitude = fmin(bottomRightCoordinate.latitude, annotation.coordinate.latitude)
+                }
+            }
+        }
+        
+        for annotation in mapView.annotations where !annotation.isKind(of: DriverAnnotation.self) {
+            topLeftCoordinate.longitude = fmin(topLeftCoordinate.longitude, annotation.coordinate.longitude)
+            topLeftCoordinate.latitude = fmax(topLeftCoordinate.latitude, annotation.coordinate.latitude)
+            bottomRightCoordinate.longitude = fmax(bottomRightCoordinate.longitude, annotation.coordinate.longitude)
+            bottomRightCoordinate.latitude = fmin(bottomRightCoordinate.latitude, annotation.coordinate.latitude)
+        }
+        
+        var region = MKCoordinateRegion(center: CLLocationCoordinate2DMake(topLeftCoordinate.latitude - (topLeftCoordinate.latitude - bottomRightCoordinate.latitude) * 0.5, topLeftCoordinate.longitude + (bottomRightCoordinate.longitude - topLeftCoordinate.longitude) * 0.5), span: MKCoordinateSpan(latitudeDelta: fabs(topLeftCoordinate.latitude - bottomRightCoordinate.latitude) * 2.0, longitudeDelta: fabs(bottomRightCoordinate.longitude - topLeftCoordinate.longitude) * 2.0))
+        
+        region = mapView.regionThatFits(region)
+        mapView.setRegion(region, animated: true)
+    }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else {
@@ -179,12 +241,18 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         if let id = Auth.auth().currentUser?.uid {
             DataService.instance.updateUserLocation(userID: id, withCoordinate: userLocation.coordinate)
             
-          
-    }
-}
-    
-   
-}
+            DataService.instance.passengerIsOnTrip(passengerId: id, handler: {
+                (isOnTrip, driverKey, tripKey) in
+                if isOnTrip{
+                    self.zoom(toFitAnnotationsFromMapView: self.mapView, forActiveTripWithDriver: true, withKey: driverKey)
+                } else {
+                    self.centerMapOnUserLocation()
+                }
+            })
+        }
+     }
+  }
+
 extension RiderPickUpMapVC: SidebarViewRiderDelegate {
     
     /* Adding the rows to the side bar */
@@ -226,7 +294,63 @@ extension RiderPickUpMapVC {
         switch action {
         case .requestTrip:
             DataService.instance.createTrip()
+             
+        case .cancelTrip:
+            DataService.instance.passengerIsOnTrip(passengerId: userId) {
+                (isOnTrip, driverId, tripId) in
+                self.removeDestinationPin()
+                self.removeOverlay()
+                self.centerMapOnUserLocation()
+                
+                DataService.instance.cancelTrip(withPassengerId: userId, forDriverId: driverId!)
+                self.buttonAction = .requestTrip
+            }
         }
+    }
+    
+  func dropPinFor(placemark: MKPlacemark){
+        
+        removeDestinationPin()
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        mapView.addAnnotation(annotation)
+    }
+    
+    
+    func removeDestinationPin() {
+        
+        for annotation in mapView.annotations {
+            if annotation.isKind(of: MKPointAnnotation.self) {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+    
+    func removeUserPin() {
+        
+        for annotation in mapView.annotations {
+            if let annotation = annotation as? PassengerAnnotation {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+        
+    }
+    
+   func removeOverlay(){
+        
+        for overlay in mapView.overlays {
+            if overlay is MKPolyline {
+                mapView.removeOverlay(overlay)
+            }
+        }
+    }
+    
+    
+    func centerMapOnUserLocation(){
+        let regionRadious: CLLocationDistance = 2000
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
     

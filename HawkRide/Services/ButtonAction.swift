@@ -10,6 +10,8 @@ import Foundation
 
 enum ButtonAction {
     case requestTrip
+    case cancelTrip
+    
     
     
 }

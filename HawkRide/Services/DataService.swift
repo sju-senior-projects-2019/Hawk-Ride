@@ -237,10 +237,10 @@ final class DataService {
                     let pickUpCoordinate = snapshot[kCOORDINATES] as? NSArray
                     let destinationCoordinate = snapshot[kDESTINATION_COORDINTE] as? NSArray
                     
-                    let tripData = [kPICKUP_COORDINATE: pickUpCoordinate,
-                                    kDESTINATION_COORDINTE: destinationCoordinate,
+                    let tripData = [kPICKUP_COORDINATE: pickUpCoordinate as Any,
+                                    kDESTINATION_COORDINTE: destinationCoordinate as Any,
                                     kPASSENGER: userId,
-                                    kTRIP_IS_ACCEPTED: false] as! [String: Any]
+                                    kTRIP_IS_ACCEPTED: false] 
                     self.REF_TRIPS.child(userId).updateChildValues(tripData)
                     
                 }
