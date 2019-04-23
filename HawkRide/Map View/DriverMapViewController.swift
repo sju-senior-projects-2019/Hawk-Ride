@@ -126,6 +126,31 @@ class DriverMapViewController: UIViewController {
     }
 
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let userId = Auth.auth().currentUser?.uid else {return}
+        
+        DataService.instance.REF_TRIPS.observe(.childRemoved) {(tripSnapshot) in
+            if tripSnapshot.key == userId {
+                
+                self.removeOverlay()
+                self.removeUserPin()
+                self.removeDestinationPin()
+                self.centerMapOnUserLocation()
+                
+                
+            }
+            else if tripSnapshot.childSnapshot(forPath: kDRIVERID).value as! String == userId {
+                
+                self.removeOverlay()
+                self.removeUserPin()
+                self.removeDestinationPin()
+                self.centerMapOnUserLocation()
+            }
+    }
+}
+    
     @IBAction func switchWasToggled(_ sender: Any) {
         let currentUserId = Auth.auth().currentUser?.uid
         if pickUpSwitch.isOn {
@@ -300,6 +325,30 @@ extension DriverMapViewController: SidebarDriverViewDelegate {
 
 extension DriverMapViewController {
     
+    func removeOverlay() {
+        
+        for overlay in mapView.overlays {
+            if overlay is MKPolyline {
+                mapView.removeOverlay(overlay)
+            }
+        }
+    }
+    
+    func removeUserPin() {
+        for annotation in mapView.annotations {
+            if let annotation = annotation as? PassengerAnnotation {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+    
+    func removeDestinationPin() {
+        for annotation in mapView.annotations {
+            if annotation.isKind(of: MKPointAnnotation.self) {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
     func centerMapOnUserLocation(){
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
