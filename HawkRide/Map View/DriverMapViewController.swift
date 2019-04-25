@@ -24,6 +24,7 @@ class DriverMapViewController: UIViewController {
     var buttonAction: buttonActionForDrivers!
     @IBOutlet weak var pickUpSwitch: UISwitch!
     
+   
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
@@ -87,7 +88,7 @@ class DriverMapViewController: UIViewController {
                     })
                 }
             }
-            self.connectUserWithDriver()
+            //self.connectUserWithDriver()
         }
         
         DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -116,24 +117,25 @@ class DriverMapViewController: UIViewController {
         
         guard let userId = Auth.auth().currentUser?.uid else {return}
         
-        DataService.instance.REF_TRIPS.observe(.childRemoved) {(tripSnapshot) in
+        DataService.instance.REF_TRIPS.observe(.childRemoved) { (tripSnapshot) in
             if tripSnapshot.key == userId {
                 
                 self.removeOverlay()
                 self.removeUserPin()
                 self.removeDestinationPin()
                 self.centerMapOnUserLocation()
-                
+
                 
             }
-            else if tripSnapshot.childSnapshot(forPath: kDRIVERID).value as? String == userId {
-                
+            else if tripSnapshot.childSnapshot(forPath: kDRIVERID).value as! String == userId {
                 self.removeOverlay()
                 self.removeUserPin()
                 self.removeDestinationPin()
                 self.centerMapOnUserLocation()
+              
             }
-       }
+        
+        }
         
         // Find trip belongs to driver
         DataService.instance.fetchTrip(forDriver: userId) { (trip) in
@@ -156,6 +158,7 @@ class DriverMapViewController: UIViewController {
         }
        
      }
+
     
     @IBAction func switchWasToggled(_ sender: Any) {
         let currentUserId = Auth.auth().currentUser?.uid
@@ -167,6 +170,9 @@ class DriverMapViewController: UIViewController {
         }
     }
         
+    
+   
+      
     
     
         
@@ -290,31 +296,37 @@ extension DriverMapViewController: MKMapViewDelegate {
         }
     }
 
-    
-   /* func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? DriverAnnotation {
-            let identifier = "driver"
-            var view: MKAnnotationView
-            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.image = UIImage(named: "mapcar")
-            return view
-        }
-       
-        
-        return nil
-    } */
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         if let driverAnnotation = annotation as? DriverAnnotation {
             let annotationView: MKAnnotationView = MKAnnotationView(annotation: driverAnnotation, reuseIdentifier: "driver")
             annotationView.image = UIImage(named: "mapcar")
             return annotationView
         }
+            // Rider Annotation
+        else if let passengerAnnotation = annotation as? PassengerAnnotation {
+            let annotationView = MKAnnotationView(annotation: passengerAnnotation, reuseIdentifier: "passengerAnnotation")
+            annotationView.image = UIImage(named: "pickup_pin")
+            return annotationView
+        }
+        else if let destinationAnnotation = annotation as? MKPointAnnotation {
+            
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "destinationAnnotation")
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: destinationAnnotation, reuseIdentifier: "destination_pin")
+            }else{
+                annotationView?.annotation = destinationAnnotation
+            }
+            
+            annotationView!.image = UIImage(named: "destination_pin")
+            return annotationView
+            
+        }
+        
         return nil
+        
     }
-    
 }
-
 extension DriverMapViewController: SidebarDriverViewDelegate {
     
     /* Adding the rows to the side bar */
@@ -364,7 +376,7 @@ extension DriverMapViewController {
         case .startTrip:
             DataService.instance.driverIsOnTrip(driverKey: userId) { (isOnTrip, driverId, tripId) in
                 if isOnTrip! {
-                    self.removeOverlay()
+                self.removeOverlay()
                     DataService.instance.REF_TRIPS.child(tripId!).updateChildValues([kTRIP_ON_PROGRESS: true])
                     
                     DataService.instance.fetchTrip(forDriver: driverId!, completion: { (tripDict) in
@@ -383,6 +395,15 @@ extension DriverMapViewController {
                     })
                 }
             }
+        
+        case .cancelTrip:
+            DataService.instance.driverIsOnTrip(driverKey:userId) {
+                (isOnTrip, driverId, tripId) in
+                self.removeOverlay()
+                self.removeDestinationPin()
+                self.centerMapOnUserLocation()
+            }
+      
         case .endTrip:
             DataService.instance.driverIsOnTrip(driverKey: userId) {(isOnTrip, driverId, tripId) in
                 if isOnTrip!{
@@ -577,7 +598,7 @@ extension DriverMapViewController {
     }
     
     // THIS FUNCTION MIGHT NOT BELONG HERE
-    func connectUserWithDriver(){
+   /* func connectUserWithDriver(){
         guard let userId = Auth.auth().currentUser?.uid else{return}
         
         DataService.instance.userIsDriver(userId: userId) { (isDriver) in
@@ -631,6 +652,6 @@ extension DriverMapViewController {
                 })
             }
         }
-    }
+    } */
 }
 

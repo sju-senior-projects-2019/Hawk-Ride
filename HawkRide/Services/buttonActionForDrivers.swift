@@ -12,6 +12,7 @@ import Foundation
 enum buttonActionForDrivers {
     
     case startTrip
+    case cancelTrip
     case endTrip
     case getDirectionToPassenger
     case getDirectionToDestination

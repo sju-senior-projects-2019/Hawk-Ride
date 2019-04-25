@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XAm-wh-Wad">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XAm-wh-Wad">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -234,7 +234,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rider Portal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1u-BI-ceJ">
-                                <rect key="frame" x="20" y="703.33333333333337" width="123" height="24.666666666666629"/>
+                                <rect key="frame" x="20.000000000000007" y="704.66666666666663" width="105.66666666666669" height="23.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -580,9 +580,8 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-54-cms">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="915"/>
                             </mapView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-CQ-jRP">
-                                <rect key="frame" x="183" y="768" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-CQ-jRP">
+                                <rect key="frame" x="183" y="771" width="50" height="31"/>
                                 <connections>
                                     <action selector="switchWasToggled:" destination="Yam-Zp-1mx" eventType="valueChanged" id="Kod-Yj-W3M"/>
                                 </connections>
@@ -590,8 +589,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="yRJ-CQ-jRP" firstAttribute="leading" secondItem="fcj-4G-veU" secondAttribute="leading" constant="183" id="6Jn-KH-g1h"/>
+                            <constraint firstItem="yRJ-CQ-jRP" firstAttribute="top" secondItem="fcj-4G-veU" secondAttribute="top" constant="683" id="FNZ-qM-LGe"/>
                             <constraint firstItem="Ydz-54-cms" firstAttribute="trailing" secondItem="CAS-b5-ar2" secondAttribute="trailing" id="SuK-T4-6UB"/>
                             <constraint firstItem="CAS-b5-ar2" firstAttribute="leading" secondItem="BLd-2p-PWp" secondAttribute="leading" id="dR7-hE-se7"/>
+                            <constraint firstItem="yRJ-CQ-jRP" firstAttribute="centerX" secondItem="CAS-b5-ar2" secondAttribute="centerX" id="eqa-Pj-oge"/>
                             <constraint firstAttribute="trailing" secondItem="CAS-b5-ar2" secondAttribute="trailing" id="j1u-fx-DEd"/>
                             <constraint firstItem="Ydz-54-cms" firstAttribute="leading" secondItem="CAS-b5-ar2" secondAttribute="leading" id="mDD-sa-NlC"/>
                             <constraint firstAttribute="bottom" secondItem="CAS-b5-ar2" secondAttribute="bottom" id="mdt-PF-bCb"/>
@@ -832,7 +834,7 @@
                                 <rect key="frame" x="0.0" y="-15" width="414" height="911"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-9R-j3Y" customClass="RequestCustomButton" customModule="Hawk_Ride" customModuleProvider="target">
-                                <rect key="frame" x="67" y="804" width="286" height="47"/>
+                                <rect key="frame" x="70" y="784" width="286" height="47"/>
                                 <state key="normal" title="Request Hawk Ride">
                                     <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -843,14 +845,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sz4-9R-j3Y" firstAttribute="top" secondItem="6ja-aR-XKg" secondAttribute="top" constant="716" id="2M2-nj-dj8"/>
+                            <constraint firstItem="sz4-9R-j3Y" firstAttribute="top" secondItem="6ja-aR-XKg" secondAttribute="top" constant="696" id="2M2-nj-dj8"/>
                             <constraint firstItem="uw1-qm-bRV" firstAttribute="top" secondItem="6ja-aR-XKg" secondAttribute="top" constant="-103" id="83O-cl-gLp"/>
                             <constraint firstItem="6ja-aR-XKg" firstAttribute="trailing" secondItem="uw1-qm-bRV" secondAttribute="trailing" id="8bg-Vq-cIV"/>
                             <constraint firstItem="uw1-qm-bRV" firstAttribute="leading" secondItem="6ja-aR-XKg" secondAttribute="leading" id="NbX-02-PwT"/>
                             <constraint firstItem="6ja-aR-XKg" firstAttribute="bottom" secondItem="uw1-qm-bRV" secondAttribute="bottom" constant="-34" id="UQJ-zz-rnl"/>
-                            <constraint firstItem="sz4-9R-j3Y" firstAttribute="leading" secondItem="6ja-aR-XKg" secondAttribute="leading" constant="67" id="jyA-hB-63G"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="sz4-9R-j3Y" secondAttribute="bottom" constant="11" id="lsp-KK-hZT"/>
-                            <constraint firstItem="6ja-aR-XKg" firstAttribute="trailing" secondItem="sz4-9R-j3Y" secondAttribute="trailing" constant="61" id="xNx-hc-O34"/>
+                            <constraint firstItem="sz4-9R-j3Y" firstAttribute="leading" secondItem="6ja-aR-XKg" secondAttribute="leading" constant="70" id="jyA-hB-63G"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="sz4-9R-j3Y" secondAttribute="bottom" constant="31" id="lsp-KK-hZT"/>
+                            <constraint firstItem="6ja-aR-XKg" firstAttribute="trailing" secondItem="sz4-9R-j3Y" secondAttribute="trailing" constant="58" id="xNx-hc-O34"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6ja-aR-XKg"/>
                     </view>
@@ -1316,12 +1318,12 @@
     </scenes>
     <resources>
         <image name="CancelButton" width="72" height="72"/>
-        <image name="backButton" width="48" height="48"/>
-        <image name="driverportal" width="354" height="560"/>
+        <image name="backButton" width="30" height="30"/>
+        <image name="driverportal" width="177" height="280"/>
         <image name="home" width="72" height="72"/>
         <image name="locationsearch" width="72" height="72"/>
-        <image name="mainscreen" width="337" height="683"/>
-        <image name="riderportal" width="474" height="933"/>
+        <image name="mainscreen" width="168.5" height="341.5"/>
+        <image name="riderportal" width="237" height="466.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pi7-4R-5MC"/>

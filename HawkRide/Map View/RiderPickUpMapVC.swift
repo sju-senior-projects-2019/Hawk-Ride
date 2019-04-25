@@ -23,7 +23,7 @@ class RiderPickUpMapVC: UIViewController {
     var locationManager = CLLocationManager()
     let regionInMeters: Double = 1800
     @IBOutlet weak var RequestButton: RequestCustomButton!
-    
+    @IBOutlet weak var CancelButton: RequestCustomButton!
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
     var currentLocationLongitude = CLLocationDegrees()
@@ -49,18 +49,35 @@ class RiderPickUpMapVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
-      
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-       setupAnnotation(location: location)
+        setupAnnotation(location: location)
         drawRoute(location: location)
         
-    }
+        guard let userId = Auth.auth().currentUser?.uid else
+        {return}
+        
+        DataService.instance.REF_TRIPS.observe(.childRemoved) {(tripSnapshot) in
+            if tripSnapshot.key == userId {
+               self.removeOverlay()
+               self.removeUserPin()
+               self.removeDestinationPin()
+               self.RequestButton.isEnabled = true
+               
+                
+            } else {
+                self.CancelButton.fadeTo(alphaValue: 0.0, withDuration: 0.2)
+                self.RequestButton.animateButton(shouldLoad: false, withMessage: "Request Hawk Ride")
+                 self.centerMapOnUserLocation()
+            }
+        }
+        
+        connectUserAndDriverForTrip()
+        
+}
+    
    
     @IBAction func requestButton(_ sender: RequestCustomButton) {
+       RequestButton.animateButton(shouldLoad: true, withMessage: nil)
         if Auth.auth().currentUser?.uid != nil {
             buttonSelector(forAction: buttonAction)
             
@@ -69,6 +86,7 @@ class RiderPickUpMapVC: UIViewController {
             present(vc, animated: true)
         }
     }
+    
 }
 
 extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
@@ -93,49 +111,38 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
    
     }
     
-  /*  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? PassengerAnnotation {
-            let identifier = "passenger"
-            var view: MKAnnotationView
-            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.image = UIImage(named: "destinationAnnotation")
-            return view
-        } else if let annotation = annotation as? MKPointAnnotation {
-            let identifier = "destination"
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            }else {
-                annotationView?.annotation = annotation
-            }
-            annotationView?.image = UIImage(named: "destinationAnnotation")
-            return annotationView
-        }
-        return nil
-    }  */
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if let passengerAnnotation = annotation as? PassengerAnnotation {
-            let annotationView = MKAnnotationView(annotation: passengerAnnotation, reuseIdentifier: "destinationAnnotation")
-            annotationView.image = UIImage(named: "destinationAnnotation")
+        if let driverAnnotation = annotation as? DriverAnnotation {
+            let annotationView: MKAnnotationView = MKAnnotationView(annotation: driverAnnotation, reuseIdentifier: "driver")
+            annotationView.image = UIImage(named: "mapcar")
+            return annotationView
+        }
+            // Rider Annotation
+        else if let passengerAnnotation = annotation as? PassengerAnnotation {
+            let annotationView = MKAnnotationView(annotation: passengerAnnotation, reuseIdentifier: "passengerAnnotation")
+            annotationView.image = UIImage(named: "pickup_pin")
             return annotationView
         }
         else if let destinationAnnotation = annotation as? MKPointAnnotation {
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "destinationAnnotation")
             
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "destinationAnnotation")
             if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: destinationAnnotation, reuseIdentifier: "destinationAnnotation")
-            } else {
+                annotationView = MKAnnotationView(annotation: destinationAnnotation, reuseIdentifier: "destination_pin")
+            }else{
                 annotationView?.annotation = destinationAnnotation
             }
-            annotationView!.image = UIImage(named: "destinationAnnotation")
+            
+            annotationView!.image = UIImage(named: "destination_pin")
             return annotationView
+            
         }
+        
         return nil
+        
     }
     
+    // Draw a route for the passenger request location and current locaiton //
     func drawRoute(location: Location) {
         
         let sourceLocation = MKMapItem.forCurrentLocation()
@@ -166,6 +173,43 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         }
         
      
+    }
+    func createRoute(forOriginMapItem originMapItem: MKMapItem?, withDestinationMapItem destinationMapItem: MKMapItem) {
+       
+        let request = MKDirections.Request()
+        
+        if originMapItem == nil
+        {
+            request.source = MKMapItem.forCurrentLocation()
+        }
+        else
+        {
+            request.source = originMapItem
+        }
+        
+        request.destination = destinationMapItem
+        request.transportType = MKDirectionsTransportType.automobile
+        request.requestsAlternateRoutes = true
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculate { (response, error) in
+            
+            guard let response = response else {
+                
+              
+                return
+            }
+            self.route = response.routes[0]
+            
+            self.mapView.addOverlay(self.route!.polyline)
+            
+            self.zoom(toFitAnnotationsFromMapView: self.mapView, forActiveTripWithDriver: false, withKey: nil)
+            
+          
+        }
+        
+        
     }
     
     func zoom(toFitAnnotationsFromMapView mapView: MKMapView, forActiveTripWithDriver: Bool, withKey key: String?) {
@@ -278,8 +322,7 @@ extension RiderPickUpMapVC: SidebarViewRiderDelegate {
             print("Log out")
         case .none:
             break
-            //        default:  //Default will never be executed
-            //            break
+           
         }
     }
     
@@ -294,18 +337,28 @@ extension RiderPickUpMapVC {
         switch action {
         case .requestTrip:
             DataService.instance.createTrip()
-             
+            
         case .cancelTrip:
-            DataService.instance.passengerIsOnTrip(passengerId: userId) {
-                (isOnTrip, driverId, tripId) in
+            DataService.instance.passengerIsOnTrip(passengerId: userId) { (isOnTrip, driverId, tripId) in
                 self.removeDestinationPin()
                 self.removeOverlay()
+                self.removeDriverPin()
                 self.centerMapOnUserLocation()
-                
+                self.RequestButton.animateButton(shouldLoad: false, withMessage: "Request Hawk Ride")
                 DataService.instance.cancelTrip(withPassengerId: userId, forDriverId: driverId!)
                 self.buttonAction = .requestTrip
+            
             }
-        }
+        } 
+    }
+
+    func createMapItem(fromDictionary dict:[String: Any], key: String)-> MKMapItem{
+        let coordinateArray = dict[key] as! [CLLocationDegrees]
+        let coordinate = CLLocationCoordinate2D(latitude: coordinateArray[0], longitude: coordinateArray[1])
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        
+        return mapItem
     }
     
   func dropPinFor(placemark: MKPlacemark){
@@ -327,6 +380,15 @@ extension RiderPickUpMapVC {
         }
     }
     
+    func removeDriverPin() {
+        
+        for annotation in mapView.annotations {
+            if let annotation = annotation as? DriverAnnotation {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+    
     func removeUserPin() {
         
         for annotation in mapView.annotations {
@@ -337,7 +399,7 @@ extension RiderPickUpMapVC {
         
     }
     
-   func removeOverlay(){
+       func removeOverlay(){
         
         for overlay in mapView.overlays {
             if overlay is MKPolyline {
@@ -352,6 +414,68 @@ extension RiderPickUpMapVC {
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, latitudinalMeters: regionRadious, longitudinalMeters: regionRadious)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
+    
+    func connectUserAndDriverForTrip() {
+        guard let userId = Auth.auth().currentUser?.uid else{return}
+        
+        DataService.instance.userIsDriver(userId: userId) { (isDriver) in
+            if !isDriver {
+                DataService.instance.REF_TRIPS.child(userId).observe(.value, with: { (tripSnapshot) in
+                    
+                    guard let tripDict = tripSnapshot.value as? [String:Any] else {return}
+                    if tripDict[kTRIP_IS_ACCEPTED] as! Bool {
+                        self.removeOverlay()
+                        self.removeUserPin()
+                        self.removeDriverPin()
+                        
+                        let driverId = tripDict[kDRIVERID] as! String
+                        
+                        let pickupMapItem = self.createMapItem(fromDictionary: tripDict, key: kPICKUP_COORDINATE)
+                        
+                        DataService.instance.REF_DRIVERS.child(driverId).observeSingleEvent(of: .value, with: { (driverSnapshot) in
+                            
+                            if let driverSnapshot = driverSnapshot.value as? [String:Any] {
+                                
+                                let driverMapItem = self.createMapItem(fromDictionary: driverSnapshot, key: kCOORDINATES)
+                                
+                                // create annotations and route
+                                let passengerAnnotation = PassengerAnnotation(coordinate: pickupMapItem.placemark.coordinate, key: userId)
+                                let driverAnnotation = DriverAnnotation(coordinate: driverMapItem.placemark.coordinate, driverID: driverId)
+                                
+                                self.mapView.addAnnotations([passengerAnnotation,driverAnnotation])
+                                self.createRoute(forOriginMapItem: driverMapItem, withDestinationMapItem: pickupMapItem)
+                                
+                                DispatchQueue.main.async {
+                                    self.RequestButton.animateButton(shouldLoad: false, withMessage: kCANCEL_TRIP)
+                                    self.buttonAction = .cancelTrip
+                                }
+                            }
+                        })
+                        
+                        if tripDict[kTRIP_ON_PROGRESS] as? Bool == true {
+                            self.removeOverlay()
+                            self.removeUserPin()
+                            self.removeDriverPin()
+                            
+                            let destinationMapItem = self.createMapItem(fromDictionary: tripDict, key: kDESTINATION_COORDINTE)
+                            
+                            self.dropPinFor(placemark: destinationMapItem.placemark)
+                            self.createRoute(forOriginMapItem: nil, withDestinationMapItem: destinationMapItem)
+                            
+                            self.RequestButton.setTitle(kON_TRIP, for: .normal)
+                            self.RequestButton.isEnabled = false
+                            
+                        }
+                        
+                    }
+                    
+                })
+            }
+        }
+    }
+        
+    
     
     
 }

@@ -87,7 +87,6 @@
 		0DCD93A822023A1300AAA621 /* SAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A622023A1300AAA621 /* SAButton.swift */; };
 		0DCD93AA22023B5900AAA621 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD93A922023B5900AAA621 /* Constrants.swift */; };
 		0DD67200224161750020C3ED /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD671FF224161750020C3ED /* SearchBarButton.swift */; };
-		0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD672012241747D0020C3ED /* GoLiveButton.swift */; };
 		0DE91EDF2202515A008C9B52 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */; };
 		0DE91EE02202515A008C9B52 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */; };
 		0DEA4DA02252E45F00E64E37 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */; };
@@ -202,7 +201,6 @@
 		0DCD93A622023A1300AAA621 /* SAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAButton.swift; sourceTree = "<group>"; };
 		0DCD93A922023B5900AAA621 /* Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
 		0DD671FF224161750020C3ED /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
-		0DD672012241747D0020C3ED /* GoLiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveButton.swift; sourceTree = "<group>"; };
 		0DE91EDC2202515A008C9B52 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		0DE91EDD2202515A008C9B52 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		0DEA4D9F2252E45F00E64E37 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 				0D8632732249E37800484675 /* GhostButton.swift */,
 				0D7A9FFE2241E2990089B62A /* CustomViewDesignTwo.swift */,
 				0D2D73E42249748E00337FA6 /* CustomViewDesignThree.swift */,
-				0DD672012241747D0020C3ED /* GoLiveButton.swift */,
 				0DCD93A922023B5900AAA621 /* Constrants.swift */,
 				0D0450C9220A9234009BD21B /* SAButtonPart2.swift */,
 				0D2952202238A27400DDA9CC /* SAButtonThree.swift */,
@@ -642,7 +639,6 @@
 				0D547E39225AC0B100F25416 /* RoundedShadownButton.swift in Sources */,
 				0D547E33225AA44000F25416 /* GOCustomButton.swift in Sources */,
 				0D547E3C225AC11200F25416 /* UIViewExt.swift in Sources */,
-				0DD672022241747D0020C3ED /* GoLiveButton.swift in Sources */,
 				0D89CD73223CC79A00DBE757 /* SchedulePageController.swift in Sources */,
 				0D30E518225830520023F2FD /* PassengerAnnotation.swift in Sources */,
 				0D89CD6F223CC74D00DBE757 /* driverEditProfileVC.swift in Sources */,

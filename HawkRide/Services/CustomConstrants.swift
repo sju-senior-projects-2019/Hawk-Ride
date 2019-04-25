@@ -35,6 +35,7 @@ public let kDRIVER_IS_ON_TRIP = "driverIsOnTtrip"
 public let kIS_PICKUP_MODE_ENABLED = "isPickUpModeIsEnabled"
 public let kISDRIVER = "isDriver"
 public let ACCOUNT_TYPE_DRIVER = "DRIVER"
+public let KDRIVER_KEY = "driverKey"
 
 //MARK:- trips
 public let kPICKUP_COORDINATE = "pickUpCoordinate"
