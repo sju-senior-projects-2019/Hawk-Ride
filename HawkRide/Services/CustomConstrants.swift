@@ -55,8 +55,9 @@ public let kSTART_TRIP = "START TRIP"
 public let kEND_TRIP = "END TRIP"
 public let kGET_DIRECTIONS = "GET DIRECTIONS"
 public let kCANCEL_TRIP = "CANCEL TRIP"
-public let kON_TRIP =  "ON TRIP"
+public let kON_TRIP =  "On Trip"
 public let kREQUEST_RIDE = "REQUEST RIDE"
+public let kDRIVING_COMING = "Driving is coming now "
 
 
 //MARK:- CELLS

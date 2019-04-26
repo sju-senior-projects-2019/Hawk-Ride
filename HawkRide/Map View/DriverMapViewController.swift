@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import Firebase
 
+
 class DriverMapViewController: UIViewController {
    
     //MARK: - Properties
@@ -23,14 +24,14 @@ class DriverMapViewController: UIViewController {
     var route: MKRoute!
     var buttonAction: buttonActionForDrivers!
     @IBOutlet weak var pickUpSwitch: UISwitch!
+     @IBOutlet weak var actionButton: RequestCustomButton!
     
-   
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
     var currentLocationLongitude = CLLocationDegrees()
-    
     var location = Location()
+    
    
     
     
@@ -46,8 +47,9 @@ class DriverMapViewController: UIViewController {
         setupMenuButton()
         setupBlackScreen()
         setupSideBarView()
-       
-        // Display driver annotations on the map
+        
+     
+    // Display driver annotations on the map
         DataService.instance.REF_DRIVERS.observe(.value) {
         (snapshot) in
         DataService.instance.loadDriverAnnotaitonsFromDB(mapView: self.mapView)
@@ -58,6 +60,7 @@ class DriverMapViewController: UIViewController {
                             self.zoom(toFitAnnotationsFromMapView: self.mapView, forActiveTripWithDriver: true, withKey: driverId)
                  })
             }
+           
      
         }
         
@@ -88,7 +91,7 @@ class DriverMapViewController: UIViewController {
                     })
                 }
             }
-            //self.connectUserWithDriver()
+           
         }
         
         DataService.instance.REF_DRIVERS.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -114,9 +117,17 @@ class DriverMapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
+       guard let userId = Auth.auth().currentUser?.uid else {return}
         
-        guard let userId = Auth.auth().currentUser?.uid else {return}
-        
+        DataService.instance.userIsDriver(userId:userId) {
+            (isDriver) in
+            if isDriver {
+                self.actionButton.isHidden = true
+                self.actionButton.isEnabled = true
+            }
+        }
+  
         DataService.instance.REF_TRIPS.observe(.childRemoved) { (tripSnapshot) in
             if tripSnapshot.key == userId {
                 
@@ -132,9 +143,8 @@ class DriverMapViewController: UIViewController {
                 self.removeUserPin()
                 self.removeDestinationPin()
                 self.centerMapOnUserLocation()
-              
+                self.actionButton.isHidden = true
             }
-        
         }
         
         // Find trip belongs to driver
@@ -146,21 +156,21 @@ class DriverMapViewController: UIViewController {
                 let passengerId = trip[kPASSENGER] as! String
                 
                 //Create route to passenger
-                let passengerAnnotation = PassengerAnnotation(coordinate: pickupMapItem.placemark.coordinate,key: passengerId)
-                
+                 let passengerAnnotation =  PassengerAnnotation(coordinate: pickupMapItem.placemark.coordinate,key: passengerId)
+             
                 self.mapView.addAnnotation(passengerAnnotation)
                 self.createRoute(fromMapItem: nil, toMapItem: pickupMapItem)
                 self.setRegionForMonitoring(forAnnotationType: .pickUp, withCoordinate: pickupMapItem.placemark.coordinate)
-                self.buttonAction = .getDirectionToPassenger
                 
+                self.buttonAction = .getDirectionToPassenger
+                self.actionButton.setTitle(kGET_DIRECTIONS, for: .normal)
+                self.actionButton.isHidden = false
+               
             }
-            
         }
-       
-     }
-
+       }
     
-    @IBAction func switchWasToggled(_ sender: Any) {
+@IBAction func switchWasToggled(_ sender: Any) {
         let currentUserId = Auth.auth().currentUser?.uid
         if pickUpSwitch.isOn {
             DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: true])
@@ -169,9 +179,16 @@ class DriverMapViewController: UIViewController {
             DataService.instance.REF_DRIVERS.child(currentUserId!).updateChildValues([kIS_PICKUP_MODE_ENABLED: false])
         }
     }
-        
     
-   
+    
+        
+    @IBAction func actionButton(_ sender: Any) {
+        actionButton.animateButton(shouldLoad: true, withMessage: nil)
+        if Auth.auth().currentUser?.uid != nil {
+            buttonSelector(forAction: buttonAction)
+    }
+    
+    }
       
     
     
@@ -259,20 +276,47 @@ extension DriverMapViewController: CLLocationManagerDelegate {
         }
     }
     
+    // NEED TO TEST THIS FUNCTION IN REAL TIME
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         guard let driverId = Auth.auth().currentUser?.uid else {return}
         
-        DataService.instance.driverIsOnTrip(driverKey: driverId) { (isOnTrip, driverId, tripId) in
-            if isOnTrip! {
+        DataService.instance.driverIsOnTrip(driverId: driverId) { (isOnTrip, driverId, tripId) in
+            if isOnTrip {
                 if region.identifier == kPICKUP {
                     self.buttonAction = .startTrip
-                
+                    print("Driver Entered pickup region!")
+                    self.actionButton.setTitle(kSTART_TRIP, for: .normal)
+               
                 } else if region.identifier == kDESTINATION {
                     self.buttonAction = .endTrip
+                    self.actionButton.setTitle(kEND_TRIP, for: .normal)
                 }
              }
         }
      }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+         guard let driverId = Auth.auth().currentUser?.uid else {return}
+        DataService.instance.driverIsOnTrip(driverId: driverId) {
+            (isOnTrip, driverId, tripId) in
+            
+            if isOnTrip == true {
+                
+                if region.identifier == kPICKUP {
+                    // Call an action on the button that will load directions to passenger pickup
+                    self.buttonAction = .getDirectionToPassenger
+                    self.actionButton.setTitle(kGET_DIRECTIONS, for: .normal)
+                }
+                else if region.identifier == kDESTINATION
+                {
+                    // Call an action on the button that will load directions to destination
+                    self.buttonAction = .getDirectionToDestination
+                    self.actionButton.setTitle(kGET_DIRECTIONS, for: .normal)
+                   
+                }
+            }
+        }
+    }
     
 }
 
@@ -284,8 +328,8 @@ extension DriverMapViewController: MKMapViewDelegate {
             DataService.instance.userIsDriver(userId: id) { (isDriver) in
                 if isDriver {
                     DataService.instance
-                        .driverIsOnTrip(driverKey: id, handler: { (isOnTrip, driverKey, tripKey) in
-                            if isOnTrip! {
+                        .driverIsOnTrip(driverId: id, handler: { (isOnTrip, driverKey, tripKey) in
+                            if isOnTrip {
                             self.zoom(toFitAnnotationsFromMapView: self.mapView, forActiveTripWithDriver: true, withKey: driverKey)
                             } else {
                                 self.centerMapOnUserLocation()
@@ -374,8 +418,8 @@ extension DriverMapViewController {
         switch action {
             
         case .startTrip:
-            DataService.instance.driverIsOnTrip(driverKey: userId) { (isOnTrip, driverId, tripId) in
-                if isOnTrip! {
+            DataService.instance.driverIsOnTrip(driverId: userId) { (isOnTrip, driverId, tripId) in
+                if isOnTrip {
                 self.removeOverlay()
                     DataService.instance.REF_TRIPS.child(tripId!).updateChildValues([kTRIP_ON_PROGRESS: true])
                     
@@ -386,18 +430,15 @@ extension DriverMapViewController {
                             self.dropPinFor(placemark: destinationMapItem.placemark)
                              self.createRoute(fromMapItem: nil, toMapItem: destinationMapItem)
                             self.setRegionForMonitoring(forAnnotationType: .destination, withCoordinate: destinationMapItem.placemark.coordinate)
-                             self.buttonAction = .getDirectionToPassenger
-                            
-                          
-                            
-                            
+                             self.buttonAction = .getDirectionToDestination
+                            self.actionButton.setTitle(kGET_DIRECTIONS, for: .normal)
                         }
                     })
                 }
             }
         
         case .cancelTrip:
-            DataService.instance.driverIsOnTrip(driverKey:userId) {
+            DataService.instance.driverIsOnTrip(driverId:userId) {
                 (isOnTrip, driverId, tripId) in
                 self.removeOverlay()
                 self.removeDestinationPin()
@@ -405,32 +446,33 @@ extension DriverMapViewController {
             }
       
         case .endTrip:
-            DataService.instance.driverIsOnTrip(driverKey: userId) {(isOnTrip, driverId, tripId) in
-                if isOnTrip!{
+            DataService.instance.driverIsOnTrip(driverId: userId) {(isOnTrip, driverId, tripId) in
+                if isOnTrip{
                     DataService.instance.cancelTrip(withPassengerId: tripId!, forDriverId: driverId!)
                     self.removeOverlay()
                     self.removeUserPin()
                     self.removeDestinationPin()
                     self.centerMapOnUserLocation()
+                   
                     
                 }
             }
         case .getDirectionToPassenger:
-            DataService.instance.driverIsOnTrip(driverKey: userId) { (isOnTrip, driverId, TripId) in
-                if isOnTrip!{
-                DataService.instance.fetchTrip(forDriver: userId, completion: { (tripDict) in
-                if let tripDict = tripDict {
-                let pickupMapItem = self.createMapItem(fromDictionary: tripDict, key: kPICKUP_COORDINATE)
-                pickupMapItem.name = "Passenger Pickup Point"
-                pickupMapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
-                
+            DataService.instance.driverIsOnTrip(driverId: userId) { (isOnTrip, driverId, TripId) in
+                if isOnTrip{
+                    DataService.instance.fetchTrip(forDriver: userId, completion: { (tripDict) in
+                        if let tripDict = tripDict {
+                            let pickupMapItem = self.createMapItem(fromDictionary: tripDict, key: kPICKUP_COORDINATE)
+                            pickupMapItem.name = "Passenger Pickup Point"
+                            pickupMapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+                        }
+                    })
                 }
-            })
-          }
-        }
+            }
+
         case .getDirectionToDestination:
-            DataService.instance.driverIsOnTrip(driverKey: userId) { (isOnTrip, driverId, TripId) in
-                if isOnTrip!{
+            DataService.instance.driverIsOnTrip(driverId: userId) { (isOnTrip, driverId, TripId) in
+                if isOnTrip{
                     DataService.instance.fetchTrip(forDriver: userId, completion: { (tripDict) in
                         if let tripDict = tripDict {
                             let destinationMapItem = self.createMapItem(fromDictionary: tripDict, key: kDESTINATION_COORDINTE)
@@ -597,61 +639,5 @@ extension DriverMapViewController {
         mapView.setRegion(region, animated: true)
     }
     
-    // THIS FUNCTION MIGHT NOT BELONG HERE
-   /* func connectUserWithDriver(){
-        guard let userId = Auth.auth().currentUser?.uid else{return}
-        
-        DataService.instance.userIsDriver(userId: userId) { (isDriver) in
-            if !isDriver {
-                DataService.instance.REF_TRIPS.child(userId).observe(.value, with: { (tripSnapshot) in
-                    
-                    guard let tripDict = tripSnapshot.value as? [String:Any] else {return}
-                    if tripDict[kTRIP_IS_ACCEPTED] as! Bool {
-                        self.removeOverlay()
-                        self.removeUserPin()
-                        self.removeDriverPin()
-                        
-                        let driverId = tripDict[kDRIVERID] as! String
-                        
-                        let pickupMapItem = self.createMapItem(fromDictionary: tripDict, key: kPICKUP_COORDINATE)
-                        
-                        DataService.instance.REF_DRIVERS.child(driverId).observeSingleEvent(of: .value, with: { (driverSnapshot) in
-                            
-                            if let driverSnapshot = driverSnapshot.value as? [String:Any] {
-                                
-                                let driverMapItem = self.createMapItem(fromDictionary: driverSnapshot, key: kCOORDINATES)
-                                
-                                // create annotations and route
-                                let passengerAnnotation = PassengerAnnotation(coordinate: pickupMapItem.placemark.coordinate, key: userId)
-                                let driverAnnotation = DriverAnnotation(coordinate: driverMapItem.placemark.coordinate, driverID: driverId)
-                                
-                                self.mapView.addAnnotations([passengerAnnotation,driverAnnotation])
-                                self.createRoute(fromMapItem: driverMapItem, toMapItem: pickupMapItem)
-                                
-                              
-                            }
-                        })
-                        
-                        if tripDict[kTRIP_ON_PROGRESS] as? Bool == true {
-                            self.removeOverlay()
-                            self.removeUserPin()
-                            self.removeDriverPin()
-                            
-                            let destinationMapItem = self.createMapItem(fromDictionary: tripDict, key: kDESTINATION_COORDINTE)
-                            
-                            self.dropPinFor(placemark: destinationMapItem.placemark)
-                            self.createRoute(fromMapItem: nil, toMapItem: destinationMapItem)
-                            
-                           
-                           
-                            
-                        }
-                        
-                    }
-                    
-                })
-            }
-        }
-    } */
 }
 

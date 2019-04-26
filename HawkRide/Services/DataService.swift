@@ -150,7 +150,7 @@ final class DataService {
         }
     }
     
-    func driverIsOnTrip(driverKey: String, handler: @escaping (_ status: Bool?, _ driverKey: String?, _ tripKey: String?) -> Void) {
+  /*  func driverIsOnTrip(driverKey: String, handler: @escaping (_ status: Bool?, _ driverKey: String?, _ tripKey: String?) -> Void) {
         
         DataService.instance.REF_DRIVERS.child(driverKey).child(kDRIVER_IS_ON_TRIP).observe(.value, with: { (driverTripStatusSnapshot) in
             
@@ -182,7 +182,30 @@ final class DataService {
                 }
             }
         })
+    } */
+   
+    func driverIsOnTrip(driverId: String, handler: @escaping (_ status: Bool, _ driverKey: String?, _ tripKey: String?) -> Void) {
+        REF_DRIVERS.child(driverId).child(kDRIVER_IS_ON_TRIP).observe(.value, with: { (driverTripStatusSnapshot) in
+            if let driverTripStatusSnapshot = driverTripStatusSnapshot.value as? Bool {
+                if driverTripStatusSnapshot == true {
+                    self.REF_TRIPS.observeSingleEvent(of: .value, with: { (tripSnapshot) in
+                        if let tripSnapshot = tripSnapshot.children.allObjects as? [DataSnapshot] {
+                            for trip in tripSnapshot {
+                                if trip.childSnapshot(forPath: kDRIVERID).value as? String == driverId {
+                                    handler(true, driverId, trip.key)
+                                } else {
+                                    return
+                                }
+                            }
+                        }
+                    })
+                } else {
+                    handler(false, nil, nil)
+                }
+            }
+        })
     }
+    
     
     func loadDriverAnnotaitonsFromDB(mapView: MKMapView){
         REF_DRIVERS.observeSingleEvent(of: .value) { (snapshot) in
@@ -208,7 +231,7 @@ final class DataService {
                                 return false
                             })
                         }
-                        // if driver is not on the map add him
+                        // if driver is not on the map add them
                         if !driverIsVisible {
                             mapView.addAnnotation(driverAnnotation)
                         }

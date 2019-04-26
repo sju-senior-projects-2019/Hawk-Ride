@@ -96,7 +96,7 @@ extension DriverPickUpMapVC: MKMapViewDelegate {
                 annotationView?.annotation = destinationAnnotation
             }
             
-            annotationView!.image = UIImage(named: "destination_pin")
+            annotationView!.image = UIImage(named: "pickup_pin")
             return annotationView
             
         }

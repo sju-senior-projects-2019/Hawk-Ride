@@ -581,17 +581,32 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="915"/>
                             </mapView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-CQ-jRP">
-                                <rect key="frame" x="183" y="771" width="50" height="31"/>
+                                <rect key="frame" x="183" y="749" width="50" height="31"/>
                                 <connections>
                                     <action selector="switchWasToggled:" destination="Yam-Zp-1mx" eventType="valueChanged" id="Kod-Yj-W3M"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKs-R9-hfG" customClass="RequestCustomButton" customModule="Hawk_Ride" customModuleProvider="target">
+                                <rect key="frame" x="64" y="805" width="286" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="s4h-h1-oLd"/>
+                                </constraints>
+                                <state key="normal" title="PICK UP RIDER">
+                                    <color key="titleColor" red="0.058823529409999999" green="0.12941176469999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionButton:" destination="Yam-Zp-1mx" eventType="touchUpInside" id="P6e-Qh-hO7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yRJ-CQ-jRP" firstAttribute="leading" secondItem="fcj-4G-veU" secondAttribute="leading" constant="183" id="6Jn-KH-g1h"/>
-                            <constraint firstItem="yRJ-CQ-jRP" firstAttribute="top" secondItem="fcj-4G-veU" secondAttribute="top" constant="683" id="FNZ-qM-LGe"/>
+                            <constraint firstItem="GKs-R9-hfG" firstAttribute="centerX" secondItem="CAS-b5-ar2" secondAttribute="centerX" id="Asg-qQ-S55"/>
+                            <constraint firstItem="yRJ-CQ-jRP" firstAttribute="top" secondItem="fcj-4G-veU" secondAttribute="top" constant="661" id="FNZ-qM-LGe"/>
+                            <constraint firstItem="CAS-b5-ar2" firstAttribute="top" secondItem="GKs-R9-hfG" secondAttribute="bottom" constant="8" symbolic="YES" id="Jqf-tV-hf7"/>
                             <constraint firstItem="Ydz-54-cms" firstAttribute="trailing" secondItem="CAS-b5-ar2" secondAttribute="trailing" id="SuK-T4-6UB"/>
+                            <constraint firstItem="GKs-R9-hfG" firstAttribute="leading" secondItem="fcj-4G-veU" secondAttribute="leading" constant="64" id="Uwe-BT-fym"/>
                             <constraint firstItem="CAS-b5-ar2" firstAttribute="leading" secondItem="BLd-2p-PWp" secondAttribute="leading" id="dR7-hE-se7"/>
                             <constraint firstItem="yRJ-CQ-jRP" firstAttribute="centerX" secondItem="CAS-b5-ar2" secondAttribute="centerX" id="eqa-Pj-oge"/>
                             <constraint firstAttribute="trailing" secondItem="CAS-b5-ar2" secondAttribute="trailing" id="j1u-fx-DEd"/>
@@ -604,6 +619,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="e6F-w8-xHv"/>
                     <connections>
+                        <outlet property="actionButton" destination="GKs-R9-hfG" id="UtX-YI-fHq"/>
                         <outlet property="mapView" destination="Ydz-54-cms" id="Fwc-VQ-3D1"/>
                         <outlet property="pickUpSwitch" destination="yRJ-CQ-jRP" id="vEb-u4-cbS"/>
                     </connections>

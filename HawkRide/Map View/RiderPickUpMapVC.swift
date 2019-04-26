@@ -65,10 +65,11 @@ class RiderPickUpMapVC: UIViewController {
                
                 
             } else {
-                self.CancelButton.fadeTo(alphaValue: 0.0, withDuration: 0.2)
+               
                 self.RequestButton.animateButton(shouldLoad: false, withMessage: "Request Hawk Ride")
                  self.centerMapOnUserLocation()
             }
+            
         }
         
         connectUserAndDriverForTrip()
@@ -91,7 +92,7 @@ class RiderPickUpMapVC: UIViewController {
 
 extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
     
-    func setupAnnotation(location: Location) {
+      func setupAnnotation(location: Location) {
         
          let passengerId = kPASSENGER
        
@@ -336,7 +337,8 @@ extension RiderPickUpMapVC {
         
         switch action {
         case .requestTrip:
-            DataService.instance.createTrip()
+        RequestButton.animateButton(shouldLoad: true, withMessage: nil)
+        DataService.instance.createTrip()
             
         case .cancelTrip:
             DataService.instance.passengerIsOnTrip(passengerId: userId) { (isOnTrip, driverId, tripId) in
@@ -344,9 +346,9 @@ extension RiderPickUpMapVC {
                 self.removeOverlay()
                 self.removeDriverPin()
                 self.centerMapOnUserLocation()
-                self.RequestButton.animateButton(shouldLoad: false, withMessage: "Request Hawk Ride")
                 DataService.instance.cancelTrip(withPassengerId: userId, forDriverId: driverId!)
                 self.buttonAction = .requestTrip
+                self.RequestButton.setTitle("Request Hawk Ride", for: .normal)
             
             }
         } 
@@ -449,6 +451,9 @@ extension RiderPickUpMapVC {
                                 DispatchQueue.main.async {
                                     self.RequestButton.animateButton(shouldLoad: false, withMessage: kCANCEL_TRIP)
                                     self.buttonAction = .cancelTrip
+                                    
+                                    // Optional
+                                    /*self.RequestButton.animateButton(shouldLoad: false, withMessage: kDRIVING_COMING) */
                                 }
                             }
                         })
@@ -474,7 +479,6 @@ extension RiderPickUpMapVC {
             }
         }
     }
-        
     
     
     
