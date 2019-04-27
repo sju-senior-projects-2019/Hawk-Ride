@@ -234,7 +234,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rider Portal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1u-BI-ceJ">
-                                <rect key="frame" x="20.000000000000007" y="704.66666666666663" width="105.66666666666669" height="23.333333333333371"/>
+                                <rect key="frame" x="20" y="703.33333333333337" width="123" height="24.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -598,6 +598,14 @@
                                     <action selector="actionButton:" destination="Yam-Zp-1mx" eventType="touchUpInside" id="P6e-Qh-hO7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9E-zf-heG">
+                                <rect key="frame" x="334" y="711" width="69" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="centerMapButton"/>
+                                <connections>
+                                    <action selector="centerMapButton:" destination="Yam-Zp-1mx" eventType="touchUpInside" id="SiH-7C-LR9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -620,6 +628,7 @@
                     <navigationItem key="navigationItem" id="e6F-w8-xHv"/>
                     <connections>
                         <outlet property="actionButton" destination="GKs-R9-hfG" id="UtX-YI-fHq"/>
+                        <outlet property="centerMapButton" destination="K9E-zf-heG" id="w1a-U8-iTy"/>
                         <outlet property="mapView" destination="Ydz-54-cms" id="Fwc-VQ-3D1"/>
                         <outlet property="pickUpSwitch" destination="yRJ-CQ-jRP" id="vEb-u4-cbS"/>
                     </connections>
@@ -858,6 +867,11 @@
                                     <action selector="requestButton:" destination="UxD-z9-bFh" eventType="touchUpInside" id="maQ-eB-Qlg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GY-bE-0gu">
+                                <rect key="frame" x="334" y="711" width="69" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="centerMapButton"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -874,6 +888,7 @@
                     </view>
                     <connections>
                         <outlet property="RequestButton" destination="sz4-9R-j3Y" id="uDX-Cn-9LO"/>
+                        <outlet property="centerMapButton" destination="3GY-bE-0gu" id="XUL-QQ-nQ4"/>
                         <outlet property="mapView" destination="uw1-qm-bRV" id="AIq-C9-uKr"/>
                     </connections>
                 </viewController>
@@ -1335,6 +1350,7 @@
     <resources>
         <image name="CancelButton" width="72" height="72"/>
         <image name="backButton" width="30" height="30"/>
+        <image name="centerMapButton" width="193" height="193"/>
         <image name="driverportal" width="177" height="280"/>
         <image name="home" width="72" height="72"/>
         <image name="locationsearch" width="72" height="72"/>

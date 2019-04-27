@@ -23,16 +23,16 @@ class RiderPickUpMapVC: UIViewController {
     var locationManager = CLLocationManager()
     let regionInMeters: Double = 1800
     @IBOutlet weak var RequestButton: RequestCustomButton!
-    @IBOutlet weak var CancelButton: RequestCustomButton!
+    @IBOutlet weak var centerMapButton: RequestCustomButton!
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
     var currentLocationLongitude = CLLocationDegrees()
     var location = Location()
     var currentUserId : String?
-   
-  
-    var route: MKRoute!
     
+    
+    var actionButtonShouldAnimate = true
+    var route: MKRoute!
     var buttonAction: ButtonAction = .requestTrip
     
     override func viewDidLoad() {
@@ -43,8 +43,7 @@ class RiderPickUpMapVC: UIViewController {
         checkLocationAuthStatus()
         currentUserId = Auth.auth().currentUser?.uid
         
-        
-  }
+    }
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,22 +61,17 @@ class RiderPickUpMapVC: UIViewController {
                self.removeUserPin()
                self.removeDestinationPin()
                self.RequestButton.isEnabled = true
-               
-                
-            } else {
-               
-                self.RequestButton.animateButton(shouldLoad: false, withMessage: "Request Hawk Ride")
-                 self.centerMapOnUserLocation()
+         } else {
+               self.RequestButton.animateButton(shouldLoad: false, withMessage: "Request Hawk Ride")
+               self.centerMapOnUserLocation()
             }
             
         }
-        
         connectUserAndDriverForTrip()
         
 }
     
-   
-    @IBAction func requestButton(_ sender: RequestCustomButton) {
+   @IBAction func requestButton(_ sender: RequestCustomButton) {
        RequestButton.animateButton(shouldLoad: true, withMessage: nil)
         if Auth.auth().currentUser?.uid != nil {
             buttonSelector(forAction: buttonAction)
@@ -85,6 +79,24 @@ class RiderPickUpMapVC: UIViewController {
         }else {
             let vc = UIStoryboard.init(name: "Login", bundle: Bundle.main).instantiateInitialViewController() as! HawkRiderSignInViewController
             present(vc, animated: true)
+        }
+    }
+    
+    @IBAction func centerMapButton(_ sender: Any) {
+        if let userId = Auth.auth().currentUser?.uid {
+            DataService.instance.checkUser(id: userId, forValue: kDESTINATION_COORDINTE) {(exist)
+                
+            in
+                if exist {
+                    self.zoom(toFitAnnotationsFromMapView: self.mapView, forActiveTripWithDriver: false, withKey: nil)
+                }
+                else {
+                    self.centerMapOnUserLocation()
+                }
+            }
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.centerMapButton.alpha = 0
         }
     }
     
@@ -211,6 +223,13 @@ extension RiderPickUpMapVC: CLLocationManagerDelegate, MKMapViewDelegate {
         }
         
         
+    }
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        
+        UIView.animate(withDuration: 0.3) {
+            self.centerMapButton.alpha = 1
+        }
     }
     
     func zoom(toFitAnnotationsFromMapView mapView: MKMapView, forActiveTripWithDriver: Bool, withKey key: String?) {

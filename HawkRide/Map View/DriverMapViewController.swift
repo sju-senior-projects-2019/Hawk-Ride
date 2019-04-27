@@ -24,8 +24,8 @@ class DriverMapViewController: UIViewController {
     var route: MKRoute!
     var buttonAction: buttonActionForDrivers!
     @IBOutlet weak var pickUpSwitch: UISwitch!
-     @IBOutlet weak var actionButton: RequestCustomButton!
-    
+    @IBOutlet weak var actionButton: RequestCustomButton!
+    @IBOutlet weak var centerMapButton: RequestCustomButton!
     
     //Coordinates of Locations
     var currentLocationLatitude = CLLocationDegrees()
@@ -188,12 +188,28 @@ class DriverMapViewController: UIViewController {
             buttonSelector(forAction: buttonAction)
     }
     
+}
+    
+    
+    @IBAction func centerMapButton(_ sender: Any) {
+        if let userId = Auth.auth().currentUser?.uid {
+            DataService.instance.checkUser(id: userId, forValue: kDESTINATION_COORDINTE) {(exist)
+                
+                in
+                if exist {
+                    self.zoom(toFitAnnotationsFromMapView: self.mapView, forActiveTripWithDriver: false, withKey: nil)
+                }
+                else {
+                    self.centerMapOnUserLocation()
+                }
+            }
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.centerMapButton.alpha = 0
+        }
     }
-      
     
-    
-        
-       
+  
 // MARK: - Handlers
     
     /* Hamburger Menu Button
@@ -370,6 +386,14 @@ extension DriverMapViewController: MKMapViewDelegate {
         return nil
         
     }
+    
+    // Show center map button when region changes
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.centerMapButton.alpha = 1
+        }
+    }
 }
 extension DriverMapViewController: SidebarDriverViewDelegate {
     
@@ -453,6 +477,7 @@ extension DriverMapViewController {
                     self.removeUserPin()
                     self.removeDestinationPin()
                     self.centerMapOnUserLocation()
+                    self.actionButton.isHidden = true
                    
                     
                 }
